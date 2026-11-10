@@ -1,0 +1,6 @@
+{
+  "replace": false,
+  "values": [
+    { "id": "enigmaticlegacy:evil_essence", "required": false }
+  ]
+}

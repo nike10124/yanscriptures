@@ -1,0 +1,36 @@
+{
+  "type": "yanscriptures:book_writing",
+  "paper": {
+    "tier": 3,
+    "count": 2
+  },
+  "ink": {
+    "tier": 2,
+    "count": 2
+  },
+  "thread": {
+    "tier": 2,
+    "count": 2
+  },
+  "extras": [
+    {
+      "item": "celestial_core:earth_core",
+      "count": 1
+    },
+    {
+      "item": "celestial_core:death_essence",
+      "count": 1
+    },
+    {
+      "item": "enigmaticlegacy:soul_crystal",
+      "count": 1
+    },
+    {
+      "item": "minecraft:slime_ball",
+      "count": 1
+    }
+  ],
+  "result": {
+    "item": "yanscriptures:origin"
+  }
+}

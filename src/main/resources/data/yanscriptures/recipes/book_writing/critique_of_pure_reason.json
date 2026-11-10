@@ -1,0 +1,40 @@
+{
+  "type": "yanscriptures:book_writing",
+  "paper": {
+    "tier": 3,
+    "count": 3
+  },
+  "ink": {
+    "tier": 3,
+    "count": 2
+  },
+  "thread": {
+    "tier": 2,
+    "count": 2
+  },
+  "extras": [
+    {
+      "item": "enigmaticlegacy:astral_dust",
+      "count": 6
+    },
+    {
+      "item": "celestial_core:void_essence",
+      "count": 1
+    },
+    {
+      "item": "goety:soul_ruby",
+      "count": 1
+    },
+    {
+      "item": "minecraft:amethyst_shard",
+      "count": 1
+    },
+    {
+      "item": "minecraft:lapis_lazuli",
+      "count": 1
+    }
+  ],
+  "result": {
+    "item": "yanscriptures:critique_of_pure_reason"
+  }
+}

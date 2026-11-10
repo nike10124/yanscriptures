@@ -1,0 +1,40 @@
+{
+  "type": "yanscriptures:book_writing",
+  "paper": {
+    "tier": 3,
+    "count": 3
+  },
+  "ink": {
+    "tier": 3,
+    "count": 2
+  },
+  "thread": {
+    "tier": 2,
+    "count": 2
+  },
+  "extras": [
+    {
+      "item": "celestial_core:midnight_fragment",
+      "count": 1
+    },
+    {
+      "item": "goety:shadow_essence",
+      "count": 2
+    },
+    {
+      "item": "minecraft:phantom_membrane",
+      "count": 8
+    },
+    {
+      "item": "minecraft:echo_shard",
+      "count": 1
+    },
+    {
+      "item": "goety:void_shard",
+      "count": 1
+    }
+  ],
+  "result": {
+    "item": "yanscriptures:interpretation_of_dreams"
+  }
+}

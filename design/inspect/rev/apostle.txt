@@ -1,0 +1,2578 @@
+Compiled from "ApostleMixin.java"
+public abstract class z1gned.goetyrevelation.mixin.ApostleMixin extends com.Polarice3.Goety.common.entities.hostile.cultists.SpellCastingCultist implements z1gned.goetyrevelation.util.ApollyonAbilityHelper {
+  private static final net.minecraft.network.syncher.EntityDataAccessor<java.lang.Boolean> APOLLYON;
+
+  private static final net.minecraft.network.syncher.EntityDataAccessor<java.lang.Integer> HIT_COOLDOWN;
+
+  private static final net.minecraft.network.syncher.EntityDataAccessor<java.lang.Boolean> SHOOTING;
+
+  private static final net.minecraft.network.syncher.EntityDataAccessor<java.lang.Boolean> SILENT;
+
+  private static final net.minecraft.network.syncher.EntityDataAccessor<java.lang.Boolean> DOOM;
+
+  private static final net.minecraft.network.syncher.EntityDataAccessor<java.lang.Boolean> SETTING_DOOM;
+
+  private static final net.minecraft.network.syncher.EntityDataAccessor<java.lang.Integer> TIME;
+
+  public double prevX;
+
+  public double prevY;
+
+  public double prevZ;
+
+  private boolean regen;
+
+  public abstract void setCustomName(net.minecraft.network.chat.Component);
+
+  public abstract boolean isSecondPhase();
+
+  public abstract boolean isSettingUpSecond();
+
+  public abstract void setFireArrow(boolean);
+
+  public abstract void setRegen(boolean);
+
+  public abstract boolean addEffect(net.minecraft.world.effect.MobEffectInstance, net.minecraft.world.entity.Entity);
+
+  public abstract boolean isInNether();
+
+  protected abstract com.Polarice3.Goety.common.entities.projectiles.NetherMeteor getNetherMeteor();
+
+  public abstract void setTornadoCoolDown(int);
+
+  public abstract void setMonolithCoolDown(int);
+
+  public abstract net.minecraft.world.entity.projectile.AbstractArrow getArrow(net.minecraft.world.item.ItemStack, float);
+
+  protected z1gned.goetyrevelation.mixin.ApostleMixin(net.minecraft.world.entity.EntityType<? extends com.Polarice3.Goety.common.entities.hostile.cultists.SpellCastingCultist>, net.minecraft.world.level.Level);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokespecial #68                 // Method com/Polarice3/Goety/common/entities/hostile/cultists/SpellCastingCultist."<init>":(Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/Level;)V
+       6: return
+
+  private void writeNbt(net.minecraft.nbt.CompoundTag, org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+       0: aload_1
+       1: ldc           #85                 // String isApollyon
+       3: aload_0
+       4: invokevirtual #88                 // Method allTitlesApostle_1_20_1$isApollyon:()Z
+       7: invokevirtual #94                 // Method net/minecraft/nbt/CompoundTag.putBoolean:(Ljava/lang/String;Z)V
+      10: return
+
+  private void readNbt(net.minecraft.nbt.CompoundTag, org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: ldc           #85                 // String isApollyon
+       4: invokevirtual #104                // Method net/minecraft/nbt/CompoundTag.getBoolean:(Ljava/lang/String;)Z
+       7: invokevirtual #107                // Method allTitlesApostle_1_20_1$setApollyon:(Z)V
+      10: return
+
+  private void registerEntityData(org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+       0: aload_0
+       1: getfield      #115                // Field entityData:Lnet/minecraft/network/syncher/SynchedEntityData;
+       4: getstatic     #117                // Field APOLLYON:Lnet/minecraft/network/syncher/EntityDataAccessor;
+       7: iconst_0
+       8: invokestatic  #123                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      11: invokevirtual #129                // Method net/minecraft/network/syncher/SynchedEntityData.define:(Lnet/minecraft/network/syncher/EntityDataAccessor;Ljava/lang/Object;)V
+      14: aload_0
+      15: getfield      #115                // Field entityData:Lnet/minecraft/network/syncher/SynchedEntityData;
+      18: getstatic     #131                // Field HIT_COOLDOWN:Lnet/minecraft/network/syncher/EntityDataAccessor;
+      21: iconst_0
+      22: invokestatic  #136                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      25: invokevirtual #129                // Method net/minecraft/network/syncher/SynchedEntityData.define:(Lnet/minecraft/network/syncher/EntityDataAccessor;Ljava/lang/Object;)V
+      28: aload_0
+      29: getfield      #115                // Field entityData:Lnet/minecraft/network/syncher/SynchedEntityData;
+      32: getstatic     #138                // Field SHOOTING:Lnet/minecraft/network/syncher/EntityDataAccessor;
+      35: iconst_0
+      36: invokestatic  #123                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      39: invokevirtual #129                // Method net/minecraft/network/syncher/SynchedEntityData.define:(Lnet/minecraft/network/syncher/EntityDataAccessor;Ljava/lang/Object;)V
+      42: aload_0
+      43: getfield      #115                // Field entityData:Lnet/minecraft/network/syncher/SynchedEntityData;
+      46: getstatic     #140                // Field SILENT:Lnet/minecraft/network/syncher/EntityDataAccessor;
+      49: iconst_0
+      50: invokestatic  #123                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      53: invokevirtual #129                // Method net/minecraft/network/syncher/SynchedEntityData.define:(Lnet/minecraft/network/syncher/EntityDataAccessor;Ljava/lang/Object;)V
+      56: aload_0
+      57: getfield      #115                // Field entityData:Lnet/minecraft/network/syncher/SynchedEntityData;
+      60: getstatic     #142                // Field DOOM:Lnet/minecraft/network/syncher/EntityDataAccessor;
+      63: iconst_0
+      64: invokestatic  #123                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      67: invokevirtual #129                // Method net/minecraft/network/syncher/SynchedEntityData.define:(Lnet/minecraft/network/syncher/EntityDataAccessor;Ljava/lang/Object;)V
+      70: aload_0
+      71: getfield      #115                // Field entityData:Lnet/minecraft/network/syncher/SynchedEntityData;
+      74: getstatic     #144                // Field SETTING_DOOM:Lnet/minecraft/network/syncher/EntityDataAccessor;
+      77: iconst_0
+      78: invokestatic  #123                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      81: invokevirtual #129                // Method net/minecraft/network/syncher/SynchedEntityData.define:(Lnet/minecraft/network/syncher/EntityDataAccessor;Ljava/lang/Object;)V
+      84: aload_0
+      85: getfield      #115                // Field entityData:Lnet/minecraft/network/syncher/SynchedEntityData;
+      88: getstatic     #146                // Field TIME:Lnet/minecraft/network/syncher/EntityDataAccessor;
+      91: iconst_0
+      92: invokestatic  #136                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      95: invokevirtual #129                // Method net/minecraft/network/syncher/SynchedEntityData.define:(Lnet/minecraft/network/syncher/EntityDataAccessor;Ljava/lang/Object;)V
+      98: return
+
+  private void resetBaseHealth(org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+       0: aload_0
+       1: invokevirtual #88                 // Method allTitlesApostle_1_20_1$isApollyon:()Z
+       4: ifeq          77
+       7: aload_1
+       8: invokevirtual #158                // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfo.cancel:()V
+      11: aload_0
+      12: getstatic     #164                // Field net/minecraft/world/entity/ai/attributes/Attributes.MAX_HEALTH:Lnet/minecraft/world/entity/ai/attributes/Attribute;
+      15: invokevirtual #168                // Method getAttribute:(Lnet/minecraft/world/entity/ai/attributes/Attribute;)Lnet/minecraft/world/entity/ai/attributes/AttributeInstance;
+      18: getstatic     #174                // Field z1gned/goetyrevelation/config/ModConfig.APOLLYON_HEALTH:Lnet/minecraftforge/common/ForgeConfigSpec$ConfigValue;
+      21: invokevirtual #178                // Method net/minecraftforge/common/ForgeConfigSpec$ConfigValue.get:()Ljava/lang/Object;
+      24: checkcast     #180                // class java/lang/Double
+      27: invokevirtual #184                // Method java/lang/Double.doubleValue:()D
+      30: invokestatic  #190                // Method com/Polarice3/Goety/utils/MobUtil.setBaseAttributes:(Lnet/minecraft/world/entity/ai/attributes/AttributeInstance;D)V
+      33: aload_0
+      34: getstatic     #193                // Field net/minecraft/world/entity/ai/attributes/Attributes.ARMOR:Lnet/minecraft/world/entity/ai/attributes/Attribute;
+      37: invokevirtual #168                // Method getAttribute:(Lnet/minecraft/world/entity/ai/attributes/Attribute;)Lnet/minecraft/world/entity/ai/attributes/AttributeInstance;
+      40: getstatic     #198                // Field com/Polarice3/Goety/config/AttributesConfig.ApostleArmor:Lnet/minecraftforge/common/ForgeConfigSpec$ConfigValue;
+      43: invokevirtual #178                // Method net/minecraftforge/common/ForgeConfigSpec$ConfigValue.get:()Ljava/lang/Object;
+      46: checkcast     #180                // class java/lang/Double
+      49: invokevirtual #184                // Method java/lang/Double.doubleValue:()D
+      52: invokestatic  #190                // Method com/Polarice3/Goety/utils/MobUtil.setBaseAttributes:(Lnet/minecraft/world/entity/ai/attributes/AttributeInstance;D)V
+      55: aload_0
+      56: getstatic     #201                // Field net/minecraft/world/entity/ai/attributes/Attributes.ARMOR_TOUGHNESS:Lnet/minecraft/world/entity/ai/attributes/Attribute;
+      59: invokevirtual #168                // Method getAttribute:(Lnet/minecraft/world/entity/ai/attributes/Attribute;)Lnet/minecraft/world/entity/ai/attributes/AttributeInstance;
+      62: getstatic     #204                // Field com/Polarice3/Goety/config/AttributesConfig.ApostleToughness:Lnet/minecraftforge/common/ForgeConfigSpec$ConfigValue;
+      65: invokevirtual #178                // Method net/minecraftforge/common/ForgeConfigSpec$ConfigValue.get:()Ljava/lang/Object;
+      68: checkcast     #180                // class java/lang/Double
+      71: invokevirtual #184                // Method java/lang/Double.doubleValue:()D
+      74: invokestatic  #190                // Method com/Polarice3/Goety/utils/MobUtil.setBaseAttributes:(Lnet/minecraft/world/entity/ai/attributes/AttributeInstance;D)V
+      77: return
+
+  private void dropHalo(net.minecraft.world.damagesource.DamageSource, int, boolean, org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+       0: aload_0
+       1: invokevirtual #88                 // Method allTitlesApostle_1_20_1$isApollyon:()Z
+       4: ifeq          41
+       7: aload_0
+       8: getstatic     #213                // Field z1gned/goetyrevelation/item/ModItems.ASCENSION_HALO:Lnet/minecraftforge/registries/RegistryObject;
+      11: invokevirtual #216                // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+      14: checkcast     #218                // class net/minecraft/world/level/ItemLike
+      17: invokevirtual #222                // Method spawnAtLocation:(Lnet/minecraft/world/level/ItemLike;)Lnet/minecraft/world/entity/item/ItemEntity;
+      20: astore        5
+      22: aload         5
+      24: ifnull        38
+      27: aload         5
+      29: invokevirtual #227                // Method net/minecraft/world/entity/item/ItemEntity.setExtendedLifetime:()V
+      32: aload         5
+      34: iconst_1
+      35: invokevirtual #230                // Method net/minecraft/world/entity/item/ItemEntity.setGlowingTag:(Z)V
+      38: goto          83
+      41: aload_0
+      42: invokevirtual #234                // Method level:()Lnet/minecraft/world/level/Level;
+      45: getfield      #240                // Field net/minecraft/world/level/Level.random:Lnet/minecraft/util/RandomSource;
+      48: bipush        10
+      50: invokeinterface #246,  2          // InterfaceMethod net/minecraft/util/RandomSource.nextInt:(I)I
+      55: ifne          83
+      58: aload_0
+      59: getstatic     #249                // Field z1gned/goetyrevelation/item/ModItems.BROKEN_HALO:Lnet/minecraftforge/registries/RegistryObject;
+      62: invokevirtual #216                // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+      65: checkcast     #218                // class net/minecraft/world/level/ItemLike
+      68: invokevirtual #222                // Method spawnAtLocation:(Lnet/minecraft/world/level/ItemLike;)Lnet/minecraft/world/entity/item/ItemEntity;
+      71: astore        5
+      73: aload         5
+      75: ifnull        83
+      78: aload         5
+      80: invokevirtual #227                // Method net/minecraft/world/entity/item/ItemEntity.setExtendedLifetime:()V
+      83: return
+
+  private void tickAbility(org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+       0: aload_0
+       1: invokevirtual #262                // Method allTitlesApostle_1_20_1$getHitCooldown:()I
+       4: ifle          17
+       7: aload_0
+       8: aload_0
+       9: invokevirtual #262                // Method allTitlesApostle_1_20_1$getHitCooldown:()I
+      12: iconst_1
+      13: isub
+      14: invokevirtual #265                // Method allTitlesApostle_1_20_1$setHitCooldown:(I)V
+      17: aload_0
+      18: invokevirtual #88                 // Method allTitlesApostle_1_20_1$isApollyon:()Z
+      21: ifeq          1045
+      24: aload_0
+      25: aload_0
+      26: invokevirtual #269                // Method allTitlesApostle_1_20_1$getNameComponent:()Lnet/minecraft/network/chat/Component;
+      29: invokevirtual #271                // Method setCustomName:(Lnet/minecraft/network/chat/Component;)V
+      32: aload_0
+      33: invokevirtual #234                // Method level:()Lnet/minecraft/world/level/Level;
+      36: ldc_w         #273                // class com/Polarice3/Goety/common/entities/neutral/Owned
+      39: new           #275                // class net/minecraft/world/phys/AABB
+      42: dup
+      43: aload_0
+      44: invokevirtual #279                // Method blockPosition:()Lnet/minecraft/core/BlockPos;
+      47: invokespecial #282                // Method net/minecraft/world/phys/AABB."<init>":(Lnet/minecraft/core/BlockPos;)V
+      50: ldc2_w        #283                // double 64.0d
+      53: invokevirtual #288                // Method net/minecraft/world/phys/AABB.inflate:(D)Lnet/minecraft/world/phys/AABB;
+      56: aload_0
+      57: invokedynamic #307,  0            // InvokeDynamic #0:test:(Lz1gned/goetyrevelation/mixin/ApostleMixin;)Ljava/util/function/Predicate;
+      62: invokevirtual #311                // Method net/minecraft/world/level/Level.getEntitiesOfClass:(Ljava/lang/Class;Lnet/minecraft/world/phys/AABB;Ljava/util/function/Predicate;)Ljava/util/List;
+      65: astore_2
+      66: aload_0
+      67: aload_0
+      68: invokevirtual #315                // Method getHealth:()F
+      71: invokevirtual #319                // Method allTitleApostle$titleNumber:(F)I
+      74: istore_3
+      75: aload_0
+      76: iload_3
+      77: ifeq          86
+      80: iload_3
+      81: bipush        12
+      83: if_icmpne     90
+      86: iconst_1
+      87: goto          91
+      90: iconst_0
+      91: invokevirtual #323                // Method setRegen:(Z)V
+      94: iload_3
+      95: ifeq          104
+      98: iload_3
+      99: bipush        12
+     101: if_icmpne     116
+     104: aload_0
+     105: invokevirtual #325                // Method isInNether:()Z
+     108: ifeq          116
+     111: aload_0
+     112: iconst_0
+     113: invokevirtual #327                // Method setMonolithCoolDown:(I)V
+     116: iload_3
+     117: bipush        6
+     119: if_icmpeq     128
+     122: iload_3
+     123: bipush        12
+     125: if_icmpne     155
+     128: aload_0
+     129: new           #329                // class net/minecraft/world/effect/MobEffectInstance
+     132: dup
+     133: getstatic     #334                // Field com/Polarice3/Goety/common/effects/GoetyEffects.FIERY_AURA:Lnet/minecraftforge/registries/RegistryObject;
+     136: invokevirtual #216                // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+     139: checkcast     #336                // class net/minecraft/world/effect/MobEffect
+     142: bipush        100
+     144: iconst_1
+     145: iconst_0
+     146: iconst_0
+     147: invokespecial #339                // Method net/minecraft/world/effect/MobEffectInstance."<init>":(Lnet/minecraft/world/effect/MobEffect;IIZZ)V
+     150: aload_0
+     151: invokevirtual #341                // Method addEffect:(Lnet/minecraft/world/effect/MobEffectInstance;Lnet/minecraft/world/entity/Entity;)Z
+     154: pop
+     155: iload_3
+     156: bipush        9
+     158: if_icmpeq     167
+     161: iload_3
+     162: bipush        12
+     164: if_icmpne     188
+     167: aload_0
+     168: new           #329                // class net/minecraft/world/effect/MobEffectInstance
+     171: dup
+     172: getstatic     #347                // Field net/minecraft/world/effect/MobEffects.MOVEMENT_SPEED:Lnet/minecraft/world/effect/MobEffect;
+     175: bipush        100
+     177: iconst_1
+     178: iconst_0
+     179: iconst_0
+     180: invokespecial #339                // Method net/minecraft/world/effect/MobEffectInstance."<init>":(Lnet/minecraft/world/effect/MobEffect;IIZZ)V
+     183: aload_0
+     184: invokevirtual #341                // Method addEffect:(Lnet/minecraft/world/effect/MobEffectInstance;Lnet/minecraft/world/entity/Entity;)Z
+     187: pop
+     188: iload_3
+     189: bipush        10
+     191: if_icmpeq     200
+     194: iload_3
+     195: bipush        12
+     197: if_icmpne     287
+     200: iconst_0
+     201: istore        4
+     203: aload_0
+     204: invokevirtual #325                // Method isInNether:()Z
+     207: ifeq          213
+     210: iconst_2
+     211: istore        4
+     213: aload_0
+     214: new           #329                // class net/minecraft/world/effect/MobEffectInstance
+     217: dup
+     218: getstatic     #350                // Field net/minecraft/world/effect/MobEffects.DAMAGE_RESISTANCE:Lnet/minecraft/world/effect/MobEffect;
+     221: bipush        100
+     223: iconst_0
+     224: iconst_0
+     225: iconst_0
+     226: invokespecial #339                // Method net/minecraft/world/effect/MobEffectInstance."<init>":(Lnet/minecraft/world/effect/MobEffect;IIZZ)V
+     229: aload_0
+     230: invokevirtual #341                // Method addEffect:(Lnet/minecraft/world/effect/MobEffectInstance;Lnet/minecraft/world/entity/Entity;)Z
+     233: pop
+     234: aload_2
+     235: invokeinterface #354,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     240: astore        5
+     242: aload         5
+     244: invokeinterface #359,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     249: ifeq          287
+     252: aload         5
+     254: invokeinterface #362,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     259: checkcast     #273                // class com/Polarice3/Goety/common/entities/neutral/Owned
+     262: astore        6
+     264: aload         6
+     266: new           #329                // class net/minecraft/world/effect/MobEffectInstance
+     269: dup
+     270: getstatic     #350                // Field net/minecraft/world/effect/MobEffects.DAMAGE_RESISTANCE:Lnet/minecraft/world/effect/MobEffect;
+     273: bipush        100
+     275: iload         4
+     277: invokespecial #365                // Method net/minecraft/world/effect/MobEffectInstance."<init>":(Lnet/minecraft/world/effect/MobEffect;II)V
+     280: invokevirtual #368                // Method com/Polarice3/Goety/common/entities/neutral/Owned.addEffect:(Lnet/minecraft/world/effect/MobEffectInstance;)Z
+     283: pop
+     284: goto          242
+     287: iload_3
+     288: bipush        11
+     290: if_icmpeq     299
+     293: iload_3
+     294: bipush        12
+     296: if_icmpne     382
+     299: aload_2
+     300: invokeinterface #354,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     305: astore        4
+     307: aload         4
+     309: invokeinterface #359,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     314: ifeq          370
+     317: aload         4
+     319: invokeinterface #362,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     324: checkcast     #273                // class com/Polarice3/Goety/common/entities/neutral/Owned
+     327: astore        5
+     329: aload         5
+     331: new           #329                // class net/minecraft/world/effect/MobEffectInstance
+     334: dup
+     335: getstatic     #347                // Field net/minecraft/world/effect/MobEffects.MOVEMENT_SPEED:Lnet/minecraft/world/effect/MobEffect;
+     338: bipush        100
+     340: iconst_1
+     341: invokespecial #365                // Method net/minecraft/world/effect/MobEffectInstance."<init>":(Lnet/minecraft/world/effect/MobEffect;II)V
+     344: invokevirtual #368                // Method com/Polarice3/Goety/common/entities/neutral/Owned.addEffect:(Lnet/minecraft/world/effect/MobEffectInstance;)Z
+     347: pop
+     348: aload         5
+     350: new           #329                // class net/minecraft/world/effect/MobEffectInstance
+     353: dup
+     354: getstatic     #371                // Field net/minecraft/world/effect/MobEffects.DAMAGE_BOOST:Lnet/minecraft/world/effect/MobEffect;
+     357: bipush        100
+     359: iconst_1
+     360: invokespecial #365                // Method net/minecraft/world/effect/MobEffectInstance."<init>":(Lnet/minecraft/world/effect/MobEffect;II)V
+     363: invokevirtual #368                // Method com/Polarice3/Goety/common/entities/neutral/Owned.addEffect:(Lnet/minecraft/world/effect/MobEffectInstance;)Z
+     366: pop
+     367: goto          307
+     370: aload_0
+     371: invokevirtual #325                // Method isInNether:()Z
+     374: ifeq          382
+     377: aload_0
+     378: iconst_0
+     379: invokevirtual #373                // Method setTornadoCoolDown:(I)V
+     382: iload_3
+     383: iconst_1
+     384: if_icmpeq     393
+     387: iload_3
+     388: bipush        13
+     390: if_icmpne     541
+     393: aload_0
+     394: invokevirtual #234                // Method level:()Lnet/minecraft/world/level/Level;
+     397: ldc_w         #375                // class net/minecraft/world/entity/LivingEntity
+     400: new           #275                // class net/minecraft/world/phys/AABB
+     403: dup
+     404: aload_0
+     405: invokevirtual #279                // Method blockPosition:()Lnet/minecraft/core/BlockPos;
+     408: invokespecial #282                // Method net/minecraft/world/phys/AABB."<init>":(Lnet/minecraft/core/BlockPos;)V
+     411: ldc2_w        #376                // double 5.0d
+     414: invokevirtual #288                // Method net/minecraft/world/phys/AABB.inflate:(D)Lnet/minecraft/world/phys/AABB;
+     417: aload_0
+     418: invokedynamic #384,  0            // InvokeDynamic #1:test:(Lz1gned/goetyrevelation/mixin/ApostleMixin;)Ljava/util/function/Predicate;
+     423: invokevirtual #311                // Method net/minecraft/world/level/Level.getEntitiesOfClass:(Ljava/lang/Class;Lnet/minecraft/world/phys/AABB;Ljava/util/function/Predicate;)Ljava/util/List;
+     426: invokeinterface #354,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     431: astore        4
+     433: aload         4
+     435: invokeinterface #359,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     440: ifeq          541
+     443: aload         4
+     445: invokeinterface #362,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     450: checkcast     #375                // class net/minecraft/world/entity/LivingEntity
+     453: astore        5
+     455: aload         5
+     457: instanceof    #386                // class net/minecraft/world/entity/player/Player
+     460: ifeq          511
+     463: aload         5
+     465: checkcast     #386                // class net/minecraft/world/entity/player/Player
+     468: astore        6
+     470: aload         6
+     472: invokevirtual #389                // Method net/minecraft/world/entity/player/Player.isCreative:()Z
+     475: ifne          511
+     478: aload         6
+     480: invokevirtual #392                // Method net/minecraft/world/entity/player/Player.isSpectator:()Z
+     483: ifne          511
+     486: aload         5
+     488: new           #329                // class net/minecraft/world/effect/MobEffectInstance
+     491: dup
+     492: getstatic     #395                // Field com/Polarice3/Goety/common/effects/GoetyEffects.SAPPED:Lnet/minecraftforge/registries/RegistryObject;
+     495: invokevirtual #216                // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+     498: checkcast     #336                // class net/minecraft/world/effect/MobEffect
+     501: bipush        40
+     503: iconst_4
+     504: invokespecial #365                // Method net/minecraft/world/effect/MobEffectInstance."<init>":(Lnet/minecraft/world/effect/MobEffect;II)V
+     507: invokevirtual #396                // Method net/minecraft/world/entity/LivingEntity.addEffect:(Lnet/minecraft/world/effect/MobEffectInstance;)Z
+     510: pop
+     511: aload         5
+     513: instanceof    #386                // class net/minecraft/world/entity/player/Player
+     516: ifne          538
+     519: aload         5
+     521: new           #329                // class net/minecraft/world/effect/MobEffectInstance
+     524: dup
+     525: getstatic     #371                // Field net/minecraft/world/effect/MobEffects.DAMAGE_BOOST:Lnet/minecraft/world/effect/MobEffect;
+     528: bipush        40
+     530: iconst_3
+     531: invokespecial #365                // Method net/minecraft/world/effect/MobEffectInstance."<init>":(Lnet/minecraft/world/effect/MobEffect;II)V
+     534: invokevirtual #396                // Method net/minecraft/world/entity/LivingEntity.addEffect:(Lnet/minecraft/world/effect/MobEffectInstance;)Z
+     537: pop
+     538: goto          433
+     541: iload_3
+     542: bipush        8
+     544: if_icmpeq     553
+     547: iload_3
+     548: bipush        12
+     550: if_icmpne     839
+     553: aload_0
+     554: invokevirtual #234                // Method level:()Lnet/minecraft/world/level/Level;
+     557: ldc_w         #375                // class net/minecraft/world/entity/LivingEntity
+     560: new           #275                // class net/minecraft/world/phys/AABB
+     563: dup
+     564: aload_0
+     565: invokevirtual #279                // Method blockPosition:()Lnet/minecraft/core/BlockPos;
+     568: invokespecial #282                // Method net/minecraft/world/phys/AABB."<init>":(Lnet/minecraft/core/BlockPos;)V
+     571: ldc2_w        #376                // double 5.0d
+     574: invokevirtual #288                // Method net/minecraft/world/phys/AABB.inflate:(D)Lnet/minecraft/world/phys/AABB;
+     577: aload_0
+     578: invokedynamic #401,  0            // InvokeDynamic #2:test:(Lz1gned/goetyrevelation/mixin/ApostleMixin;)Ljava/util/function/Predicate;
+     583: invokevirtual #311                // Method net/minecraft/world/level/Level.getEntitiesOfClass:(Ljava/lang/Class;Lnet/minecraft/world/phys/AABB;Ljava/util/function/Predicate;)Ljava/util/List;
+     586: invokeinterface #354,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     591: astore        4
+     593: aload         4
+     595: invokeinterface #359,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     600: ifeq          695
+     603: aload         4
+     605: invokeinterface #362,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     610: checkcast     #375                // class net/minecraft/world/entity/LivingEntity
+     613: astore        5
+     615: aload         5
+     617: instanceof    #386                // class net/minecraft/world/entity/player/Player
+     620: ifeq          665
+     623: aload         5
+     625: checkcast     #386                // class net/minecraft/world/entity/player/Player
+     628: astore        6
+     630: aload         6
+     632: invokevirtual #389                // Method net/minecraft/world/entity/player/Player.isCreative:()Z
+     635: ifne          665
+     638: aload         6
+     640: invokevirtual #392                // Method net/minecraft/world/entity/player/Player.isSpectator:()Z
+     643: ifne          665
+     646: aload         5
+     648: new           #329                // class net/minecraft/world/effect/MobEffectInstance
+     651: dup
+     652: getstatic     #404                // Field net/minecraft/world/effect/MobEffects.MOVEMENT_SLOWDOWN:Lnet/minecraft/world/effect/MobEffect;
+     655: bipush        40
+     657: iconst_1
+     658: invokespecial #365                // Method net/minecraft/world/effect/MobEffectInstance."<init>":(Lnet/minecraft/world/effect/MobEffect;II)V
+     661: invokevirtual #396                // Method net/minecraft/world/entity/LivingEntity.addEffect:(Lnet/minecraft/world/effect/MobEffectInstance;)Z
+     664: pop
+     665: aload         5
+     667: instanceof    #386                // class net/minecraft/world/entity/player/Player
+     670: ifne          692
+     673: aload         5
+     675: new           #329                // class net/minecraft/world/effect/MobEffectInstance
+     678: dup
+     679: getstatic     #404                // Field net/minecraft/world/effect/MobEffects.MOVEMENT_SLOWDOWN:Lnet/minecraft/world/effect/MobEffect;
+     682: bipush        40
+     684: iconst_1
+     685: invokespecial #365                // Method net/minecraft/world/effect/MobEffectInstance."<init>":(Lnet/minecraft/world/effect/MobEffect;II)V
+     688: invokevirtual #396                // Method net/minecraft/world/entity/LivingEntity.addEffect:(Lnet/minecraft/world/effect/MobEffectInstance;)Z
+     691: pop
+     692: goto          593
+     695: aload_0
+     696: invokevirtual #234                // Method level:()Lnet/minecraft/world/level/Level;
+     699: ldc_w         #375                // class net/minecraft/world/entity/LivingEntity
+     702: new           #275                // class net/minecraft/world/phys/AABB
+     705: dup
+     706: aload_0
+     707: invokevirtual #279                // Method blockPosition:()Lnet/minecraft/core/BlockPos;
+     710: invokespecial #282                // Method net/minecraft/world/phys/AABB."<init>":(Lnet/minecraft/core/BlockPos;)V
+     713: ldc2_w        #405                // double 3.0d
+     716: invokevirtual #288                // Method net/minecraft/world/phys/AABB.inflate:(D)Lnet/minecraft/world/phys/AABB;
+     719: aload_0
+     720: invokedynamic #411,  0            // InvokeDynamic #3:test:(Lz1gned/goetyrevelation/mixin/ApostleMixin;)Ljava/util/function/Predicate;
+     725: invokevirtual #311                // Method net/minecraft/world/level/Level.getEntitiesOfClass:(Ljava/lang/Class;Lnet/minecraft/world/phys/AABB;Ljava/util/function/Predicate;)Ljava/util/List;
+     728: invokeinterface #354,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     733: astore        4
+     735: aload         4
+     737: invokeinterface #359,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     742: ifeq          839
+     745: aload         4
+     747: invokeinterface #362,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     752: checkcast     #375                // class net/minecraft/world/entity/LivingEntity
+     755: astore        5
+     757: aload         5
+     759: instanceof    #386                // class net/minecraft/world/entity/player/Player
+     762: ifeq          808
+     765: aload         5
+     767: checkcast     #386                // class net/minecraft/world/entity/player/Player
+     770: astore        6
+     772: aload         6
+     774: invokevirtual #389                // Method net/minecraft/world/entity/player/Player.isCreative:()Z
+     777: ifne          808
+     780: aload         6
+     782: invokevirtual #392                // Method net/minecraft/world/entity/player/Player.isSpectator:()Z
+     785: ifne          808
+     788: aload         5
+     790: new           #329                // class net/minecraft/world/effect/MobEffectInstance
+     793: dup
+     794: getstatic     #404                // Field net/minecraft/world/effect/MobEffects.MOVEMENT_SLOWDOWN:Lnet/minecraft/world/effect/MobEffect;
+     797: bipush        40
+     799: bipush        6
+     801: invokespecial #365                // Method net/minecraft/world/effect/MobEffectInstance."<init>":(Lnet/minecraft/world/effect/MobEffect;II)V
+     804: invokevirtual #396                // Method net/minecraft/world/entity/LivingEntity.addEffect:(Lnet/minecraft/world/effect/MobEffectInstance;)Z
+     807: pop
+     808: aload         5
+     810: instanceof    #386                // class net/minecraft/world/entity/player/Player
+     813: ifne          836
+     816: aload         5
+     818: new           #329                // class net/minecraft/world/effect/MobEffectInstance
+     821: dup
+     822: getstatic     #404                // Field net/minecraft/world/effect/MobEffects.MOVEMENT_SLOWDOWN:Lnet/minecraft/world/effect/MobEffect;
+     825: bipush        40
+     827: bipush        6
+     829: invokespecial #365                // Method net/minecraft/world/effect/MobEffectInstance."<init>":(Lnet/minecraft/world/effect/MobEffect;II)V
+     832: invokevirtual #396                // Method net/minecraft/world/entity/LivingEntity.addEffect:(Lnet/minecraft/world/effect/MobEffectInstance;)Z
+     835: pop
+     836: goto          735
+     839: iload_3
+     840: bipush        13
+     842: if_icmpne     1045
+     845: aload_0
+     846: iconst_0
+     847: invokevirtual #323                // Method setRegen:(Z)V
+     850: aload_0
+     851: invokevirtual #415                // Method getTarget:()Lnet/minecraft/world/entity/LivingEntity;
+     854: ifnull        937
+     857: aload_0
+     858: invokevirtual #415                // Method getTarget:()Lnet/minecraft/world/entity/LivingEntity;
+     861: getstatic     #164                // Field net/minecraft/world/entity/ai/attributes/Attributes.MAX_HEALTH:Lnet/minecraft/world/entity/ai/attributes/Attribute;
+     864: invokevirtual #416                // Method net/minecraft/world/entity/LivingEntity.getAttribute:(Lnet/minecraft/world/entity/ai/attributes/Attribute;)Lnet/minecraft/world/entity/ai/attributes/AttributeInstance;
+     867: invokestatic  #422                // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+     870: checkcast     #424                // class net/minecraft/world/entity/ai/attributes/AttributeInstance
+     873: dconst_1
+     874: invokevirtual #428                // Method net/minecraft/world/entity/ai/attributes/AttributeInstance.setBaseValue:(D)V
+     877: aload_0
+     878: invokevirtual #415                // Method getTarget:()Lnet/minecraft/world/entity/LivingEntity;
+     881: new           #329                // class net/minecraft/world/effect/MobEffectInstance
+     884: dup
+     885: getstatic     #431                // Field com/Polarice3/Goety/common/effects/GoetyEffects.CURSED:Lnet/minecraftforge/registries/RegistryObject;
+     888: invokevirtual #216                // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+     891: checkcast     #336                // class net/minecraft/world/effect/MobEffect
+     894: bipush        60
+     896: iconst_0
+     897: iconst_0
+     898: iconst_0
+     899: invokespecial #339                // Method net/minecraft/world/effect/MobEffectInstance."<init>":(Lnet/minecraft/world/effect/MobEffect;IIZZ)V
+     902: aload_0
+     903: invokevirtual #432                // Method net/minecraft/world/entity/LivingEntity.addEffect:(Lnet/minecraft/world/effect/MobEffectInstance;Lnet/minecraft/world/entity/Entity;)Z
+     906: pop
+     907: aload_0
+     908: invokevirtual #415                // Method getTarget:()Lnet/minecraft/world/entity/LivingEntity;
+     911: new           #329                // class net/minecraft/world/effect/MobEffectInstance
+     914: dup
+     915: getstatic     #395                // Field com/Polarice3/Goety/common/effects/GoetyEffects.SAPPED:Lnet/minecraftforge/registries/RegistryObject;
+     918: invokevirtual #216                // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+     921: checkcast     #336                // class net/minecraft/world/effect/MobEffect
+     924: bipush        80
+     926: iconst_0
+     927: iconst_0
+     928: iconst_0
+     929: invokespecial #339                // Method net/minecraft/world/effect/MobEffectInstance."<init>":(Lnet/minecraft/world/effect/MobEffect;IIZZ)V
+     932: aload_0
+     933: invokevirtual #432                // Method net/minecraft/world/entity/LivingEntity.addEffect:(Lnet/minecraft/world/effect/MobEffectInstance;Lnet/minecraft/world/entity/Entity;)Z
+     936: pop
+     937: aload_2
+     938: invokeinterface #354,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     943: astore        4
+     945: aload         4
+     947: invokeinterface #359,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     952: ifeq          975
+     955: aload         4
+     957: invokeinterface #362,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     962: checkcast     #273                // class com/Polarice3/Goety/common/entities/neutral/Owned
+     965: astore        5
+     967: aload         5
+     969: invokevirtual #435                // Method com/Polarice3/Goety/common/entities/neutral/Owned.discard:()V
+     972: goto          945
+     975: aload_0
+     976: invokevirtual #234                // Method level:()Lnet/minecraft/world/level/Level;
+     979: ldc_w         #437                // class net/minecraft/world/entity/projectile/Projectile
+     982: new           #275                // class net/minecraft/world/phys/AABB
+     985: dup
+     986: aload_0
+     987: invokevirtual #279                // Method blockPosition:()Lnet/minecraft/core/BlockPos;
+     990: invokespecial #282                // Method net/minecraft/world/phys/AABB."<init>":(Lnet/minecraft/core/BlockPos;)V
+     993: ldc2_w        #405                // double 3.0d
+     996: invokevirtual #288                // Method net/minecraft/world/phys/AABB.inflate:(D)Lnet/minecraft/world/phys/AABB;
+     999: aload_0
+    1000: invokedynamic #444,  0            // InvokeDynamic #4:test:(Lz1gned/goetyrevelation/mixin/ApostleMixin;)Ljava/util/function/Predicate;
+    1005: invokevirtual #311                // Method net/minecraft/world/level/Level.getEntitiesOfClass:(Ljava/lang/Class;Lnet/minecraft/world/phys/AABB;Ljava/util/function/Predicate;)Ljava/util/List;
+    1008: invokeinterface #354,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+    1013: astore        4
+    1015: aload         4
+    1017: invokeinterface #359,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+    1022: ifeq          1045
+    1025: aload         4
+    1027: invokeinterface #362,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+    1032: checkcast     #437                // class net/minecraft/world/entity/projectile/Projectile
+    1035: astore        5
+    1037: aload         5
+    1039: invokevirtual #445                // Method net/minecraft/world/entity/projectile/Projectile.discard:()V
+    1042: goto          1015
+    1045: return
+
+  private void netherUpgrade(org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+       0: aload_0
+       1: invokevirtual #234                // Method level:()Lnet/minecraft/world/level/Level;
+       4: getfield      #462                // Field net/minecraft/world/level/Level.isClientSide:Z
+       7: ifne          1721
+      10: aload_0
+      11: invokevirtual #88                 // Method allTitlesApostle_1_20_1$isApollyon:()Z
+      14: ifeq          1523
+      17: aload_0
+      18: invokevirtual #325                // Method isInNether:()Z
+      21: ifeq          1523
+      24: aload_0
+      25: invokevirtual #464                // Method isSecondPhase:()Z
+      28: ifeq          346
+      31: bipush        20
+      33: istore_2
+      34: aload_0
+      35: invokevirtual #467                // Method allTitleApostle$getTitleNumber:()I
+      38: bipush        6
+      40: if_icmpne     50
+      43: iload_2
+      44: iconst_2
+      45: idiv
+      46: istore_2
+      47: goto          63
+      50: aload_0
+      51: invokevirtual #467                // Method allTitleApostle$getTitleNumber:()I
+      54: bipush        12
+      56: if_icmpne     63
+      59: iload_2
+      60: iconst_3
+      61: idiv
+      62: istore_2
+      63: aload_0
+      64: getfield      #470                // Field tickCount:I
+      67: iload_2
+      68: irem
+      69: ifne          234
+      72: new           #17                 // class net/minecraft/core/BlockPos$MutableBlockPos
+      75: dup
+      76: aload_0
+      77: ldc2_w        #471                // double 0.2d
+      80: invokevirtual #476                // Method getRandomX:(D)D
+      83: aload_0
+      84: invokevirtual #479                // Method getY:()D
+      87: aload_0
+      88: ldc2_w        #471                // double 0.2d
+      91: invokevirtual #482                // Method getRandomZ:(D)D
+      94: invokespecial #485                // Method net/minecraft/core/BlockPos$MutableBlockPos."<init>":(DDD)V
+      97: astore_3
+      98: aload_3
+      99: invokevirtual #487                // Method net/minecraft/core/BlockPos$MutableBlockPos.getY:()I
+     102: i2d
+     103: aload_0
+     104: invokevirtual #479                // Method getY:()D
+     107: ldc2_w        #283                // double 64.0d
+     110: dadd
+     111: dcmpg
+     112: ifge          145
+     115: aload_0
+     116: invokevirtual #234                // Method level:()Lnet/minecraft/world/level/Level;
+     119: aload_3
+     120: invokevirtual #491                // Method net/minecraft/world/level/Level.getBlockState:(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;
+     123: aload_0
+     124: invokevirtual #234                // Method level:()Lnet/minecraft/world/level/Level;
+     127: aload_3
+     128: invokevirtual #497                // Method net/minecraft/world/level/block/state/BlockState.isSolidRender:(Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)Z
+     131: ifne          145
+     134: aload_3
+     135: getstatic     #503                // Field net/minecraft/core/Direction.UP:Lnet/minecraft/core/Direction;
+     138: invokevirtual #507                // Method net/minecraft/core/BlockPos$MutableBlockPos.move:(Lnet/minecraft/core/Direction;)Lnet/minecraft/core/BlockPos$MutableBlockPos;
+     141: pop
+     142: goto          98
+     145: aload_3
+     146: invokevirtual #487                // Method net/minecraft/core/BlockPos$MutableBlockPos.getY:()I
+     149: i2d
+     150: aload_0
+     151: invokevirtual #479                // Method getY:()D
+     154: ldc2_w        #508                // double 32.0d
+     157: dadd
+     158: dcmpl
+     159: ifle          234
+     162: aload_0
+     163: invokevirtual #511                // Method getNetherMeteor:()Lcom/Polarice3/Goety/common/entities/projectiles/NetherMeteor;
+     166: astore        4
+     168: aload         4
+     170: aload_0
+     171: invokevirtual #234                // Method level:()Lnet/minecraft/world/level/Level;
+     174: aload_0
+     175: invokestatic  #517                // Method net/minecraftforge/event/ForgeEventFactory.getMobGriefingEvent:(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/Entity;)Z
+     178: ifeq          200
+     181: getstatic     #522                // Field com/Polarice3/Goety/config/MobsConfig.ApocalypseMode:Lnet/minecraftforge/common/ForgeConfigSpec$ConfigValue;
+     184: invokevirtual #178                // Method net/minecraftforge/common/ForgeConfigSpec$ConfigValue.get:()Ljava/lang/Object;
+     187: checkcast     #119                // class java/lang/Boolean
+     190: invokevirtual #525                // Method java/lang/Boolean.booleanValue:()Z
+     193: ifeq          200
+     196: iconst_1
+     197: goto          201
+     200: iconst_0
+     201: invokevirtual #530                // Method com/Polarice3/Goety/common/entities/projectiles/NetherMeteor.setDangerous:(Z)V
+     204: aload         4
+     206: aload_3
+     207: invokevirtual #533                // Method net/minecraft/core/BlockPos$MutableBlockPos.getX:()I
+     210: i2d
+     211: aload_3
+     212: invokevirtual #487                // Method net/minecraft/core/BlockPos$MutableBlockPos.getY:()I
+     215: i2d
+     216: aload_3
+     217: invokevirtual #536                // Method net/minecraft/core/BlockPos$MutableBlockPos.getZ:()I
+     220: i2d
+     221: invokevirtual #539                // Method com/Polarice3/Goety/common/entities/projectiles/NetherMeteor.setPos:(DDD)V
+     224: aload_0
+     225: invokevirtual #234                // Method level:()Lnet/minecraft/world/level/Level;
+     228: aload         4
+     230: invokevirtual #543                // Method net/minecraft/world/level/Level.addFreshEntity:(Lnet/minecraft/world/entity/Entity;)Z
+     233: pop
+     234: aload_0
+     235: getfield      #470                // Field tickCount:I
+     238: iload_2
+     239: irem
+     240: ifne          346
+     243: aload_0
+     244: getfield      #544                // Field random:Lnet/minecraft/util/RandomSource;
+     247: invokeinterface #547,  1          // InterfaceMethod net/minecraft/util/RandomSource.nextDouble:()D
+     252: ldc2_w        #548                // double 2.0d
+     255: dmul
+     256: dconst_1
+     257: dsub
+     258: ldc2_w        #550                // double 24.0d
+     261: dmul
+     262: dstore_3
+     263: aload_0
+     264: getfield      #544                // Field random:Lnet/minecraft/util/RandomSource;
+     267: invokeinterface #547,  1          // InterfaceMethod net/minecraft/util/RandomSource.nextDouble:()D
+     272: ldc2_w        #548                // double 2.0d
+     275: dmul
+     276: dconst_1
+     277: dsub
+     278: ldc2_w        #550                // double 24.0d
+     281: dmul
+     282: dstore        5
+     284: aload_0
+     285: invokevirtual #553                // Method getX:()D
+     288: dload_3
+     289: dadd
+     290: dstore        7
+     292: aload_0
+     293: invokevirtual #555                // Method getZ:()D
+     296: dload         5
+     298: dadd
+     299: dstore        9
+     301: new           #557                // class com/Polarice3/Goety/common/entities/util/FireBlastTrap
+     304: dup
+     305: aload_0
+     306: invokevirtual #234                // Method level:()Lnet/minecraft/world/level/Level;
+     309: dload         7
+     311: aload_0
+     312: invokevirtual #479                // Method getY:()D
+     315: dload         9
+     317: invokespecial #560                // Method com/Polarice3/Goety/common/entities/util/FireBlastTrap."<init>":(Lnet/minecraft/world/level/Level;DDD)V
+     320: astore        11
+     322: aload         11
+     324: aload_0
+     325: invokevirtual #564                // Method com/Polarice3/Goety/common/entities/util/FireBlastTrap.setOwner:(Lnet/minecraft/world/entity/LivingEntity;)V
+     328: aload         11
+     330: ldc_w         #565                // float 3.0f
+     333: invokevirtual #569                // Method com/Polarice3/Goety/common/entities/util/FireBlastTrap.setAreaOfEffect:(F)V
+     336: aload_0
+     337: invokevirtual #234                // Method level:()Lnet/minecraft/world/level/Level;
+     340: aload         11
+     342: invokevirtual #543                // Method net/minecraft/world/level/Level.addFreshEntity:(Lnet/minecraft/world/entity/Entity;)Z
+     345: pop
+     346: aload_0
+     347: aload_0
+     348: invokevirtual #315                // Method getHealth:()F
+     351: invokevirtual #319                // Method allTitleApostle$titleNumber:(F)I
+     354: istore_2
+     355: iload_2
+     356: iconst_4
+     357: if_icmpeq     366
+     360: iload_2
+     361: bipush        12
+     363: if_icmpne     548
+     366: aload_0
+     367: invokevirtual #234                // Method level:()Lnet/minecraft/world/level/Level;
+     370: ldc_w         #386                // class net/minecraft/world/entity/player/Player
+     373: new           #275                // class net/minecraft/world/phys/AABB
+     376: dup
+     377: aload_0
+     378: invokevirtual #279                // Method blockPosition:()Lnet/minecraft/core/BlockPos;
+     381: invokespecial #282                // Method net/minecraft/world/phys/AABB."<init>":(Lnet/minecraft/core/BlockPos;)V
+     384: ldc2_w        #283                // double 64.0d
+     387: invokevirtual #288                // Method net/minecraft/world/phys/AABB.inflate:(D)Lnet/minecraft/world/phys/AABB;
+     390: invokedynamic #578,  0            // InvokeDynamic #5:test:()Ljava/util/function/Predicate;
+     395: invokevirtual #311                // Method net/minecraft/world/level/Level.getEntitiesOfClass:(Ljava/lang/Class;Lnet/minecraft/world/phys/AABB;Ljava/util/function/Predicate;)Ljava/util/List;
+     398: invokeinterface #354,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     403: astore_3
+     404: aload_3
+     405: invokeinterface #359,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     410: ifeq          446
+     413: aload_3
+     414: invokeinterface #362,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     419: checkcast     #386                // class net/minecraft/world/entity/player/Player
+     422: astore        4
+     424: aload         4
+     426: new           #329                // class net/minecraft/world/effect/MobEffectInstance
+     429: dup
+     430: getstatic     #581                // Field net/minecraft/world/effect/MobEffects.DARKNESS:Lnet/minecraft/world/effect/MobEffect;
+     433: bipush        100
+     435: iconst_0
+     436: invokespecial #365                // Method net/minecraft/world/effect/MobEffectInstance."<init>":(Lnet/minecraft/world/effect/MobEffect;II)V
+     439: invokevirtual #582                // Method net/minecraft/world/entity/player/Player.addEffect:(Lnet/minecraft/world/effect/MobEffectInstance;)Z
+     442: pop
+     443: goto          404
+     446: aload_0
+     447: invokevirtual #234                // Method level:()Lnet/minecraft/world/level/Level;
+     450: ldc_w         #273                // class com/Polarice3/Goety/common/entities/neutral/Owned
+     453: new           #275                // class net/minecraft/world/phys/AABB
+     456: dup
+     457: aload_0
+     458: invokevirtual #279                // Method blockPosition:()Lnet/minecraft/core/BlockPos;
+     461: invokespecial #282                // Method net/minecraft/world/phys/AABB."<init>":(Lnet/minecraft/core/BlockPos;)V
+     464: ldc2_w        #283                // double 64.0d
+     467: invokevirtual #288                // Method net/minecraft/world/phys/AABB.inflate:(D)Lnet/minecraft/world/phys/AABB;
+     470: aload_0
+     471: invokedynamic #587,  0            // InvokeDynamic #6:test:(Lz1gned/goetyrevelation/mixin/ApostleMixin;)Ljava/util/function/Predicate;
+     476: invokevirtual #311                // Method net/minecraft/world/level/Level.getEntitiesOfClass:(Ljava/lang/Class;Lnet/minecraft/world/phys/AABB;Ljava/util/function/Predicate;)Ljava/util/List;
+     479: invokeinterface #354,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     484: astore_3
+     485: aload_3
+     486: invokeinterface #359,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     491: ifeq          527
+     494: aload_3
+     495: invokeinterface #362,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     500: checkcast     #273                // class com/Polarice3/Goety/common/entities/neutral/Owned
+     503: astore        4
+     505: aload         4
+     507: new           #329                // class net/minecraft/world/effect/MobEffectInstance
+     510: dup
+     511: getstatic     #590                // Field net/minecraft/world/effect/MobEffects.GLOWING:Lnet/minecraft/world/effect/MobEffect;
+     514: bipush        100
+     516: iconst_0
+     517: invokespecial #365                // Method net/minecraft/world/effect/MobEffectInstance."<init>":(Lnet/minecraft/world/effect/MobEffect;II)V
+     520: invokevirtual #368                // Method com/Polarice3/Goety/common/entities/neutral/Owned.addEffect:(Lnet/minecraft/world/effect/MobEffectInstance;)Z
+     523: pop
+     524: goto          485
+     527: aload_0
+     528: new           #329                // class net/minecraft/world/effect/MobEffectInstance
+     531: dup
+     532: getstatic     #590                // Field net/minecraft/world/effect/MobEffects.GLOWING:Lnet/minecraft/world/effect/MobEffect;
+     535: bipush        100
+     537: iconst_1
+     538: iconst_0
+     539: iconst_0
+     540: invokespecial #339                // Method net/minecraft/world/effect/MobEffectInstance."<init>":(Lnet/minecraft/world/effect/MobEffect;IIZZ)V
+     543: aload_0
+     544: invokevirtual #341                // Method addEffect:(Lnet/minecraft/world/effect/MobEffectInstance;Lnet/minecraft/world/entity/Entity;)Z
+     547: pop
+     548: iload_2
+     549: bipush        7
+     551: if_icmpeq     560
+     554: iload_2
+     555: bipush        12
+     557: if_icmpne     749
+     560: aload_0
+     561: getfield      #470                // Field tickCount:I
+     564: bipush        100
+     566: irem
+     567: ifne          749
+     570: aload_0
+     571: invokevirtual #234                // Method level:()Lnet/minecraft/world/level/Level;
+     574: ldc_w         #375                // class net/minecraft/world/entity/LivingEntity
+     577: new           #275                // class net/minecraft/world/phys/AABB
+     580: dup
+     581: aload_0
+     582: invokevirtual #279                // Method blockPosition:()Lnet/minecraft/core/BlockPos;
+     585: invokespecial #282                // Method net/minecraft/world/phys/AABB."<init>":(Lnet/minecraft/core/BlockPos;)V
+     588: ldc2_w        #283                // double 64.0d
+     591: invokevirtual #288                // Method net/minecraft/world/phys/AABB.inflate:(D)Lnet/minecraft/world/phys/AABB;
+     594: aload_0
+     595: invokedynamic #595,  0            // InvokeDynamic #7:test:(Lz1gned/goetyrevelation/mixin/ApostleMixin;)Ljava/util/function/Predicate;
+     600: invokevirtual #311                // Method net/minecraft/world/level/Level.getEntitiesOfClass:(Ljava/lang/Class;Lnet/minecraft/world/phys/AABB;Ljava/util/function/Predicate;)Ljava/util/List;
+     603: astore_3
+     604: aload_3
+     605: invokeinterface #354,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     610: astore        4
+     612: aload         4
+     614: invokeinterface #359,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     619: ifeq          749
+     622: aload         4
+     624: invokeinterface #362,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     629: checkcast     #375                // class net/minecraft/world/entity/LivingEntity
+     632: astore        5
+     634: new           #597                // class java/util/ArrayList
+     637: dup
+     638: invokespecial #599                // Method java/util/ArrayList."<init>":()V
+     641: astore        6
+     643: aload         5
+     645: invokevirtual #603                // Method net/minecraft/world/entity/LivingEntity.getActiveEffects:()Ljava/util/Collection;
+     648: invokeinterface #606,  1          // InterfaceMethod java/util/Collection.iterator:()Ljava/util/Iterator;
+     653: astore        7
+     655: aload         7
+     657: invokeinterface #359,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     662: ifeq          701
+     665: aload         7
+     667: invokeinterface #362,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     672: checkcast     #329                // class net/minecraft/world/effect/MobEffectInstance
+     675: astore        8
+     677: aload         8
+     679: invokevirtual #610                // Method net/minecraft/world/effect/MobEffectInstance.getEffect:()Lnet/minecraft/world/effect/MobEffect;
+     682: invokevirtual #613                // Method net/minecraft/world/effect/MobEffect.isBeneficial:()Z
+     685: ifeq          698
+     688: aload         6
+     690: aload         8
+     692: invokeinterface #616,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     697: pop
+     698: goto          655
+     701: aload         6
+     703: invokeinterface #354,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     708: astore        7
+     710: aload         7
+     712: invokeinterface #359,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     717: ifeq          746
+     720: aload         7
+     722: invokeinterface #362,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     727: checkcast     #329                // class net/minecraft/world/effect/MobEffectInstance
+     730: astore        8
+     732: aload         5
+     734: aload         8
+     736: invokevirtual #610                // Method net/minecraft/world/effect/MobEffectInstance.getEffect:()Lnet/minecraft/world/effect/MobEffect;
+     739: invokevirtual #620                // Method net/minecraft/world/entity/LivingEntity.removeEffect:(Lnet/minecraft/world/effect/MobEffect;)Z
+     742: pop
+     743: goto          710
+     746: goto          612
+     749: iload_2
+     750: bipush        9
+     752: if_icmpeq     761
+     755: iload_2
+     756: bipush        12
+     758: if_icmpne     804
+     761: aload_0
+     762: getfield      #544                // Field random:Lnet/minecraft/util/RandomSource;
+     765: bipush        20
+     767: invokeinterface #246,  2          // InterfaceMethod net/minecraft/util/RandomSource.nextInt:(I)I
+     772: ifne          804
+     775: new           #622                // class com/Polarice3/Goety/common/entities/projectiles/Hellfire
+     778: dup
+     779: aload_0
+     780: invokevirtual #234                // Method level:()Lnet/minecraft/world/level/Level;
+     783: aload_0
+     784: invokevirtual #279                // Method blockPosition:()Lnet/minecraft/core/BlockPos;
+     787: invokestatic  #628                // Method net/minecraft/world/phys/Vec3.atCenterOf:(Lnet/minecraft/core/Vec3i;)Lnet/minecraft/world/phys/Vec3;
+     790: aload_0
+     791: invokespecial #631                // Method com/Polarice3/Goety/common/entities/projectiles/Hellfire."<init>":(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/entity/LivingEntity;)V
+     794: astore_3
+     795: aload_0
+     796: invokevirtual #234                // Method level:()Lnet/minecraft/world/level/Level;
+     799: aload_3
+     800: invokevirtual #543                // Method net/minecraft/world/level/Level.addFreshEntity:(Lnet/minecraft/world/entity/Entity;)Z
+     803: pop
+     804: iload_2
+     805: iconst_5
+     806: if_icmpeq     815
+     809: iload_2
+     810: bipush        12
+     812: if_icmpne     896
+     815: aload_0
+     816: invokevirtual #234                // Method level:()Lnet/minecraft/world/level/Level;
+     819: ldc_w         #375                // class net/minecraft/world/entity/LivingEntity
+     822: new           #275                // class net/minecraft/world/phys/AABB
+     825: dup
+     826: aload_0
+     827: invokevirtual #279                // Method blockPosition:()Lnet/minecraft/core/BlockPos;
+     830: invokespecial #282                // Method net/minecraft/world/phys/AABB."<init>":(Lnet/minecraft/core/BlockPos;)V
+     833: ldc2_w        #405                // double 3.0d
+     836: invokevirtual #288                // Method net/minecraft/world/phys/AABB.inflate:(D)Lnet/minecraft/world/phys/AABB;
+     839: aload_0
+     840: invokedynamic #636,  0            // InvokeDynamic #8:test:(Lz1gned/goetyrevelation/mixin/ApostleMixin;)Ljava/util/function/Predicate;
+     845: invokevirtual #311                // Method net/minecraft/world/level/Level.getEntitiesOfClass:(Ljava/lang/Class;Lnet/minecraft/world/phys/AABB;Ljava/util/function/Predicate;)Ljava/util/List;
+     848: invokeinterface #354,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     853: astore_3
+     854: aload_3
+     855: invokeinterface #359,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     860: ifeq          896
+     863: aload_3
+     864: invokeinterface #362,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     869: checkcast     #375                // class net/minecraft/world/entity/LivingEntity
+     872: astore        4
+     874: aload         4
+     876: new           #329                // class net/minecraft/world/effect/MobEffectInstance
+     879: dup
+     880: getstatic     #639                // Field net/minecraft/world/effect/MobEffects.WEAKNESS:Lnet/minecraft/world/effect/MobEffect;
+     883: bipush        100
+     885: iconst_1
+     886: invokespecial #365                // Method net/minecraft/world/effect/MobEffectInstance."<init>":(Lnet/minecraft/world/effect/MobEffect;II)V
+     889: invokevirtual #396                // Method net/minecraft/world/entity/LivingEntity.addEffect:(Lnet/minecraft/world/effect/MobEffectInstance;)Z
+     892: pop
+     893: goto          854
+     896: iload_2
+     897: iconst_1
+     898: if_icmpeq     907
+     901: iload_2
+     902: bipush        12
+     904: if_icmpne     988
+     907: aload_0
+     908: invokevirtual #234                // Method level:()Lnet/minecraft/world/level/Level;
+     911: ldc_w         #375                // class net/minecraft/world/entity/LivingEntity
+     914: new           #275                // class net/minecraft/world/phys/AABB
+     917: dup
+     918: aload_0
+     919: invokevirtual #279                // Method blockPosition:()Lnet/minecraft/core/BlockPos;
+     922: invokespecial #282                // Method net/minecraft/world/phys/AABB."<init>":(Lnet/minecraft/core/BlockPos;)V
+     925: ldc2_w        #640                // double 128.0d
+     928: invokevirtual #288                // Method net/minecraft/world/phys/AABB.inflate:(D)Lnet/minecraft/world/phys/AABB;
+     931: invokevirtual #644                // Method net/minecraft/world/level/Level.getEntitiesOfClass:(Ljava/lang/Class;Lnet/minecraft/world/phys/AABB;)Ljava/util/List;
+     934: invokeinterface #354,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     939: astore_3
+     940: aload_3
+     941: invokeinterface #359,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     946: ifeq          988
+     949: aload_3
+     950: invokeinterface #362,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     955: checkcast     #375                // class net/minecraft/world/entity/LivingEntity
+     958: astore        4
+     960: aload         4
+     962: new           #329                // class net/minecraft/world/effect/MobEffectInstance
+     965: dup
+     966: getstatic     #647                // Field com/Polarice3/Goety/common/effects/GoetyEffects.WILD_RAGE:Lnet/minecraftforge/registries/RegistryObject;
+     969: invokevirtual #216                // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+     972: checkcast     #336                // class net/minecraft/world/effect/MobEffect
+     975: bipush        100
+     977: iconst_0
+     978: invokespecial #365                // Method net/minecraft/world/effect/MobEffectInstance."<init>":(Lnet/minecraft/world/effect/MobEffect;II)V
+     981: invokevirtual #396                // Method net/minecraft/world/entity/LivingEntity.addEffect:(Lnet/minecraft/world/effect/MobEffectInstance;)Z
+     984: pop
+     985: goto          940
+     988: iload_2
+     989: bipush        8
+     991: if_icmpeq     1000
+     994: iload_2
+     995: bipush        12
+     997: if_icmpne     1068
+    1000: aload_0
+    1001: getfield      #544                // Field random:Lnet/minecraft/util/RandomSource;
+    1004: bipush        10
+    1006: invokeinterface #246,  2          // InterfaceMethod net/minecraft/util/RandomSource.nextInt:(I)I
+    1011: ifne          1068
+    1014: aload_0
+    1015: invokevirtual #415                // Method getTarget:()Lnet/minecraft/world/entity/LivingEntity;
+    1018: ifnull        1068
+    1021: new           #649                // class com/Polarice3/Goety/common/entities/projectiles/IceBouquet
+    1024: dup
+    1025: aload_0
+    1026: invokevirtual #234                // Method level:()Lnet/minecraft/world/level/Level;
+    1029: aload_0
+    1030: invokevirtual #415                // Method getTarget:()Lnet/minecraft/world/entity/LivingEntity;
+    1033: invokevirtual #650                // Method net/minecraft/world/entity/LivingEntity.getX:()D
+    1036: aload_0
+    1037: invokevirtual #415                // Method getTarget:()Lnet/minecraft/world/entity/LivingEntity;
+    1040: invokevirtual #651                // Method net/minecraft/world/entity/LivingEntity.getY:()D
+    1043: ldc2_w        #548                // double 2.0d
+    1046: dadd
+    1047: aload_0
+    1048: invokevirtual #415                // Method getTarget:()Lnet/minecraft/world/entity/LivingEntity;
+    1051: invokevirtual #652                // Method net/minecraft/world/entity/LivingEntity.getZ:()D
+    1054: aload_0
+    1055: invokespecial #655                // Method com/Polarice3/Goety/common/entities/projectiles/IceBouquet."<init>":(Lnet/minecraft/world/level/Level;DDDLnet/minecraft/world/entity/LivingEntity;)V
+    1058: astore_3
+    1059: aload_0
+    1060: invokevirtual #234                // Method level:()Lnet/minecraft/world/level/Level;
+    1063: aload_3
+    1064: invokevirtual #543                // Method net/minecraft/world/level/Level.addFreshEntity:(Lnet/minecraft/world/entity/Entity;)Z
+    1067: pop
+    1068: iload_2
+    1069: bipush        13
+    1071: if_icmpne     1523
+    1074: aload_0
+    1075: invokevirtual #415                // Method getTarget:()Lnet/minecraft/world/entity/LivingEntity;
+    1078: astore_3
+    1079: aload_3
+    1080: ifnull        1136
+    1083: aload_3
+    1084: fconst_1
+    1085: invokevirtual #658                // Method net/minecraft/world/entity/LivingEntity.setHealth:(F)V
+    1088: aload_3
+    1089: new           #329                // class net/minecraft/world/effect/MobEffectInstance
+    1092: dup
+    1093: getstatic     #431                // Field com/Polarice3/Goety/common/effects/GoetyEffects.CURSED:Lnet/minecraftforge/registries/RegistryObject;
+    1096: invokevirtual #216                // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+    1099: checkcast     #336                // class net/minecraft/world/effect/MobEffect
+    1102: bipush        100
+    1104: iconst_1
+    1105: invokespecial #365                // Method net/minecraft/world/effect/MobEffectInstance."<init>":(Lnet/minecraft/world/effect/MobEffect;II)V
+    1108: invokevirtual #396                // Method net/minecraft/world/entity/LivingEntity.addEffect:(Lnet/minecraft/world/effect/MobEffectInstance;)Z
+    1111: pop
+    1112: aload_3
+    1113: new           #329                // class net/minecraft/world/effect/MobEffectInstance
+    1116: dup
+    1117: getstatic     #661                // Field com/Polarice3/Goety/common/effects/GoetyEffects.BURN_HEX:Lnet/minecraftforge/registries/RegistryObject;
+    1120: invokevirtual #216                // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+    1123: checkcast     #336                // class net/minecraft/world/effect/MobEffect
+    1126: bipush        100
+    1128: iconst_1
+    1129: invokespecial #365                // Method net/minecraft/world/effect/MobEffectInstance."<init>":(Lnet/minecraft/world/effect/MobEffect;II)V
+    1132: invokevirtual #396                // Method net/minecraft/world/entity/LivingEntity.addEffect:(Lnet/minecraft/world/effect/MobEffectInstance;)Z
+    1135: pop
+    1136: aload_0
+    1137: invokevirtual #234                // Method level:()Lnet/minecraft/world/level/Level;
+    1140: ldc_w         #375                // class net/minecraft/world/entity/LivingEntity
+    1143: new           #275                // class net/minecraft/world/phys/AABB
+    1146: dup
+    1147: aload_0
+    1148: invokevirtual #279                // Method blockPosition:()Lnet/minecraft/core/BlockPos;
+    1151: invokespecial #282                // Method net/minecraft/world/phys/AABB."<init>":(Lnet/minecraft/core/BlockPos;)V
+    1154: ldc2_w        #283                // double 64.0d
+    1157: invokevirtual #288                // Method net/minecraft/world/phys/AABB.inflate:(D)Lnet/minecraft/world/phys/AABB;
+    1160: aload_0
+    1161: invokedynamic #666,  0            // InvokeDynamic #9:test:(Lz1gned/goetyrevelation/mixin/ApostleMixin;)Ljava/util/function/Predicate;
+    1166: invokevirtual #311                // Method net/minecraft/world/level/Level.getEntitiesOfClass:(Ljava/lang/Class;Lnet/minecraft/world/phys/AABB;Ljava/util/function/Predicate;)Ljava/util/List;
+    1169: astore        4
+    1171: aload         4
+    1173: invokeinterface #354,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+    1178: astore        5
+    1180: aload         5
+    1182: invokeinterface #359,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+    1187: ifeq          1317
+    1190: aload         5
+    1192: invokeinterface #362,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+    1197: checkcast     #375                // class net/minecraft/world/entity/LivingEntity
+    1200: astore        6
+    1202: new           #597                // class java/util/ArrayList
+    1205: dup
+    1206: invokespecial #599                // Method java/util/ArrayList."<init>":()V
+    1209: astore        7
+    1211: aload         6
+    1213: invokevirtual #603                // Method net/minecraft/world/entity/LivingEntity.getActiveEffects:()Ljava/util/Collection;
+    1216: invokeinterface #606,  1          // InterfaceMethod java/util/Collection.iterator:()Ljava/util/Iterator;
+    1221: astore        8
+    1223: aload         8
+    1225: invokeinterface #359,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+    1230: ifeq          1269
+    1233: aload         8
+    1235: invokeinterface #362,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+    1240: checkcast     #329                // class net/minecraft/world/effect/MobEffectInstance
+    1243: astore        9
+    1245: aload         9
+    1247: invokevirtual #610                // Method net/minecraft/world/effect/MobEffectInstance.getEffect:()Lnet/minecraft/world/effect/MobEffect;
+    1250: invokevirtual #613                // Method net/minecraft/world/effect/MobEffect.isBeneficial:()Z
+    1253: ifeq          1266
+    1256: aload         7
+    1258: aload         9
+    1260: invokeinterface #616,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+    1265: pop
+    1266: goto          1223
+    1269: aload         7
+    1271: invokeinterface #354,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+    1276: astore        8
+    1278: aload         8
+    1280: invokeinterface #359,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+    1285: ifeq          1314
+    1288: aload         8
+    1290: invokeinterface #362,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+    1295: checkcast     #329                // class net/minecraft/world/effect/MobEffectInstance
+    1298: astore        9
+    1300: aload         6
+    1302: aload         9
+    1304: invokevirtual #610                // Method net/minecraft/world/effect/MobEffectInstance.getEffect:()Lnet/minecraft/world/effect/MobEffect;
+    1307: invokevirtual #620                // Method net/minecraft/world/entity/LivingEntity.removeEffect:(Lnet/minecraft/world/effect/MobEffect;)Z
+    1310: pop
+    1311: goto          1278
+    1314: goto          1180
+    1317: aload_0
+    1318: invokevirtual #234                // Method level:()Lnet/minecraft/world/level/Level;
+    1321: ldc_w         #668                // class net/minecraft/world/entity/Entity
+    1324: new           #275                // class net/minecraft/world/phys/AABB
+    1327: dup
+    1328: aload_0
+    1329: invokevirtual #279                // Method blockPosition:()Lnet/minecraft/core/BlockPos;
+    1332: invokespecial #282                // Method net/minecraft/world/phys/AABB."<init>":(Lnet/minecraft/core/BlockPos;)V
+    1335: ldc2_w        #405                // double 3.0d
+    1338: invokevirtual #288                // Method net/minecraft/world/phys/AABB.inflate:(D)Lnet/minecraft/world/phys/AABB;
+    1341: invokevirtual #644                // Method net/minecraft/world/level/Level.getEntitiesOfClass:(Ljava/lang/Class;Lnet/minecraft/world/phys/AABB;)Ljava/util/List;
+    1344: invokeinterface #354,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+    1349: astore        5
+    1351: aload         5
+    1353: invokeinterface #359,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+    1358: ifeq          1523
+    1361: aload         5
+    1363: invokeinterface #362,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+    1368: checkcast     #668                // class net/minecraft/world/entity/Entity
+    1371: astore        6
+    1373: aload         6
+    1375: aload_0
+    1376: if_acmpeq     1520
+    1379: aload         6
+    1381: instanceof    #375                // class net/minecraft/world/entity/LivingEntity
+    1384: ifeq          1451
+    1387: aload         6
+    1389: checkcast     #375                // class net/minecraft/world/entity/LivingEntity
+    1392: astore        7
+    1394: aload         7
+    1396: invokestatic  #673                // Method z1gned/goetyrevelation/util/ATAHelper.hasHalo:(Lnet/minecraft/world/entity/LivingEntity;)Z
+    1399: ifne          1410
+    1402: aload         7
+    1404: invokestatic  #676                // Method z1gned/goetyrevelation/util/ATAHelper.hasBrokenHalo:(Lnet/minecraft/world/entity/LivingEntity;)Z
+    1407: ifeq          1411
+    1410: return
+    1411: aload         7
+    1413: instanceof    #386                // class net/minecraft/world/entity/player/Player
+    1416: ifeq          1443
+    1419: aload         7
+    1421: checkcast     #386                // class net/minecraft/world/entity/player/Player
+    1424: astore        10
+    1426: aload         10
+    1428: invokevirtual #389                // Method net/minecraft/world/entity/player/Player.isCreative:()Z
+    1431: ifeq          1443
+    1434: aload         10
+    1436: invokevirtual #392                // Method net/minecraft/world/entity/player/Player.isSpectator:()Z
+    1439: ifeq          1443
+    1442: return
+    1443: aload         7
+    1445: invokevirtual #679                // Method net/minecraft/world/entity/LivingEntity.kill:()V
+    1448: goto          1520
+    1451: aload         6
+    1453: instanceof    #437                // class net/minecraft/world/entity/projectile/Projectile
+    1456: ifeq          1483
+    1459: aload         6
+    1461: checkcast     #437                // class net/minecraft/world/entity/projectile/Projectile
+    1464: astore        8
+    1466: aload         8
+    1468: invokevirtual #683                // Method net/minecraft/world/entity/projectile/Projectile.getOwner:()Lnet/minecraft/world/entity/Entity;
+    1471: aload_0
+    1472: if_acmpeq     1520
+    1475: aload         8
+    1477: invokevirtual #445                // Method net/minecraft/world/entity/projectile/Projectile.discard:()V
+    1480: goto          1520
+    1483: aload         6
+    1485: instanceof    #557                // class com/Polarice3/Goety/common/entities/util/FireBlastTrap
+    1488: ifeq          1515
+    1491: aload         6
+    1493: checkcast     #557                // class com/Polarice3/Goety/common/entities/util/FireBlastTrap
+    1496: astore        9
+    1498: aload         9
+    1500: invokevirtual #685                // Method com/Polarice3/Goety/common/entities/util/FireBlastTrap.getOwner:()Lnet/minecraft/world/entity/LivingEntity;
+    1503: aload_0
+    1504: if_acmpeq     1520
+    1507: aload         9
+    1509: invokevirtual #686                // Method com/Polarice3/Goety/common/entities/util/FireBlastTrap.discard:()V
+    1512: goto          1520
+    1515: aload         6
+    1517: invokevirtual #687                // Method net/minecraft/world/entity/Entity.discard:()V
+    1520: goto          1351
+    1523: aload_0
+    1524: invokevirtual #415                // Method getTarget:()Lnet/minecraft/world/entity/LivingEntity;
+    1527: astore_2
+    1528: aload_0
+    1529: invokevirtual #690                // Method allTitlesApostle_1_20_1$isShooting:()Z
+    1532: ifeq          1721
+    1535: aload_2
+    1536: ifnull        1721
+    1539: aload_0
+    1540: invokevirtual #693                // Method isAlive:()Z
+    1543: ifeq          1721
+    1546: aload_0
+    1547: invokevirtual #696                // Method isDeadOrDying:()Z
+    1550: ifne          1721
+    1553: aload_0
+    1554: aload_0
+    1555: aload_0
+    1556: invokedynamic #703,  0            // InvokeDynamic #10:test:()Ljava/util/function/Predicate;
+    1561: invokestatic  #709                // Method net/minecraft/world/entity/projectile/ProjectileUtil.getWeaponHoldingHand:(Lnet/minecraft/world/entity/LivingEntity;Ljava/util/function/Predicate;)Lnet/minecraft/world/InteractionHand;
+    1564: invokevirtual #713                // Method getItemInHand:(Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/item/ItemStack;
+    1567: invokevirtual #717                // Method getProjectile:(Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/item/ItemStack;
+    1570: astore_3
+    1571: aload_0
+    1572: aload_3
+    1573: getstatic     #720                // Field com/Polarice3/Goety/config/AttributesConfig.ApostleBowDamage:Lnet/minecraftforge/common/ForgeConfigSpec$ConfigValue;
+    1576: invokevirtual #178                // Method net/minecraftforge/common/ForgeConfigSpec$ConfigValue.get:()Ljava/lang/Object;
+    1579: checkcast     #133                // class java/lang/Integer
+    1582: invokevirtual #723                // Method java/lang/Integer.intValue:()I
+    1585: i2f
+    1586: invokevirtual #725                // Method getArrow:(Lnet/minecraft/world/item/ItemStack;F)Lnet/minecraft/world/entity/projectile/AbstractArrow;
+    1589: astore        4
+    1591: aload_2
+    1592: invokevirtual #650                // Method net/minecraft/world/entity/LivingEntity.getX:()D
+    1595: aload_0
+    1596: invokevirtual #553                // Method getX:()D
+    1599: dsub
+    1600: dstore        5
+    1602: aload_2
+    1603: ldc2_w        #726                // double 0.5d
+    1606: invokevirtual #729                // Method net/minecraft/world/entity/LivingEntity.getY:(D)D
+    1609: aload_0
+    1610: ldc2_w        #726                // double 0.5d
+    1613: invokevirtual #730                // Method getY:(D)D
+    1616: dsub
+    1617: dstore        7
+    1619: aload_2
+    1620: invokevirtual #652                // Method net/minecraft/world/entity/LivingEntity.getZ:()D
+    1623: aload_0
+    1624: invokevirtual #555                // Method getZ:()D
+    1627: dsub
+    1628: dstore        9
+    1630: ldc_w         #731                // float 3.2f
+    1633: fstore        11
+    1635: fconst_1
+    1636: fstore        12
+    1638: ldc2_w        #732                // double -0.5d
+    1641: aload_0
+    1642: getfield      #544                // Field random:Lnet/minecraft/util/RandomSource;
+    1645: invokeinterface #547,  1          // InterfaceMethod net/minecraft/util/RandomSource.nextDouble:()D
+    1650: dadd
+    1651: ldc2_w        #734                // double 8.0d
+    1654: ddiv
+    1655: dstore        13
+    1657: aload         4
+    1659: dload         5
+    1661: dload         13
+    1663: dadd
+    1664: dload         7
+    1666: dload         9
+    1668: dload         13
+    1670: dadd
+    1671: fload         11
+    1673: fload         12
+    1675: invokevirtual #741                // Method net/minecraft/world/entity/projectile/AbstractArrow.shoot:(DDDFF)V
+    1678: aload_0
+    1679: getstatic     #746                // Field com/Polarice3/Goety/init/ModSounds.APOSTLE_SHOOT:Lnet/minecraftforge/registries/RegistryObject;
+    1682: invokevirtual #216                // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+    1685: checkcast     #748                // class net/minecraft/sounds/SoundEvent
+    1688: fconst_1
+    1689: fconst_1
+    1690: aload_0
+    1691: invokevirtual #752                // Method getRandom:()Lnet/minecraft/util/RandomSource;
+    1694: invokeinterface #755,  1          // InterfaceMethod net/minecraft/util/RandomSource.nextFloat:()F
+    1699: ldc_w         #756                // float 0.4f
+    1702: fmul
+    1703: ldc_w         #757                // float 0.8f
+    1706: fadd
+    1707: fdiv
+    1708: invokevirtual #761                // Method playSound:(Lnet/minecraft/sounds/SoundEvent;FF)V
+    1711: aload_0
+    1712: invokevirtual #234                // Method level:()Lnet/minecraft/world/level/Level;
+    1715: aload         4
+    1717: invokevirtual #543                // Method net/minecraft/world/level/Level.addFreshEntity:(Lnet/minecraft/world/entity/Entity;)Z
+    1720: pop
+    1721: return
+
+  private void registerGoal(org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+       0: aload_0
+       1: getfield      #804                // Field goalSelector:Lnet/minecraft/world/entity/ai/goal/GoalSelector;
+       4: iconst_3
+       5: new           #806                // class z1gned/goetyrevelation/goal/ApollyonDeathArrowGoal
+       8: dup
+       9: aload_0
+      10: checkcast     #808                // class com/Polarice3/Goety/common/entities/boss/Apostle
+      13: invokespecial #811                // Method z1gned/goetyrevelation/goal/ApollyonDeathArrowGoal."<init>":(Lcom/Polarice3/Goety/common/entities/boss/Apostle;)V
+      16: invokevirtual #817                // Method net/minecraft/world/entity/ai/goal/GoalSelector.addGoal:(ILnet/minecraft/world/entity/ai/goal/Goal;)V
+      19: return
+
+  private void componentName(net.minecraft.network.chat.Component, org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+       0: aload_1
+       1: aload_0
+       2: invokevirtual #269                // Method allTitlesApostle_1_20_1$getNameComponent:()Lnet/minecraft/network/chat/Component;
+       5: if_acmpeq     19
+       8: aload_0
+       9: invokevirtual #88                 // Method allTitlesApostle_1_20_1$isApollyon:()Z
+      12: ifeq          19
+      15: aload_2
+      16: invokevirtual #158                // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfo.cancel:()V
+      19: return
+
+  private void setReward(org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable<java.lang.Integer>);
+    Code:
+       0: sipush        1000
+       3: istore_2
+       4: aload_0
+       5: invokevirtual #325                // Method isInNether:()Z
+       8: ifeq          26
+      11: sipush        12000
+      14: istore_2
+      15: aload_0
+      16: invokevirtual #88                 // Method allTitlesApostle_1_20_1$isApollyon:()Z
+      19: ifeq          26
+      22: ldc_w         #827                // int 1200000
+      25: istore_2
+      26: aload_0
+      27: invokevirtual #88                 // Method allTitlesApostle_1_20_1$isApollyon:()Z
+      30: ifeq          44
+      33: aload_0
+      34: invokevirtual #325                // Method isInNether:()Z
+      37: ifne          44
+      40: sipush        10000
+      43: istore_2
+      44: aload_1
+      45: iload_2
+      46: invokestatic  #136                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      49: invokevirtual #833                // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable.setReturnValue:(Ljava/lang/Object;)V
+      52: return
+
+  private void setArrowEffect(com.Polarice3.Goety.common.entities.projectiles.DeathArrow, net.minecraft.world.effect.MobEffectInstance);
+    Code:
+       0: aload_0
+       1: invokevirtual #88                 // Method allTitlesApostle_1_20_1$isApollyon:()Z
+       4: ifeq          479
+       7: bipush        9
+       9: anewarray     #336                // class net/minecraft/world/effect/MobEffect
+      12: dup
+      13: iconst_0
+      14: getstatic     #845                // Field net/minecraft/world/effect/MobEffects.HUNGER:Lnet/minecraft/world/effect/MobEffect;
+      17: aastore
+      18: dup
+      19: iconst_1
+      20: getstatic     #848                // Field net/minecraft/world/effect/MobEffects.BLINDNESS:Lnet/minecraft/world/effect/MobEffect;
+      23: aastore
+      24: dup
+      25: iconst_2
+      26: getstatic     #851                // Field net/minecraft/world/effect/MobEffects.POISON:Lnet/minecraft/world/effect/MobEffect;
+      29: aastore
+      30: dup
+      31: iconst_3
+      32: getstatic     #854                // Field net/minecraft/world/effect/MobEffects.WITHER:Lnet/minecraft/world/effect/MobEffect;
+      35: aastore
+      36: dup
+      37: iconst_4
+      38: getstatic     #661                // Field com/Polarice3/Goety/common/effects/GoetyEffects.BURN_HEX:Lnet/minecraftforge/registries/RegistryObject;
+      41: invokevirtual #216                // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+      44: checkcast     #336                // class net/minecraft/world/effect/MobEffect
+      47: aastore
+      48: dup
+      49: iconst_5
+      50: getstatic     #639                // Field net/minecraft/world/effect/MobEffects.WEAKNESS:Lnet/minecraft/world/effect/MobEffect;
+      53: aastore
+      54: dup
+      55: bipush        6
+      57: getstatic     #857                // Field net/minecraft/world/effect/MobEffects.HARM:Lnet/minecraft/world/effect/MobEffect;
+      60: aastore
+      61: dup
+      62: bipush        7
+      64: getstatic     #404                // Field net/minecraft/world/effect/MobEffects.MOVEMENT_SLOWDOWN:Lnet/minecraft/world/effect/MobEffect;
+      67: aastore
+      68: dup
+      69: bipush        8
+      71: getstatic     #395                // Field com/Polarice3/Goety/common/effects/GoetyEffects.SAPPED:Lnet/minecraftforge/registries/RegistryObject;
+      74: invokevirtual #216                // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+      77: checkcast     #336                // class net/minecraft/world/effect/MobEffect
+      80: aastore
+      81: astore_3
+      82: getstatic     #845                // Field net/minecraft/world/effect/MobEffects.HUNGER:Lnet/minecraft/world/effect/MobEffect;
+      85: astore        4
+      87: aload_0
+      88: invokevirtual #467                // Method allTitleApostle$getTitleNumber:()I
+      91: istore        5
+      93: iload         5
+      95: iconst_4
+      96: if_icmpne     107
+      99: getstatic     #848                // Field net/minecraft/world/effect/MobEffects.BLINDNESS:Lnet/minecraft/world/effect/MobEffect;
+     102: astore        4
+     104: goto          243
+     107: iload         5
+     109: iconst_2
+     110: if_icmpne     121
+     113: getstatic     #851                // Field net/minecraft/world/effect/MobEffects.POISON:Lnet/minecraft/world/effect/MobEffect;
+     116: astore        4
+     118: goto          243
+     121: iload         5
+     123: iconst_3
+     124: if_icmpne     135
+     127: getstatic     #854                // Field net/minecraft/world/effect/MobEffects.WITHER:Lnet/minecraft/world/effect/MobEffect;
+     130: astore        4
+     132: goto          243
+     135: iload         5
+     137: bipush        6
+     139: if_icmpne     161
+     142: aload_0
+     143: iconst_1
+     144: invokevirtual #861                // Method setFireArrow:(Z)V
+     147: getstatic     #661                // Field com/Polarice3/Goety/common/effects/GoetyEffects.BURN_HEX:Lnet/minecraftforge/registries/RegistryObject;
+     150: invokevirtual #216                // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+     153: checkcast     #336                // class net/minecraft/world/effect/MobEffect
+     156: astore        4
+     158: goto          243
+     161: iload         5
+     163: iconst_5
+     164: if_icmpne     175
+     167: getstatic     #639                // Field net/minecraft/world/effect/MobEffects.WEAKNESS:Lnet/minecraft/world/effect/MobEffect;
+     170: astore        4
+     172: goto          243
+     175: iload         5
+     177: iconst_1
+     178: if_icmpne     189
+     181: getstatic     #857                // Field net/minecraft/world/effect/MobEffects.HARM:Lnet/minecraft/world/effect/MobEffect;
+     184: astore        4
+     186: goto          243
+     189: iload         5
+     191: bipush        8
+     193: if_icmpne     204
+     196: getstatic     #404                // Field net/minecraft/world/effect/MobEffects.MOVEMENT_SLOWDOWN:Lnet/minecraft/world/effect/MobEffect;
+     199: astore        4
+     201: goto          243
+     204: iload         5
+     206: bipush        11
+     208: if_icmpne     225
+     211: getstatic     #395                // Field com/Polarice3/Goety/common/effects/GoetyEffects.SAPPED:Lnet/minecraftforge/registries/RegistryObject;
+     214: invokevirtual #216                // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+     217: checkcast     #336                // class net/minecraft/world/effect/MobEffect
+     220: astore        4
+     222: goto          243
+     225: iload         5
+     227: bipush        13
+     229: if_icmpne     243
+     232: getstatic     #863                // Field com/Polarice3/Goety/common/effects/GoetyEffects.DOOM:Lnet/minecraftforge/registries/RegistryObject;
+     235: invokevirtual #216                // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+     238: checkcast     #336                // class net/minecraft/world/effect/MobEffect
+     241: astore        4
+     243: aload         4
+     245: astore        6
+     247: iload         5
+     249: bipush        13
+     251: if_icmpne     261
+     254: bipush        20
+     256: istore        7
+     258: goto          285
+     261: aload_0
+     262: invokevirtual #464                // Method isSecondPhase:()Z
+     265: ifeq          282
+     268: aload         4
+     270: getstatic     #857                // Field net/minecraft/world/effect/MobEffects.HARM:Lnet/minecraft/world/effect/MobEffect;
+     273: if_acmpeq     282
+     276: iconst_1
+     277: istore        7
+     279: goto          285
+     282: iconst_0
+     283: istore        7
+     285: iload         5
+     287: bipush        13
+     289: if_icmpne     296
+     292: iconst_1
+     293: goto          299
+     296: sipush        200
+     299: istore        8
+     301: aload_0
+     302: invokevirtual #415                // Method getTarget:()Lnet/minecraft/world/entity/LivingEntity;
+     305: ifnull        331
+     308: aload         4
+     310: getstatic     #857                // Field net/minecraft/world/effect/MobEffects.HARM:Lnet/minecraft/world/effect/MobEffect;
+     313: if_acmpne     331
+     316: aload_0
+     317: invokevirtual #415                // Method getTarget:()Lnet/minecraft/world/entity/LivingEntity;
+     320: invokevirtual #866                // Method net/minecraft/world/entity/LivingEntity.isInvertedHealAndHarm:()Z
+     323: ifeq          331
+     326: getstatic     #869                // Field net/minecraft/world/effect/MobEffects.HEAL:Lnet/minecraft/world/effect/MobEffect;
+     329: astore        6
+     331: aload_0
+     332: invokevirtual #464                // Method isSecondPhase:()Z
+     335: ifeq          351
+     338: aload         4
+     340: getstatic     #581                // Field net/minecraft/world/effect/MobEffects.DARKNESS:Lnet/minecraft/world/effect/MobEffect;
+     343: if_acmpne     351
+     346: getstatic     #848                // Field net/minecraft/world/effect/MobEffects.BLINDNESS:Lnet/minecraft/world/effect/MobEffect;
+     349: astore        6
+     351: iload         5
+     353: bipush        12
+     355: if_icmpne     421
+     358: aload_3
+     359: astore        9
+     361: aload         9
+     363: arraylength
+     364: istore        10
+     366: iconst_0
+     367: istore        11
+     369: iload         11
+     371: iload         10
+     373: if_icmpge     418
+     376: aload         9
+     378: iload         11
+     380: aaload
+     381: astore        12
+     383: aload_1
+     384: new           #329                // class net/minecraft/world/effect/MobEffectInstance
+     387: dup
+     388: aload         12
+     390: aload         12
+     392: invokevirtual #872                // Method net/minecraft/world/effect/MobEffect.isInstantenous:()Z
+     395: ifeq          402
+     398: iconst_1
+     399: goto          404
+     402: iload         8
+     404: iload         7
+     406: invokespecial #365                // Method net/minecraft/world/effect/MobEffectInstance."<init>":(Lnet/minecraft/world/effect/MobEffect;II)V
+     409: invokevirtual #877                // Method com/Polarice3/Goety/common/entities/projectiles/DeathArrow.addEffect:(Lnet/minecraft/world/effect/MobEffectInstance;)V
+     412: iinc          11, 1
+     415: goto          369
+     418: goto          450
+     421: aload_1
+     422: new           #329                // class net/minecraft/world/effect/MobEffectInstance
+     425: dup
+     426: aload         6
+     428: aload         6
+     430: invokevirtual #872                // Method net/minecraft/world/effect/MobEffect.isInstantenous:()Z
+     433: ifeq          440
+     436: iconst_1
+     437: goto          442
+     440: iload         8
+     442: iload         7
+     444: invokespecial #365                // Method net/minecraft/world/effect/MobEffectInstance."<init>":(Lnet/minecraft/world/effect/MobEffect;II)V
+     447: invokevirtual #877                // Method com/Polarice3/Goety/common/entities/projectiles/DeathArrow.addEffect:(Lnet/minecraft/world/effect/MobEffectInstance;)V
+     450: aload_1
+     451: checkcast     #879                // class z1gned/goetyrevelation/util/ArrowUtil
+     454: iload         5
+     456: ifeq          466
+     459: iload         5
+     461: bipush        12
+     463: if_icmpne     470
+     466: iconst_1
+     467: goto          471
+     470: iconst_0
+     471: invokeinterface #882,  2          // InterfaceMethod z1gned/goetyrevelation/util/ArrowUtil.allTitleApostle$setExplosive:(Z)V
+     476: goto          484
+     479: aload_1
+     480: aload_2
+     481: invokevirtual #877                // Method com/Polarice3/Goety/common/entities/projectiles/DeathArrow.addEffect:(Lnet/minecraft/world/effect/MobEffectInstance;)V
+     484: return
+
+  private void setInitName(com.Polarice3.Goety.common.entities.boss.Apostle, net.minecraft.network.chat.Component);
+    Code:
+       0: aload_0
+       1: invokevirtual #88                 // Method allTitlesApostle_1_20_1$isApollyon:()Z
+       4: ifeq          30
+       7: ldc_w         #897                // String name.goety_revelation.apollyon
+      10: invokestatic  #903                // InterfaceMethod net/minecraft/network/chat/Component.translatable:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+      13: astore_3
+      14: aload_1
+      15: aload_3
+      16: invokeinterface #907,  1          // InterfaceMethod net/minecraft/network/chat/Component.getString:()Ljava/lang/String;
+      21: invokestatic  #903                // InterfaceMethod net/minecraft/network/chat/Component.translatable:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+      24: invokevirtual #908                // Method com/Polarice3/Goety/common/entities/boss/Apostle.setCustomName:(Lnet/minecraft/network/chat/Component;)V
+      27: goto          35
+      30: aload_1
+      31: aload_2
+      32: invokevirtual #908                // Method com/Polarice3/Goety/common/entities/boss/Apostle.setCustomName:(Lnet/minecraft/network/chat/Component;)V
+      35: return
+
+  private void redirectNumber(com.Polarice3.Goety.common.entities.boss.Apostle, java.lang.Integer);
+    Code:
+       0: aload_0
+       1: invokevirtual #88                 // Method allTitlesApostle_1_20_1$isApollyon:()Z
+       4: ifeq          26
+       7: aload_1
+       8: iconst_1
+       9: invokestatic  #136                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      12: invokevirtual #916                // Method com/Polarice3/Goety/common/entities/boss/Apostle.setTitleNumber:(Ljava/lang/Integer;)V
+      15: aload_1
+      16: iconst_1
+      17: invokestatic  #136                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      20: invokevirtual #919                // Method com/Polarice3/Goety/common/entities/boss/Apostle.TitleEffect:(Ljava/lang/Integer;)V
+      23: goto          36
+      26: aload_1
+      27: aload_2
+      28: invokevirtual #916                // Method com/Polarice3/Goety/common/entities/boss/Apostle.setTitleNumber:(Ljava/lang/Integer;)V
+      31: aload_1
+      32: aload_2
+      33: invokevirtual #919                // Method com/Polarice3/Goety/common/entities/boss/Apostle.TitleEffect:(Ljava/lang/Integer;)V
+      36: return
+
+  private void settingUpHeal(com.Polarice3.Goety.common.entities.boss.Apostle, float);
+    Code:
+       0: aload_1
+       1: aload_0
+       2: invokevirtual #928                // Method getMaxHealth:()F
+       5: ldc_w         #929                // float 0.025f
+       8: fmul
+       9: invokevirtual #932                // Method com/Polarice3/Goety/common/entities/boss/Apostle.heal:(F)V
+      12: return
+
+  private boolean canSpawnMeteor(net.minecraft.world.level.Level, net.minecraft.world.entity.Entity);
+    Code:
+       0: aload_0
+       1: invokevirtual #88                 // Method allTitlesApostle_1_20_1$isApollyon:()Z
+       4: ifeq          16
+       7: aload_0
+       8: invokevirtual #325                // Method isInNether:()Z
+      11: ifeq          16
+      14: iconst_0
+      15: ireturn
+      16: aload_1
+      17: aload_2
+      18: invokevirtual #543                // Method net/minecraft/world/level/Level.addFreshEntity:(Lnet/minecraft/world/entity/Entity;)Z
+      21: ireturn
+
+  private boolean teleportProjectile(net.minecraft.world.level.Level, net.minecraft.world.entity.Entity);
+    Code:
+       0: aload_0
+       1: invokevirtual #467                // Method allTitleApostle$getTitleNumber:()I
+       4: istore_3
+       5: aload_0
+       6: invokevirtual #88                 // Method allTitlesApostle_1_20_1$isApollyon:()Z
+       9: ifeq          286
+      12: iload_3
+      13: iconst_3
+      14: if_icmpeq     23
+      17: iload_3
+      18: bipush        12
+      20: if_icmpne     286
+      23: new           #939                // class com/Polarice3/Goety/common/entities/util/FirePillar
+      26: dup
+      27: aload_0
+      28: invokevirtual #234                // Method level:()Lnet/minecraft/world/level/Level;
+      31: aload_0
+      32: getfield      #941                // Field prevX:D
+      35: aload_0
+      36: getfield      #943                // Field prevY:D
+      39: ldc2_w        #944                // double 0.25d
+      42: dadd
+      43: aload_0
+      44: getfield      #947                // Field prevZ:D
+      47: invokespecial #948                // Method com/Polarice3/Goety/common/entities/util/FirePillar."<init>":(Lnet/minecraft/world/level/Level;DDD)V
+      50: astore        4
+      52: aload         4
+      54: sipush        360
+      57: invokevirtual #951                // Method com/Polarice3/Goety/common/entities/util/FirePillar.setDuration:(I)V
+      60: aload         4
+      62: aload_0
+      63: invokevirtual #952                // Method com/Polarice3/Goety/common/entities/util/FirePillar.setOwner:(Lnet/minecraft/world/entity/LivingEntity;)V
+      66: aload         4
+      68: bipush        20
+      70: invokevirtual #955                // Method com/Polarice3/Goety/common/entities/util/FirePillar.setWarmUp:(I)V
+      73: aload_1
+      74: aload         4
+      76: invokevirtual #543                // Method net/minecraft/world/level/Level.addFreshEntity:(Lnet/minecraft/world/entity/Entity;)Z
+      79: pop
+      80: aload_0
+      81: invokevirtual #415                // Method getTarget:()Lnet/minecraft/world/entity/LivingEntity;
+      84: ifnull        286
+      87: aload_0
+      88: invokevirtual #958                // Method getYRot:()F
+      91: f2d
+      92: invokestatic  #963                // Method java/lang/Math.toRadians:(D)D
+      95: dstore        5
+      97: iconst_m1
+      98: istore        7
+     100: iload         7
+     102: iconst_1
+     103: if_icmpge     286
+     106: dload         5
+     108: ldc2_w        #964                // double 1.5707963267948966d
+     111: dadd
+     112: invokestatic  #968                // Method java/lang/Math.cos:(D)D
+     115: iload_3
+     116: i2d
+     117: dmul
+     118: ldc2_w        #969                // double 1.5d
+     121: dmul
+     122: dstore        8
+     124: dload         5
+     126: ldc2_w        #964                // double 1.5707963267948966d
+     129: dadd
+     130: invokestatic  #973                // Method java/lang/Math.sin:(D)D
+     133: iload_3
+     134: i2d
+     135: dmul
+     136: ldc2_w        #969                // double 1.5d
+     139: dmul
+     140: dstore        10
+     142: aload_0
+     143: fconst_1
+     144: invokevirtual #977                // Method getViewVector:(F)Lnet/minecraft/world/phys/Vec3;
+     147: astore        12
+     149: aload_0
+     150: invokevirtual #415                // Method getTarget:()Lnet/minecraft/world/entity/LivingEntity;
+     153: invokevirtual #650                // Method net/minecraft/world/entity/LivingEntity.getX:()D
+     156: aload_0
+     157: invokevirtual #553                // Method getX:()D
+     160: aload         12
+     162: getfield      #980                // Field net/minecraft/world/phys/Vec3.x:D
+     165: ldc2_w        #981                // double 4.0d
+     168: dmul
+     169: dadd
+     170: dsub
+     171: dload         8
+     173: dadd
+     174: dstore        13
+     176: aload_0
+     177: invokevirtual #415                // Method getTarget:()Lnet/minecraft/world/entity/LivingEntity;
+     180: ldc2_w        #726                // double 0.5d
+     183: invokevirtual #729                // Method net/minecraft/world/entity/LivingEntity.getY:(D)D
+     186: ldc2_w        #726                // double 0.5d
+     189: aload_0
+     190: ldc2_w        #726                // double 0.5d
+     193: invokevirtual #730                // Method getY:(D)D
+     196: dadd
+     197: dsub
+     198: dstore        15
+     200: aload_0
+     201: invokevirtual #415                // Method getTarget:()Lnet/minecraft/world/entity/LivingEntity;
+     204: invokevirtual #652                // Method net/minecraft/world/entity/LivingEntity.getZ:()D
+     207: aload_0
+     208: invokevirtual #555                // Method getZ:()D
+     211: aload         12
+     213: getfield      #985                // Field net/minecraft/world/phys/Vec3.z:D
+     216: ldc2_w        #981                // double 4.0d
+     219: dmul
+     220: dadd
+     221: dsub
+     222: dload         10
+     224: dadd
+     225: dstore        17
+     227: new           #987                // class net/minecraft/world/entity/projectile/WitherSkull
+     230: dup
+     231: aload_0
+     232: invokevirtual #234                // Method level:()Lnet/minecraft/world/level/Level;
+     235: aload_0
+     236: dload         13
+     238: dload         15
+     240: dload         17
+     242: invokespecial #990                // Method net/minecraft/world/entity/projectile/WitherSkull."<init>":(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;DDD)V
+     245: astore        19
+     247: aload         19
+     249: aload_0
+     250: invokevirtual #553                // Method getX:()D
+     253: dload         8
+     255: dadd
+     256: aload_0
+     257: invokevirtual #993                // Method getEyeY:()D
+     260: aload_0
+     261: invokevirtual #555                // Method getZ:()D
+     264: dload         10
+     266: dadd
+     267: invokevirtual #994                // Method net/minecraft/world/entity/projectile/WitherSkull.setPos:(DDD)V
+     270: aload_0
+     271: invokevirtual #234                // Method level:()Lnet/minecraft/world/level/Level;
+     274: aload         19
+     276: invokevirtual #543                // Method net/minecraft/world/level/Level.addFreshEntity:(Lnet/minecraft/world/entity/Entity;)Z
+     279: pop
+     280: iinc          7, 1
+     283: goto          100
+     286: aload_1
+     287: aload_2
+     288: invokevirtual #543                // Method net/minecraft/world/level/Level.addFreshEntity:(Lnet/minecraft/world/entity/Entity;)Z
+     291: ireturn
+
+  private net.minecraft.world.entity.ai.goal.Goal setSummonGoal(net.minecraft.world.entity.ai.goal.Goal);
+    Code:
+       0: aload_1
+       1: invokevirtual #1015               // Method java/lang/Object.getClass:()Ljava/lang/Class;
+       4: invokevirtual #1020               // Method java/lang/Class.getSimpleName:()Ljava/lang/String;
+       7: ldc_w         #1022               // String RangedSummonSpellGoal
+      10: invokevirtual #1027               // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+      13: ifeq          35
+      16: aload_0
+      17: invokevirtual #88                 // Method allTitlesApostle_1_20_1$isApollyon:()Z
+      20: ifeq          35
+      23: new           #1029               // class z1gned/goetyrevelation/goal/SummonServantGoal
+      26: dup
+      27: aload_0
+      28: checkcast     #808                // class com/Polarice3/Goety/common/entities/boss/Apostle
+      31: invokespecial #1032               // Method z1gned/goetyrevelation/goal/SummonServantGoal."<init>":(Lcom/Polarice3/Goety/common/entities/hostile/cultists/SpellCastingCultist;)V
+      34: areturn
+      35: aload_1
+      36: areturn
+
+  public int allTitleApostle$getTitleNumber();
+    Code:
+       0: aload_0
+       1: aload_0
+       2: invokevirtual #315                // Method getHealth:()F
+       5: invokevirtual #319                // Method allTitleApostle$titleNumber:(F)I
+       8: ireturn
+
+  public boolean allTitlesApostle_1_20_1$isApollyon();
+    Code:
+       0: aload_0
+       1: getfield      #115                // Field entityData:Lnet/minecraft/network/syncher/SynchedEntityData;
+       4: getstatic     #117                // Field APOLLYON:Lnet/minecraft/network/syncher/EntityDataAccessor;
+       7: invokevirtual #1037               // Method net/minecraft/network/syncher/SynchedEntityData.get:(Lnet/minecraft/network/syncher/EntityDataAccessor;)Ljava/lang/Object;
+      10: checkcast     #119                // class java/lang/Boolean
+      13: invokevirtual #525                // Method java/lang/Boolean.booleanValue:()Z
+      16: ireturn
+
+  public void allTitlesApostle_1_20_1$setApollyon(boolean);
+    Code:
+       0: aload_0
+       1: getfield      #115                // Field entityData:Lnet/minecraft/network/syncher/SynchedEntityData;
+       4: getstatic     #117                // Field APOLLYON:Lnet/minecraft/network/syncher/EntityDataAccessor;
+       7: iload_1
+       8: invokestatic  #123                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      11: invokevirtual #1040               // Method net/minecraft/network/syncher/SynchedEntityData.set:(Lnet/minecraft/network/syncher/EntityDataAccessor;Ljava/lang/Object;)V
+      14: return
+
+  private int allTitleApostle$titleNumber(float);
+    Code:
+       0: bipush        7
+       2: istore_2
+       3: aload_0
+       4: invokevirtual #928                // Method getMaxHealth:()F
+       7: fstore_3
+       8: fload_3
+       9: ldc_w         #1041               // float 14.0f
+      12: fdiv
+      13: fstore        4
+      15: aload_0
+      16: invokevirtual #1043               // Method isSettingUpSecond:()Z
+      19: ifne          29
+      22: aload_0
+      23: invokevirtual #464                // Method isSecondPhase:()Z
+      26: ifeq          42
+      29: fload_1
+      30: fload_3
+      31: ldc_w         #1044               // float 240.0f
+      34: fsub
+      35: fcmpl
+      36: ifle          42
+      39: bipush        6
+      41: istore_2
+      42: fload_1
+      43: fload_3
+      44: fload         4
+      46: fsub
+      47: fcmpg
+      48: ifgt          78
+      51: fload_1
+      52: fload_3
+      53: fload         4
+      55: fconst_2
+      56: fmul
+      57: fsub
+      58: fcmpl
+      59: ifle          78
+      62: aload_0
+      63: invokevirtual #464                // Method isSecondPhase:()Z
+      66: ifne          78
+      69: aload_0
+      70: invokevirtual #1043               // Method isSettingUpSecond:()Z
+      73: ifne          78
+      76: iconst_4
+      77: istore_2
+      78: fload_1
+      79: fload_3
+      80: fload         4
+      82: fconst_2
+      83: fmul
+      84: fsub
+      85: fcmpg
+      86: ifgt          118
+      89: fload_1
+      90: fload_3
+      91: fload         4
+      93: ldc_w         #565                // float 3.0f
+      96: fmul
+      97: fsub
+      98: fcmpl
+      99: ifle          118
+     102: aload_0
+     103: invokevirtual #464                // Method isSecondPhase:()Z
+     106: ifne          118
+     109: aload_0
+     110: invokevirtual #1043               // Method isSettingUpSecond:()Z
+     113: ifne          118
+     116: iconst_2
+     117: istore_2
+     118: fload_1
+     119: fload_3
+     120: fload         4
+     122: ldc_w         #565                // float 3.0f
+     125: fmul
+     126: fsub
+     127: fcmpg
+     128: ifgt          161
+     131: fload_1
+     132: fload_3
+     133: fload         4
+     135: ldc_w         #1045               // float 4.0f
+     138: fmul
+     139: fsub
+     140: fcmpl
+     141: ifle          161
+     144: aload_0
+     145: invokevirtual #464                // Method isSecondPhase:()Z
+     148: ifne          161
+     151: aload_0
+     152: invokevirtual #1043               // Method isSettingUpSecond:()Z
+     155: ifne          161
+     158: bipush        9
+     160: istore_2
+     161: fload_1
+     162: fload_3
+     163: fload         4
+     165: ldc_w         #1045               // float 4.0f
+     168: fmul
+     169: fsub
+     170: fcmpg
+     171: ifgt          203
+     174: fload_1
+     175: fload_3
+     176: fload         4
+     178: ldc_w         #1046               // float 5.0f
+     181: fmul
+     182: fsub
+     183: fcmpl
+     184: ifle          203
+     187: aload_0
+     188: invokevirtual #464                // Method isSecondPhase:()Z
+     191: ifne          203
+     194: aload_0
+     195: invokevirtual #1043               // Method isSettingUpSecond:()Z
+     198: ifne          203
+     201: iconst_3
+     202: istore_2
+     203: fload_1
+     204: fload_3
+     205: fload         4
+     207: ldc_w         #1046               // float 5.0f
+     210: fmul
+     211: fsub
+     212: fcmpg
+     213: ifgt          232
+     216: fload_1
+     217: fload_3
+     218: fload         4
+     220: ldc_w         #1047               // float 6.0f
+     223: fmul
+     224: fsub
+     225: fcmpl
+     226: ifle          232
+     229: bipush        6
+     231: istore_2
+     232: fload_1
+     233: fload_3
+     234: fload         4
+     236: ldc_w         #1047               // float 6.0f
+     239: fmul
+     240: fsub
+     241: fcmpg
+     242: ifgt          261
+     245: fload_1
+     246: fload_3
+     247: fload         4
+     249: ldc_w         #1048               // float 7.0f
+     252: fmul
+     253: fsub
+     254: fcmpl
+     255: ifle          261
+     258: bipush        10
+     260: istore_2
+     261: fload_1
+     262: fload_3
+     263: fload         4
+     265: ldc_w         #1048               // float 7.0f
+     268: fmul
+     269: fsub
+     270: fcmpg
+     271: ifgt          289
+     274: fload_1
+     275: fload_3
+     276: fload         4
+     278: ldc_w         #1049               // float 8.0f
+     281: fmul
+     282: fsub
+     283: fcmpl
+     284: ifle          289
+     287: iconst_5
+     288: istore_2
+     289: fload_1
+     290: fload_3
+     291: fload         4
+     293: ldc_w         #1049               // float 8.0f
+     296: fmul
+     297: fsub
+     298: fcmpg
+     299: ifgt          317
+     302: fload_1
+     303: fload_3
+     304: fload         4
+     306: ldc_w         #1050               // float 9.0f
+     309: fmul
+     310: fsub
+     311: fcmpl
+     312: ifle          317
+     315: iconst_1
+     316: istore_2
+     317: fload_1
+     318: fload_3
+     319: fload         4
+     321: ldc_w         #1050               // float 9.0f
+     324: fmul
+     325: fsub
+     326: fcmpg
+     327: ifgt          346
+     330: fload_1
+     331: fload_3
+     332: fload         4
+     334: ldc_w         #1051               // float 10.0f
+     337: fmul
+     338: fsub
+     339: fcmpl
+     340: ifle          346
+     343: bipush        8
+     345: istore_2
+     346: fload_1
+     347: fload_3
+     348: fload         4
+     350: ldc_w         #1051               // float 10.0f
+     353: fmul
+     354: fsub
+     355: fcmpg
+     356: ifgt          375
+     359: fload_1
+     360: fload_3
+     361: fload         4
+     363: ldc_w         #1052               // float 11.0f
+     366: fmul
+     367: fsub
+     368: fcmpl
+     369: ifle          375
+     372: bipush        11
+     374: istore_2
+     375: fload_1
+     376: fload_3
+     377: fload         4
+     379: ldc_w         #1052               // float 11.0f
+     382: fmul
+     383: fsub
+     384: fcmpg
+     385: ifgt          403
+     388: fload_1
+     389: fload_3
+     390: fload         4
+     392: ldc_w         #1053               // float 12.0f
+     395: fmul
+     396: fsub
+     397: fcmpl
+     398: ifle          403
+     401: iconst_0
+     402: istore_2
+     403: fload_1
+     404: fload_3
+     405: fload         4
+     407: ldc_w         #1053               // float 12.0f
+     410: fmul
+     411: fsub
+     412: fcmpg
+     413: ifgt          432
+     416: fload_1
+     417: fload_3
+     418: fload         4
+     420: ldc_w         #1054               // float 13.0f
+     423: fmul
+     424: fsub
+     425: fcmpl
+     426: ifle          432
+     429: bipush        12
+     431: istore_2
+     432: fload_1
+     433: fload_3
+     434: fload         4
+     436: ldc_w         #1054               // float 13.0f
+     439: fmul
+     440: fsub
+     441: fcmpg
+     442: ifgt          453
+     445: bipush        13
+     447: istore_2
+     448: aload_0
+     449: iconst_1
+     450: invokevirtual #1057               // Method setDoom:(Z)V
+     453: iload_2
+     454: ireturn
+
+  private net.minecraft.network.chat.Component allTitlesApostle_1_20_1$getNameComponent();
+    Code:
+       0: aload_0
+       1: aload_0
+       2: invokevirtual #315                // Method getHealth:()F
+       5: invokevirtual #319                // Method allTitleApostle$titleNumber:(F)I
+       8: invokedynamic #1072,  0           // InvokeDynamic #11:makeConcatWithConstants:(I)Ljava/lang/String;
+      13: invokestatic  #903                // InterfaceMethod net/minecraft/network/chat/Component.translatable:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+      16: astore_1
+      17: ldc_w         #897                // String name.goety_revelation.apollyon
+      20: invokestatic  #903                // InterfaceMethod net/minecraft/network/chat/Component.translatable:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+      23: astore_2
+      24: aload_2
+      25: invokeinterface #907,  1          // InterfaceMethod net/minecraft/network/chat/Component.getString:()Ljava/lang/String;
+      30: astore_3
+      31: aload_3
+      32: aload_1
+      33: invokeinterface #907,  1          // InterfaceMethod net/minecraft/network/chat/Component.getString:()Ljava/lang/String;
+      38: invokedynamic #1077,  0           // InvokeDynamic #12:makeConcatWithConstants:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+      43: invokestatic  #903                // InterfaceMethod net/minecraft/network/chat/Component.translatable:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+      46: astore        4
+      48: aload_0
+      49: invokevirtual #325                // Method isInNether:()Z
+      52: ifeq          87
+      55: aload_3
+      56: aload_1
+      57: invokeinterface #907,  1          // InterfaceMethod net/minecraft/network/chat/Component.getString:()Ljava/lang/String;
+      62: invokedynamic #1077,  0           // InvokeDynamic #12:makeConcatWithConstants:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+      67: invokestatic  #903                // InterfaceMethod net/minecraft/network/chat/Component.translatable:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+      70: getstatic     #1083               // Field net/minecraft/ChatFormatting.BOLD:Lnet/minecraft/ChatFormatting;
+      73: invokevirtual #1089               // Method net/minecraft/network/chat/MutableComponent.withStyle:(Lnet/minecraft/ChatFormatting;)Lnet/minecraft/network/chat/MutableComponent;
+      76: ldc_w         #1090               // String APOLLYON
+      79: invokestatic  #1093               // Method net/minecraft/ChatFormatting.valueOf:(Ljava/lang/String;)Lnet/minecraft/ChatFormatting;
+      82: invokevirtual #1089               // Method net/minecraft/network/chat/MutableComponent.withStyle:(Lnet/minecraft/ChatFormatting;)Lnet/minecraft/network/chat/MutableComponent;
+      85: astore        4
+      87: aload         4
+      89: areturn
+
+  public void allTitlesApostle_1_20_1$setHitCooldown(int);
+    Code:
+       0: aload_0
+       1: getfield      #115                // Field entityData:Lnet/minecraft/network/syncher/SynchedEntityData;
+       4: getstatic     #131                // Field HIT_COOLDOWN:Lnet/minecraft/network/syncher/EntityDataAccessor;
+       7: iload_1
+       8: invokestatic  #136                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      11: invokevirtual #1040               // Method net/minecraft/network/syncher/SynchedEntityData.set:(Lnet/minecraft/network/syncher/EntityDataAccessor;Ljava/lang/Object;)V
+      14: return
+
+  public int allTitlesApostle_1_20_1$getHitCooldown();
+    Code:
+       0: aload_0
+       1: getfield      #115                // Field entityData:Lnet/minecraft/network/syncher/SynchedEntityData;
+       4: getstatic     #131                // Field HIT_COOLDOWN:Lnet/minecraft/network/syncher/EntityDataAccessor;
+       7: invokevirtual #1037               // Method net/minecraft/network/syncher/SynchedEntityData.get:(Lnet/minecraft/network/syncher/EntityDataAccessor;)Ljava/lang/Object;
+      10: checkcast     #133                // class java/lang/Integer
+      13: invokevirtual #723                // Method java/lang/Integer.intValue:()I
+      16: ireturn
+
+  public void allTitlesApostle_1_20_1$setShooting(boolean);
+    Code:
+       0: aload_0
+       1: getfield      #115                // Field entityData:Lnet/minecraft/network/syncher/SynchedEntityData;
+       4: getstatic     #138                // Field SHOOTING:Lnet/minecraft/network/syncher/EntityDataAccessor;
+       7: iload_1
+       8: invokestatic  #123                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      11: invokevirtual #1040               // Method net/minecraft/network/syncher/SynchedEntityData.set:(Lnet/minecraft/network/syncher/EntityDataAccessor;Ljava/lang/Object;)V
+      14: return
+
+  public boolean allTitlesApostle_1_20_1$isShooting();
+    Code:
+       0: aload_0
+       1: getfield      #115                // Field entityData:Lnet/minecraft/network/syncher/SynchedEntityData;
+       4: getstatic     #138                // Field SHOOTING:Lnet/minecraft/network/syncher/EntityDataAccessor;
+       7: invokevirtual #1037               // Method net/minecraft/network/syncher/SynchedEntityData.get:(Lnet/minecraft/network/syncher/EntityDataAccessor;)Ljava/lang/Object;
+      10: checkcast     #119                // class java/lang/Boolean
+      13: invokevirtual #525                // Method java/lang/Boolean.booleanValue:()Z
+      16: ireturn
+
+  public void allTitlesApostle_1_20_1$setSilent(boolean);
+    Code:
+       0: aload_0
+       1: getfield      #115                // Field entityData:Lnet/minecraft/network/syncher/SynchedEntityData;
+       4: getstatic     #140                // Field SILENT:Lnet/minecraft/network/syncher/EntityDataAccessor;
+       7: iload_1
+       8: invokestatic  #123                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      11: invokevirtual #1040               // Method net/minecraft/network/syncher/SynchedEntityData.set:(Lnet/minecraft/network/syncher/EntityDataAccessor;Ljava/lang/Object;)V
+      14: return
+
+  public boolean allTitlesApostle_1_20_1$isSilent();
+    Code:
+       0: aload_0
+       1: getfield      #115                // Field entityData:Lnet/minecraft/network/syncher/SynchedEntityData;
+       4: getstatic     #140                // Field SILENT:Lnet/minecraft/network/syncher/EntityDataAccessor;
+       7: invokevirtual #1037               // Method net/minecraft/network/syncher/SynchedEntityData.get:(Lnet/minecraft/network/syncher/EntityDataAccessor;)Ljava/lang/Object;
+      10: checkcast     #119                // class java/lang/Boolean
+      13: invokevirtual #525                // Method java/lang/Boolean.booleanValue:()Z
+      16: ireturn
+
+  public void setDoom(boolean);
+    Code:
+       0: aload_0
+       1: getfield      #115                // Field entityData:Lnet/minecraft/network/syncher/SynchedEntityData;
+       4: getstatic     #142                // Field DOOM:Lnet/minecraft/network/syncher/EntityDataAccessor;
+       7: iload_1
+       8: invokestatic  #123                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      11: invokevirtual #1040               // Method net/minecraft/network/syncher/SynchedEntityData.set:(Lnet/minecraft/network/syncher/EntityDataAccessor;Ljava/lang/Object;)V
+      14: return
+
+  public boolean getDoom();
+    Code:
+       0: aload_0
+       1: getfield      #115                // Field entityData:Lnet/minecraft/network/syncher/SynchedEntityData;
+       4: getstatic     #142                // Field DOOM:Lnet/minecraft/network/syncher/EntityDataAccessor;
+       7: invokevirtual #1037               // Method net/minecraft/network/syncher/SynchedEntityData.get:(Lnet/minecraft/network/syncher/EntityDataAccessor;)Ljava/lang/Object;
+      10: checkcast     #119                // class java/lang/Boolean
+      13: invokevirtual #525                // Method java/lang/Boolean.booleanValue:()Z
+      16: ireturn
+
+  public void setSettingUpDoom(boolean);
+    Code:
+       0: aload_0
+       1: getfield      #115                // Field entityData:Lnet/minecraft/network/syncher/SynchedEntityData;
+       4: getstatic     #144                // Field SETTING_DOOM:Lnet/minecraft/network/syncher/EntityDataAccessor;
+       7: iload_1
+       8: invokestatic  #123                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      11: invokevirtual #1040               // Method net/minecraft/network/syncher/SynchedEntityData.set:(Lnet/minecraft/network/syncher/EntityDataAccessor;Ljava/lang/Object;)V
+      14: return
+
+  public boolean isSettingUpDoom();
+    Code:
+       0: aload_0
+       1: getfield      #115                // Field entityData:Lnet/minecraft/network/syncher/SynchedEntityData;
+       4: getstatic     #144                // Field SETTING_DOOM:Lnet/minecraft/network/syncher/EntityDataAccessor;
+       7: invokevirtual #1037               // Method net/minecraft/network/syncher/SynchedEntityData.get:(Lnet/minecraft/network/syncher/EntityDataAccessor;)Ljava/lang/Object;
+      10: checkcast     #119                // class java/lang/Boolean
+      13: invokevirtual #525                // Method java/lang/Boolean.booleanValue:()Z
+      16: ireturn
+
+  public void setApollyonTime(int);
+    Code:
+       0: aload_0
+       1: getfield      #115                // Field entityData:Lnet/minecraft/network/syncher/SynchedEntityData;
+       4: getstatic     #146                // Field TIME:Lnet/minecraft/network/syncher/EntityDataAccessor;
+       7: iload_1
+       8: invokestatic  #136                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      11: invokevirtual #1040               // Method net/minecraft/network/syncher/SynchedEntityData.set:(Lnet/minecraft/network/syncher/EntityDataAccessor;Ljava/lang/Object;)V
+      14: return
+
+  public int getApollyonTime();
+    Code:
+       0: aload_0
+       1: getfield      #115                // Field entityData:Lnet/minecraft/network/syncher/SynchedEntityData;
+       4: getstatic     #146                // Field TIME:Lnet/minecraft/network/syncher/EntityDataAccessor;
+       7: invokevirtual #1037               // Method net/minecraft/network/syncher/SynchedEntityData.get:(Lnet/minecraft/network/syncher/EntityDataAccessor;)Ljava/lang/Object;
+      10: checkcast     #133                // class java/lang/Integer
+      13: invokevirtual #723                // Method java/lang/Integer.intValue:()I
+      16: ireturn
+
+  private static boolean lambda$netherUpgrade$10(net.minecraft.world.item.Item);
+    Code:
+       0: aload_0
+       1: instanceof    #1112               // class net/minecraft/world/item/BowItem
+       4: ireturn
+
+  private boolean lambda$netherUpgrade$9(net.minecraft.world.entity.LivingEntity);
+    Code:
+       0: aload_1
+       1: aload_0
+       2: if_acmpeq     29
+       5: aload_1
+       6: instanceof    #273                // class com/Polarice3/Goety/common/entities/neutral/Owned
+       9: ifeq          25
+      12: aload_1
+      13: checkcast     #273                // class com/Polarice3/Goety/common/entities/neutral/Owned
+      16: astore_2
+      17: aload_2
+      18: invokevirtual #1117               // Method com/Polarice3/Goety/common/entities/neutral/Owned.getTrueOwner:()Lnet/minecraft/world/entity/LivingEntity;
+      21: aload_0
+      22: if_acmpeq     29
+      25: iconst_1
+      26: goto          30
+      29: iconst_0
+      30: ireturn
+
+  private boolean lambda$netherUpgrade$8(net.minecraft.world.entity.LivingEntity);
+    Code:
+       0: aload_1
+       1: aload_0
+       2: if_acmpeq     29
+       5: aload_1
+       6: instanceof    #273                // class com/Polarice3/Goety/common/entities/neutral/Owned
+       9: ifeq          25
+      12: aload_1
+      13: checkcast     #273                // class com/Polarice3/Goety/common/entities/neutral/Owned
+      16: astore_2
+      17: aload_2
+      18: invokevirtual #1117               // Method com/Polarice3/Goety/common/entities/neutral/Owned.getTrueOwner:()Lnet/minecraft/world/entity/LivingEntity;
+      21: aload_0
+      22: if_acmpeq     29
+      25: iconst_1
+      26: goto          30
+      29: iconst_0
+      30: ireturn
+
+  private boolean lambda$netherUpgrade$7(net.minecraft.world.entity.LivingEntity);
+    Code:
+       0: aload_1
+       1: aload_0
+       2: if_acmpeq     29
+       5: aload_1
+       6: instanceof    #273                // class com/Polarice3/Goety/common/entities/neutral/Owned
+       9: ifeq          25
+      12: aload_1
+      13: checkcast     #273                // class com/Polarice3/Goety/common/entities/neutral/Owned
+      16: astore_2
+      17: aload_2
+      18: invokevirtual #1117               // Method com/Polarice3/Goety/common/entities/neutral/Owned.getTrueOwner:()Lnet/minecraft/world/entity/LivingEntity;
+      21: aload_0
+      22: if_acmpeq     29
+      25: iconst_1
+      26: goto          30
+      29: iconst_0
+      30: ireturn
+
+  private boolean lambda$netherUpgrade$6(com.Polarice3.Goety.common.entities.neutral.Owned);
+    Code:
+       0: aload_1
+       1: invokevirtual #1117               // Method com/Polarice3/Goety/common/entities/neutral/Owned.getTrueOwner:()Lnet/minecraft/world/entity/LivingEntity;
+       4: aload_0
+       5: if_acmpne     12
+       8: iconst_1
+       9: goto          13
+      12: iconst_0
+      13: ireturn
+
+  private static boolean lambda$netherUpgrade$5(net.minecraft.world.entity.player.Player);
+    Code:
+       0: aload_0
+       1: invokevirtual #392                // Method net/minecraft/world/entity/player/Player.isSpectator:()Z
+       4: ifne          18
+       7: aload_0
+       8: invokevirtual #389                // Method net/minecraft/world/entity/player/Player.isCreative:()Z
+      11: ifne          18
+      14: iconst_1
+      15: goto          19
+      18: iconst_0
+      19: ireturn
+
+  private boolean lambda$tickAbility$4(net.minecraft.world.entity.projectile.Projectile);
+    Code:
+       0: aload_1
+       1: invokevirtual #683                // Method net/minecraft/world/entity/projectile/Projectile.getOwner:()Lnet/minecraft/world/entity/Entity;
+       4: ifnull        19
+       7: aload_1
+       8: invokevirtual #683                // Method net/minecraft/world/entity/projectile/Projectile.getOwner:()Lnet/minecraft/world/entity/Entity;
+      11: aload_0
+      12: if_acmpeq     19
+      15: iconst_1
+      16: goto          20
+      19: iconst_0
+      20: ireturn
+
+  private boolean lambda$tickAbility$3(net.minecraft.world.entity.LivingEntity);
+    Code:
+       0: aload_1
+       1: instanceof    #273                // class com/Polarice3/Goety/common/entities/neutral/Owned
+       4: ifeq          24
+       7: aload_1
+       8: checkcast     #273                // class com/Polarice3/Goety/common/entities/neutral/Owned
+      11: astore_2
+      12: aload_2
+      13: invokevirtual #1117               // Method com/Polarice3/Goety/common/entities/neutral/Owned.getTrueOwner:()Lnet/minecraft/world/entity/LivingEntity;
+      16: aload_0
+      17: if_acmpne     24
+      20: iconst_1
+      21: goto          25
+      24: iconst_0
+      25: ifne          32
+      28: iconst_1
+      29: goto          33
+      32: iconst_0
+      33: ireturn
+
+  private boolean lambda$tickAbility$2(net.minecraft.world.entity.LivingEntity);
+    Code:
+       0: aload_1
+       1: instanceof    #273                // class com/Polarice3/Goety/common/entities/neutral/Owned
+       4: ifeq          24
+       7: aload_1
+       8: checkcast     #273                // class com/Polarice3/Goety/common/entities/neutral/Owned
+      11: astore_2
+      12: aload_2
+      13: invokevirtual #1117               // Method com/Polarice3/Goety/common/entities/neutral/Owned.getTrueOwner:()Lnet/minecraft/world/entity/LivingEntity;
+      16: aload_0
+      17: if_acmpne     24
+      20: iconst_1
+      21: goto          25
+      24: iconst_0
+      25: ifne          32
+      28: iconst_1
+      29: goto          33
+      32: iconst_0
+      33: ireturn
+
+  private boolean lambda$tickAbility$1(net.minecraft.world.entity.LivingEntity);
+    Code:
+       0: aload_1
+       1: instanceof    #273                // class com/Polarice3/Goety/common/entities/neutral/Owned
+       4: ifeq          24
+       7: aload_1
+       8: checkcast     #273                // class com/Polarice3/Goety/common/entities/neutral/Owned
+      11: astore_2
+      12: aload_2
+      13: invokevirtual #1117               // Method com/Polarice3/Goety/common/entities/neutral/Owned.getTrueOwner:()Lnet/minecraft/world/entity/LivingEntity;
+      16: aload_0
+      17: if_acmpne     24
+      20: iconst_1
+      21: goto          25
+      24: iconst_0
+      25: ifne          32
+      28: iconst_1
+      29: goto          33
+      32: iconst_0
+      33: ireturn
+
+  private boolean lambda$tickAbility$0(com.Polarice3.Goety.common.entities.neutral.Owned);
+    Code:
+       0: aload_1
+       1: invokevirtual #1117               // Method com/Polarice3/Goety/common/entities/neutral/Owned.getTrueOwner:()Lnet/minecraft/world/entity/LivingEntity;
+       4: aload_0
+       5: if_acmpne     12
+       8: iconst_1
+       9: goto          13
+      12: iconst_0
+      13: ireturn
+
+  static {};
+    Code:
+       0: ldc_w         #808                // class com/Polarice3/Goety/common/entities/boss/Apostle
+       3: getstatic     #1125               // Field net/minecraft/network/syncher/EntityDataSerializers.BOOLEAN:Lnet/minecraft/network/syncher/EntityDataSerializer;
+       6: invokestatic  #1129               // Method net/minecraft/network/syncher/SynchedEntityData.defineId:(Ljava/lang/Class;Lnet/minecraft/network/syncher/EntityDataSerializer;)Lnet/minecraft/network/syncher/EntityDataAccessor;
+       9: putstatic     #117                // Field APOLLYON:Lnet/minecraft/network/syncher/EntityDataAccessor;
+      12: ldc_w         #808                // class com/Polarice3/Goety/common/entities/boss/Apostle
+      15: getstatic     #1132               // Field net/minecraft/network/syncher/EntityDataSerializers.INT:Lnet/minecraft/network/syncher/EntityDataSerializer;
+      18: invokestatic  #1129               // Method net/minecraft/network/syncher/SynchedEntityData.defineId:(Ljava/lang/Class;Lnet/minecraft/network/syncher/EntityDataSerializer;)Lnet/minecraft/network/syncher/EntityDataAccessor;
+      21: putstatic     #131                // Field HIT_COOLDOWN:Lnet/minecraft/network/syncher/EntityDataAccessor;
+      24: ldc_w         #808                // class com/Polarice3/Goety/common/entities/boss/Apostle
+      27: getstatic     #1125               // Field net/minecraft/network/syncher/EntityDataSerializers.BOOLEAN:Lnet/minecraft/network/syncher/EntityDataSerializer;
+      30: invokestatic  #1129               // Method net/minecraft/network/syncher/SynchedEntityData.defineId:(Ljava/lang/Class;Lnet/minecraft/network/syncher/EntityDataSerializer;)Lnet/minecraft/network/syncher/EntityDataAccessor;
+      33: putstatic     #138                // Field SHOOTING:Lnet/minecraft/network/syncher/EntityDataAccessor;
+      36: ldc_w         #808                // class com/Polarice3/Goety/common/entities/boss/Apostle
+      39: getstatic     #1125               // Field net/minecraft/network/syncher/EntityDataSerializers.BOOLEAN:Lnet/minecraft/network/syncher/EntityDataSerializer;
+      42: invokestatic  #1129               // Method net/minecraft/network/syncher/SynchedEntityData.defineId:(Ljava/lang/Class;Lnet/minecraft/network/syncher/EntityDataSerializer;)Lnet/minecraft/network/syncher/EntityDataAccessor;
+      45: putstatic     #140                // Field SILENT:Lnet/minecraft/network/syncher/EntityDataAccessor;
+      48: ldc_w         #808                // class com/Polarice3/Goety/common/entities/boss/Apostle
+      51: getstatic     #1125               // Field net/minecraft/network/syncher/EntityDataSerializers.BOOLEAN:Lnet/minecraft/network/syncher/EntityDataSerializer;
+      54: invokestatic  #1129               // Method net/minecraft/network/syncher/SynchedEntityData.defineId:(Ljava/lang/Class;Lnet/minecraft/network/syncher/EntityDataSerializer;)Lnet/minecraft/network/syncher/EntityDataAccessor;
+      57: putstatic     #142                // Field DOOM:Lnet/minecraft/network/syncher/EntityDataAccessor;
+      60: ldc_w         #808                // class com/Polarice3/Goety/common/entities/boss/Apostle
+      63: getstatic     #1125               // Field net/minecraft/network/syncher/EntityDataSerializers.BOOLEAN:Lnet/minecraft/network/syncher/EntityDataSerializer;
+      66: invokestatic  #1129               // Method net/minecraft/network/syncher/SynchedEntityData.defineId:(Ljava/lang/Class;Lnet/minecraft/network/syncher/EntityDataSerializer;)Lnet/minecraft/network/syncher/EntityDataAccessor;
+      69: putstatic     #144                // Field SETTING_DOOM:Lnet/minecraft/network/syncher/EntityDataAccessor;
+      72: ldc_w         #808                // class com/Polarice3/Goety/common/entities/boss/Apostle
+      75: getstatic     #1132               // Field net/minecraft/network/syncher/EntityDataSerializers.INT:Lnet/minecraft/network/syncher/EntityDataSerializer;
+      78: invokestatic  #1129               // Method net/minecraft/network/syncher/SynchedEntityData.defineId:(Ljava/lang/Class;Lnet/minecraft/network/syncher/EntityDataSerializer;)Lnet/minecraft/network/syncher/EntityDataAccessor;
+      81: putstatic     #146                // Field TIME:Lnet/minecraft/network/syncher/EntityDataAccessor;
+      84: return
+}

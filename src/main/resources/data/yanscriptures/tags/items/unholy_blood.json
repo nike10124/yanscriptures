@@ -1,0 +1,6 @@
+{
+  "replace": false,
+  "values": [
+    { "id": "goety:unholy_blood", "required": false }
+  ]
+}

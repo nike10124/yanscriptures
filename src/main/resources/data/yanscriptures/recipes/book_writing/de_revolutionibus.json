@@ -1,0 +1,40 @@
+{
+  "type": "yanscriptures:book_writing",
+  "paper": {
+    "tier": 3,
+    "count": 3
+  },
+  "ink": {
+    "tier": 3,
+    "count": 2
+  },
+  "thread": {
+    "tier": 2,
+    "count": 2
+  },
+  "extras": [
+    {
+      "item": "enigmaticlegacy:astral_dust",
+      "count": 6
+    },
+    {
+      "item": "celestial_core:light_fragment",
+      "count": 2
+    },
+    {
+      "item": "celestial_core:midnight_fragment",
+      "count": 2
+    },
+    {
+      "item": "celestial_core:sakura_fragment",
+      "count": 1
+    },
+    {
+      "item": "celestial_core:pure_nether_star",
+      "count": 1
+    }
+  ],
+  "result": {
+    "item": "yanscriptures:de_revolutionibus"
+  }
+}

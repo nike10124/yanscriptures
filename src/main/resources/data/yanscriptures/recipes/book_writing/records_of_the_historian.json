@@ -1,0 +1,36 @@
+{
+  "type": "yanscriptures:book_writing",
+  "paper": {
+    "tier": 3,
+    "count": 2
+  },
+  "ink": {
+    "tier": 2,
+    "count": 2
+  },
+  "thread": {
+    "tier": 2,
+    "count": 2
+  },
+  "extras": [
+    {
+      "item": "enigmaticlegacy:lore_fragment",
+      "count": 1
+    },
+    {
+      "item": "goety:grave_dust",
+      "count": 1
+    },
+    {
+      "item": "minecraft:echo_shard",
+      "count": 9
+    },
+    {
+      "item": "minecraft:leather",
+      "count": 1
+    }
+  ],
+  "result": {
+    "item": "yanscriptures:records_of_the_historian"
+  }
+}

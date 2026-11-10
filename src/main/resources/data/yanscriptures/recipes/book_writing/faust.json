@@ -1,0 +1,36 @@
+{
+  "type": "yanscriptures:book_writing",
+  "paper": {
+    "tier": 2,
+    "count": 2
+  },
+  "ink": {
+    "tier": 2,
+    "count": 1
+  },
+  "thread": {
+    "tier": 2,
+    "count": 1
+  },
+  "extras": [
+    {
+      "item": "enigmaticlegacy:evil_essence",
+      "count": 1
+    },
+    {
+      "item": "enigmaticlegacy:soul_crystal",
+      "count": 1
+    },
+    {
+      "item": "minecraft:obsidian",
+      "count": 1
+    },
+    {
+      "item": "minecraft:ender_pearl",
+      "count": 1
+    }
+  ],
+  "result": {
+    "item": "yanscriptures:faust"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    { "id": "enigmaticlegacy:cursed_ring", "required": false },
+    { "id": "celestial_artifacts:catastrophe_scroll", "required": false },
+    { "id": "celestial_artifacts:chaotic_etching", "required": false },
+    { "id": "celestial_artifacts:origin_etching", "required": false },
+    { "id": "celestial_artifacts:life_etching", "required": false },
+    { "id": "celestial_artifacts:truth_etching", "required": false },
+    { "id": "celestial_artifacts:desire_etching", "required": false },
+    { "id": "celestial_artifacts:nihility_etching", "required": false },
+    { "id": "celestial_artifacts:end_etching", "required": false }
+  ]
+}

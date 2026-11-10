@@ -1,0 +1,32 @@
+{
+  "parent": "yanscriptures:root",
+  "display": {
+    "icon": {
+      "item": "yanscriptures:annihilated_parchment"
+    },
+    "title": {
+      "translate": "advancement.yanscriptures.annihilated.title"
+    },
+    "description": {
+      "translate": "advancement.yanscriptures.annihilated.desc"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "got": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "yanscriptures:annihilated_parchment"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

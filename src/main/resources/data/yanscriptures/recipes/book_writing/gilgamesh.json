@@ -1,0 +1,40 @@
+{
+  "type": "yanscriptures:book_writing",
+  "paper": {
+    "tier": 4,
+    "count": 3
+  },
+  "ink": {
+    "tier": 3,
+    "count": 2
+  },
+  "thread": {
+    "tier": 3,
+    "count": 2
+  },
+  "extras": [
+    {
+      "item": "celestial_core:treasure_fragment",
+      "count": 1
+    },
+    {
+      "item": "celestial_core:sakura_fragment",
+      "count": 1
+    },
+    {
+      "item": "goety_revelation:broken_halo",
+      "count": 1
+    },
+    {
+      "item": "goety_revelation:gold_feather",
+      "count": 1
+    },
+    {
+      "item": "goety:ominous_shard",
+      "count": 1
+    }
+  ],
+  "result": {
+    "item": "yanscriptures:gilgamesh"
+  }
+}

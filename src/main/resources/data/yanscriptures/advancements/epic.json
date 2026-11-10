@@ -1,0 +1,36 @@
+{
+  "parent": "yanscriptures:root",
+  "display": {
+    "icon": {
+      "item": "yanscriptures:epic_fate"
+    },
+    "title": {
+      "translate": "advancement.yanscriptures.epic.title"
+    },
+    "description": {
+      "translate": "advancement.yanscriptures.epic.desc"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "got": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "yanscriptures:epic_fate",
+              "yanscriptures:epic_creation",
+              "yanscriptures:epic_pillar",
+              "yanscriptures:epic_calamity",
+              "yanscriptures:epic_ego"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

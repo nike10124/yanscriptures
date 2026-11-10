@@ -1,0 +1,36 @@
+{
+  "type": "yanscriptures:book_writing",
+  "paper": {
+    "tier": 2,
+    "count": 2
+  },
+  "ink": {
+    "tier": 2,
+    "count": 1
+  },
+  "thread": {
+    "tier": 2,
+    "count": 1
+  },
+  "extras": [
+    {
+      "item": "goety:soul_emerald",
+      "count": 1
+    },
+    {
+      "item": "minecraft:lapis_lazuli",
+      "count": 1
+    },
+    {
+      "item": "minecraft:quartz",
+      "count": 1
+    },
+    {
+      "item": "minecraft:gold_ingot",
+      "count": 1
+    }
+  ],
+  "result": {
+    "item": "yanscriptures:nine_chapters"
+  }
+}

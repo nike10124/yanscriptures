@@ -1,0 +1,16 @@
+{
+  "ingredients": [
+    {
+      "item": "yanscriptures:hemp_rope"
+    },
+    {
+      "item": "yanscriptures:hemp_rope"
+    },
+    {
+      "item": "minecraft:gold_ingot"
+    }
+  ],
+  "result": {
+    "item": "yanscriptures:gold_rope"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "yanscriptures:fiber_paper",
+    "yanscriptures:parchment",
+    "yanscriptures:corrupt_parchment",
+    "yanscriptures:annihilated_parchment"
+  ]
+}

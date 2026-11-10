@@ -1,0 +1,32 @@
+{
+  "parent": "yanscriptures:epic",
+  "display": {
+    "icon": {
+      "item": "yanscriptures:materia_medica"
+    },
+    "title": {
+      "translate": "item.yanscriptures.materia_medica"
+    },
+    "description": {
+      "translate": "advancement.yanscriptures.epic_book.desc"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "got": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "yanscriptures:materia_medica"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

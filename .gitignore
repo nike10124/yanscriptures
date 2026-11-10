@@ -1,0 +1,35 @@
+# eclipse
+bin
+*.launch
+.settings
+.metadata
+.classpath
+.project
+
+# idea
+out
+*.ipr
+*.iws
+*.iml
+.idea
+
+# gradle
+build
+.gradle
+
+# other
+eclipse
+run
+
+# Files from Forge MDK
+forge*changelog.txt
+
+# 本机生成的本地 maven 缓存（由 build 脚本从 libs/ 展开）
+libs-m2/
+
+# 打包快照（体积大，按需保留在本地）
+backup/*.zip
+
+# 临时截图/对比图
+backup/_*.png
+tmp_vision/

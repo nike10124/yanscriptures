@@ -1,0 +1,26 @@
+{
+  "parent": "yanscriptures:trial_start",
+  "display": {
+    "icon": {
+      "item": "yanscriptures:scripture_of_revelation"
+    },
+    "title": {
+      "translate": "advancement.yanscriptures.trial_fail.title"
+    },
+    "description": {
+      "translate": "advancement.yanscriptures.trial_fail.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "criteria": {
+    "done": {
+      "trigger": "yanscriptures:event",
+      "conditions": {
+        "event": "trial_fail"
+      }
+    }
+  }
+}

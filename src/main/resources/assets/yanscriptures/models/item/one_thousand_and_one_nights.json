@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "yanscriptures:item/one_thousand_and_one_nights"
+  }
+}

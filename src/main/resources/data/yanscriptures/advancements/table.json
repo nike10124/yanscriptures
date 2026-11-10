@@ -1,0 +1,32 @@
+{
+  "parent": "yanscriptures:root",
+  "display": {
+    "icon": {
+      "item": "yanscriptures:book_writing_table"
+    },
+    "title": {
+      "translate": "advancement.yanscriptures.table.title"
+    },
+    "description": {
+      "translate": "advancement.yanscriptures.table.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "got": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "yanscriptures:book_writing_table"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

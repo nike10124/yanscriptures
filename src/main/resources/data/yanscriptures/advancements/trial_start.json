@@ -1,0 +1,26 @@
+{
+  "parent": "yanscriptures:root",
+  "display": {
+    "icon": {
+      "item": "yanscriptures:scripture_of_revelation"
+    },
+    "title": {
+      "translate": "advancement.yanscriptures.trial_start.title"
+    },
+    "description": {
+      "translate": "advancement.yanscriptures.trial_start.desc"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "done": {
+      "trigger": "yanscriptures:event",
+      "conditions": {
+        "event": "trial_start"
+      }
+    }
+  }
+}

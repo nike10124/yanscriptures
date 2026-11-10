@@ -1,0 +1,32 @@
+{
+  "parent": "yanscriptures:epic",
+  "display": {
+    "icon": {
+      "item": "yanscriptures:critique_of_pure_reason"
+    },
+    "title": {
+      "translate": "item.yanscriptures.critique_of_pure_reason"
+    },
+    "description": {
+      "translate": "advancement.yanscriptures.epic_book.desc"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "got": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "yanscriptures:critique_of_pure_reason"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

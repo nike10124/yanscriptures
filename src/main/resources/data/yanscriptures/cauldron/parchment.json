@@ -1,0 +1,26 @@
+{
+  "ingredients": [
+    {
+      "item": "yanscriptures:fiber_paper"
+    },
+    {
+      "item": "yanscriptures:fiber_paper"
+    },
+    {
+      "item": "yanscriptures:fiber_paper"
+    },
+    {
+      "item": "minecraft:leather"
+    },
+    {
+      "item": "minecraft:leather"
+    },
+    {
+      "item": "minecraft:honeycomb"
+    }
+  ],
+  "result": {
+    "item": "yanscriptures:parchment",
+    "count": 3
+  }
+}

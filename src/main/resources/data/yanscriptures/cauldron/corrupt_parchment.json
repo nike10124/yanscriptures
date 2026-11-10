@@ -1,0 +1,23 @@
+{
+  "ingredients": [
+    {
+      "item": "yanscriptures:parchment"
+    },
+    {
+      "item": "yanscriptures:parchment"
+    },
+    {
+      "item": "enigmaticlegacy:evil_essence"
+    },
+    {
+      "item": "enigmaticlegacy:evil_essence"
+    },
+    {
+      "item": "minecraft:wither_rose"
+    }
+  ],
+  "result": {
+    "item": "yanscriptures:corrupt_parchment",
+    "count": 2
+  }
+}

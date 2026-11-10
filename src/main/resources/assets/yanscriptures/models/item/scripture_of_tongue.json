@@ -1,0 +1,11 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "yanscriptures:item/scripture_of_tongue"
+  },
+  "display": {
+    "gui": {
+      "scale": [1.0, 1.0, 1.0]
+    }
+  }
+}

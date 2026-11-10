@@ -1,0 +1,36 @@
+{
+  "type": "yanscriptures:book_writing",
+  "paper": {
+    "tier": 3,
+    "count": 2
+  },
+  "ink": {
+    "tier": 2,
+    "count": 2
+  },
+  "thread": {
+    "tier": 2,
+    "count": 2
+  },
+  "extras": [
+    {
+      "item": "goety:cursed_ingot",
+      "count": 4
+    },
+    {
+      "item": "goety:dark_ingot",
+      "count": 1
+    },
+    {
+      "item": "goety:grave_dust",
+      "count": 1
+    },
+    {
+      "item": "minecraft:gunpowder",
+      "count": 1
+    }
+  ],
+  "result": {
+    "item": "yanscriptures:on_war"
+  }
+}

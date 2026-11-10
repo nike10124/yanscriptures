@@ -1,0 +1,30 @@
+{
+  "parent": "yanscriptures:root",
+  "display": {
+    "icon": {
+      "item": "yanscriptures:book_of_peace"
+    },
+    "title": {
+      "translate": "advancement.yanscriptures.first_book.title"
+    },
+    "description": {
+      "translate": "advancement.yanscriptures.first_book.desc"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "got": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "yanscriptures:books"
+          }
+        ]
+      }
+    }
+  }
+}

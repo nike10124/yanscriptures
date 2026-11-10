@@ -1,0 +1,32 @@
+{
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "craftType": "sabbath",
+  "activation_item": {
+    "item": "yanscriptures:scripture_of_commandments"
+  },
+  "soulCost": 777,
+  "duration": 77,
+  "ingredients": [
+    {
+      "item": "goety_revelation:revelation"
+    },
+    {
+      "item": "goety_revelation:quietus_star"
+    },
+    {
+      "item": "goety_revelation:the_needle"
+    },
+    {
+      "item": "goety_revelation:apollyon_hat"
+    },
+    {
+      "type": "forge:nbt",
+      "item": "yanscriptures:scripture_of_revelation",
+      "nbt": "{TrialCleared:1b}"
+    }
+  ],
+  "result": {
+    "item": "yanscriptures:covenant_codex"
+  }
+}

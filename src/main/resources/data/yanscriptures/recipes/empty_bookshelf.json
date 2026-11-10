@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:bookshelf"
+    },
+    {
+      "item": "yanscriptures:parchment"
+    },
+    {
+      "item": "yanscriptures:parchment"
+    },
+    {
+      "item": "enigmaticlegacy:etherium_ingot"
+    },
+    {
+      "item": "celestial_core:void_essence"
+    },
+    {
+      "item": "minecraft:leather"
+    },
+    {
+      "item": "minecraft:leather"
+    }
+  ],
+  "result": {
+    "item": "yanscriptures:empty_bookshelf",
+    "count": 1
+  }
+}

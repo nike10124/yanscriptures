@@ -1,0 +1,40 @@
+{
+  "type": "yanscriptures:book_writing",
+  "paper": {
+    "tier": 3,
+    "count": 3
+  },
+  "ink": {
+    "tier": 3,
+    "count": 2
+  },
+  "thread": {
+    "tier": 2,
+    "count": 2
+  },
+  "extras": [
+    {
+      "item": "celestial_core:earth_core",
+      "count": 1
+    },
+    {
+      "item": "celestial_core:ocean_essence",
+      "count": 1
+    },
+    {
+      "item": "celestial_core:heart_fragment",
+      "count": 2
+    },
+    {
+      "item": "goety:firethorn_berries",
+      "count": 1
+    },
+    {
+      "item": "goety:henbane_flower",
+      "count": 1
+    }
+  ],
+  "result": {
+    "item": "yanscriptures:materia_medica"
+  }
+}

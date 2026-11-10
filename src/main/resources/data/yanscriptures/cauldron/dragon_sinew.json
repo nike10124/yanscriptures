@@ -1,0 +1,25 @@
+{
+  "ingredients": [
+    {
+      "item": "yanscriptures:hemp_rope"
+    },
+    {
+      "item": "yanscriptures:hemp_rope"
+    },
+    {
+      "item": "minecraft:dragon_breath"
+    },
+    {
+      "item": "minecraft:dragon_breath"
+    },
+    {
+      "item": "minecraft:amethyst_shard"
+    },
+    {
+      "item": "minecraft:amethyst_shard"
+    }
+  ],
+  "result": {
+    "item": "yanscriptures:dragon_sinew"
+  }
+}

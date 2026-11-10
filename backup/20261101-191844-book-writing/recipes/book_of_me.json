@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "FCP",
+    "NBE",
+    "SDA"
+  ],
+  "key": {
+    "F": { "item": "yanscriptures:epic_fate" },
+    "C": { "item": "yanscriptures:epic_creation" },
+    "P": { "item": "yanscriptures:epic_pillar" },
+    "N": { "item": "yanscriptures:epic_calamity" },
+    "B": { "item": "yanscriptures:blank_page" },
+    "E": { "item": "yanscriptures:epic_ego" },
+    "S": { "item": "minecraft:nether_star" },
+    "D": { "item": "minecraft:dragon_egg" },
+    "A": { "item": "minecraft:enchanted_golden_apple" }
+  },
+  "result": {
+    "item": "yanscriptures:book_of_me",
+    "count": 1
+  }
+}

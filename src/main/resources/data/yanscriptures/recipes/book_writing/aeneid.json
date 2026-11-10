@@ -1,0 +1,36 @@
+{
+  "type": "yanscriptures:book_writing",
+  "paper": {
+    "tier": 2,
+    "count": 2
+  },
+  "ink": {
+    "tier": 2,
+    "count": 1
+  },
+  "thread": {
+    "tier": 2,
+    "count": 1
+  },
+  "extras": [
+    {
+      "item": "enigmaticlegacy:guardian_heart",
+      "count": 1
+    },
+    {
+      "item": "enigmaticlegacy:earth_heart",
+      "count": 1
+    },
+    {
+      "item": "goety:grave_dust",
+      "count": 1
+    },
+    {
+      "item": "minecraft:bone",
+      "count": 1
+    }
+  ],
+  "result": {
+    "item": "yanscriptures:aeneid"
+  }
+}

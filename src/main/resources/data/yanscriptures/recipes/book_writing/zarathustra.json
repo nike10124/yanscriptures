@@ -1,0 +1,36 @@
+{
+  "type": "yanscriptures:book_writing",
+  "paper": {
+    "tier": 2,
+    "count": 2
+  },
+  "ink": {
+    "tier": 2,
+    "count": 1
+  },
+  "thread": {
+    "tier": 2,
+    "count": 1
+  },
+  "extras": [
+    {
+      "item": "celestial_core:void_essence",
+      "count": 1
+    },
+    {
+      "item": "enigmaticlegacy:astral_dust",
+      "count": 1
+    },
+    {
+      "item": "minecraft:feather",
+      "count": 1
+    },
+    {
+      "item": "minecraft:ghast_tear",
+      "count": 1
+    }
+  ],
+  "result": {
+    "item": "yanscriptures:zarathustra"
+  }
+}

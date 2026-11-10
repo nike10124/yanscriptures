@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "yanscriptures:block/book_writing_table" },
+    "facing=east": { "model": "yanscriptures:block/book_writing_table", "y": 90 },
+    "facing=south": { "model": "yanscriptures:block/book_writing_table", "y": 180 },
+    "facing=west": { "model": "yanscriptures:block/book_writing_table", "y": 270 }
+  }
+}

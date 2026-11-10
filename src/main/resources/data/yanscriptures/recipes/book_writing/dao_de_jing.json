@@ -1,0 +1,36 @@
+{
+  "type": "yanscriptures:book_writing",
+  "paper": {
+    "tier": 2,
+    "count": 2
+  },
+  "ink": {
+    "tier": 2,
+    "count": 1
+  },
+  "thread": {
+    "tier": 2,
+    "count": 1
+  },
+  "extras": [
+    {
+      "item": "celestial_core:heart_fragment",
+      "count": 1
+    },
+    {
+      "item": "goety:ominous_shard",
+      "count": 1
+    },
+    {
+      "item": "minecraft:honeycomb",
+      "count": 1
+    },
+    {
+      "item": "minecraft:book",
+      "count": 1
+    }
+  ],
+  "result": {
+    "item": "yanscriptures:dao_de_jing"
+  }
+}

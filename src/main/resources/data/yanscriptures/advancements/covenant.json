@@ -1,0 +1,32 @@
+{
+  "parent": "yanscriptures:root",
+  "display": {
+    "icon": {
+      "item": "yanscriptures:covenant_codex"
+    },
+    "title": {
+      "translate": "advancement.yanscriptures.covenant.title"
+    },
+    "description": {
+      "translate": "advancement.yanscriptures.covenant.desc"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "got": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "yanscriptures:covenant_codex"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

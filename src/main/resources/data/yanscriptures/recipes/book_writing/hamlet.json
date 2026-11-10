@@ -1,0 +1,32 @@
+{
+  "type": "yanscriptures:book_writing",
+  "paper": {
+    "tier": 1,
+    "count": 2
+  },
+  "ink": {
+    "tier": 1,
+    "count": 1
+  },
+  "thread": {
+    "tier": 1,
+    "count": 1
+  },
+  "extras": [
+    {
+      "item": "minecraft:bone",
+      "count": 1
+    },
+    {
+      "item": "minecraft:leather",
+      "count": 1
+    },
+    {
+      "item": "minecraft:feather",
+      "count": 1
+    }
+  ],
+  "result": {
+    "item": "yanscriptures:hamlet"
+  }
+}

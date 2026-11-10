@@ -1,0 +1,48 @@
+{
+  "type": "yanscriptures:book_writing",
+  "paper": {
+    "tier": 4,
+    "count": 4
+  },
+  "ink": {
+    "tier": 3,
+    "count": 3
+  },
+  "thread": {
+    "tier": 3,
+    "count": 3
+  },
+  "extras": [
+    {
+      "item": "yanscriptures:epic_fate",
+      "count": 1
+    },
+    {
+      "item": "yanscriptures:epic_pillar",
+      "count": 1
+    },
+    {
+      "item": "yanscriptures:epic_creation",
+      "count": 1
+    },
+    {
+      "item": "yanscriptures:epic_calamity",
+      "count": 1
+    },
+    {
+      "item": "yanscriptures:epic_ego",
+      "count": 1
+    },
+    {
+      "item": "goety_revelation:quietus_star",
+      "count": 1
+    },
+    {
+      "item": "yanscriptures:blank_page",
+      "count": 1
+    }
+  ],
+  "result": {
+    "item": "yanscriptures:book_of_me"
+  }
+}

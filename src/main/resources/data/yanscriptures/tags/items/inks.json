@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "yanscriptures:ink",
+    "yanscriptures:blood_ink",
+    "yanscriptures:unholy_ink"
+  ]
+}

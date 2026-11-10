@@ -1,0 +1,40 @@
+{
+  "type": "yanscriptures:book_writing",
+  "paper": {
+    "tier": 3,
+    "count": 3
+  },
+  "ink": {
+    "tier": 3,
+    "count": 2
+  },
+  "thread": {
+    "tier": 2,
+    "count": 2
+  },
+  "extras": [
+    {
+      "item": "celestial_artifacts:angel_heart",
+      "count": 1
+    },
+    {
+      "item": "celestial_core:void_essence",
+      "count": 1
+    },
+    {
+      "item": "enigmaticlegacy:astral_dust",
+      "count": 3
+    },
+    {
+      "item": "enigmaticlegacy:guardian_heart",
+      "count": 1
+    },
+    {
+      "item": "minecraft:ghast_tear",
+      "count": 1
+    }
+  ],
+  "result": {
+    "item": "yanscriptures:summa_theologica"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "tooltip.yanscriptures.classic.capital.quote": "\"Commodities are born levellers.\"",
+  "tooltip.yanscriptures.classic.capital.effect1": "Killing a creature grants capital equal to its max health (at most 100 per kill); trading with a piglin +15, with a villager +50.",
+  "tooltip.yanscriptures.classic.capital.effect2": "Every 500 capital grants +1% attack damage (up to +30%); capital is halved on death and is not cleared when you leave the game.",
+  "tooltip.yanscriptures.classic.inner_canon_of_the_yellow_emperor.quote": "\"The superior physician treats the illness before it arises, not after.\"",
+  "tooltip.yanscriptures.classic.inner_canon_of_the_yellow_emperor.effect1": "Damage taken is reduced by \"current health percentage minus 50%\": halved at full health, unreduced at half health or below.",
+  "tooltip.yanscriptures.classic.inner_canon_of_the_yellow_emperor.effect2": "Every 30 seconds it cycles through wood, fire, earth, metal and water: +15% max health → +15% attack → knockback immunity → +15% armor → +15% movement and attack speed. The current phase is shown below.",
+  "tooltip.yanscriptures.classic.one_thousand_and_one_nights.quote": "\"As long as the story is not finished, I must not die.\"",
+  "tooltip.yanscriptures.classic.one_thousand_and_one_nights.effect1": "Sleep through a whole night: a random attribute (attack, armor, toughness, max health, attack speed, movement speed) +1%, stacking up to 1001 times; the bonus is shown in the book slot panel.",
+  "tooltip.yanscriptures.classic.one_thousand_and_one_nights.effect2": "While also wearing the Ring of Seven Curses its seventh curse is cancelled; once per day [Story]: when health drops below 10% you are saved at once.",
+  "tooltip.yanscriptures.classic.hamlet.quote": "\"To be, or not to be, that is the question.\"",
+  "tooltip.yanscriptures.classic.hamlet.effect1": "Each attack rerolls its own damage by chance: 15% deals only 10%, 35% deals 50%, 35% deals 150%, 15% deals 200% and always crits.",
+  "tooltip.yanscriptures.classic.hamlet.effect2": "The 10% roll banks a guaranteed crit for the next attack that deals damage; it does not stack.",
+  "tooltip.yanscriptures.classic.the_count_of_monte_cristo.quote": "\"All human wisdom is contained in these two words: wait and hope.\"",
+  "tooltip.yanscriptures.classic.the_count_of_monte_cristo.effect1": "Creatures that have damaged you are entered on a revenge list: +20% damage dealt to them, plus another 20% if they have ever killed you.",
+  "tooltip.yanscriptures.classic.the_count_of_monte_cristo.effect2": "While the list is not empty, +25% attack speed; listed creatures glow red and show \"Revenge\" when struck.",
+  "tooltip.yanscriptures.empty_bookshelf.desc": "A small empty bookshelf."
+}

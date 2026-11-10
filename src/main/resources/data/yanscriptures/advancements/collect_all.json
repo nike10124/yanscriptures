@@ -1,0 +1,652 @@
+{
+  "parent": "yanscriptures:epic",
+  "display": {
+    "icon": {
+      "item": "yanscriptures:covenant_codex"
+    },
+    "title": {
+      "translate": "advancement.yanscriptures.collect_all.title"
+    },
+    "description": {
+      "translate": "advancement.yanscriptures.collect_all.desc"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "criteria": {
+    "b00": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "yanscriptures:book_of_peace"
+            ]
+          }
+        ]
+      }
+    },
+    "b01": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "yanscriptures:principia"
+            ]
+          }
+        ]
+      }
+    },
+    "b02": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "yanscriptures:emerald_tablet"
+            ]
+          }
+        ]
+      }
+    },
+    "b03": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "yanscriptures:book_of_me"
+            ]
+          }
+        ]
+      }
+    },
+    "b04": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "yanscriptures:scripture_of_commandments"
+            ]
+          }
+        ]
+      }
+    },
+    "b05": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "yanscriptures:covenant_codex"
+            ]
+          }
+        ]
+      }
+    },
+    "b06": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "yanscriptures:dao_de_jing"
+            ]
+          }
+        ]
+      }
+    },
+    "b07": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "yanscriptures:republic"
+            ]
+          }
+        ]
+      }
+    },
+    "b08": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "yanscriptures:zarathustra"
+            ]
+          }
+        ]
+      }
+    },
+    "b09": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "yanscriptures:divine_comedy"
+            ]
+          }
+        ]
+      }
+    },
+    "b10": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "yanscriptures:don_quixote"
+            ]
+          }
+        ]
+      }
+    },
+    "b11": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "yanscriptures:hundred_years"
+            ]
+          }
+        ]
+      }
+    },
+    "b12": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "yanscriptures:euclid"
+            ]
+          }
+        ]
+      }
+    },
+    "b13": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "yanscriptures:origin"
+            ]
+          }
+        ]
+      }
+    },
+    "b14": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "yanscriptures:nine_chapters"
+            ]
+          }
+        ]
+      }
+    },
+    "b15": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "yanscriptures:art_of_war"
+            ]
+          }
+        ]
+      }
+    },
+    "b16": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "yanscriptures:the_prince"
+            ]
+          }
+        ]
+      }
+    },
+    "b17": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "yanscriptures:crime_and_punishment"
+            ]
+          }
+        ]
+      }
+    },
+    "b18": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "yanscriptures:faust"
+            ]
+          }
+        ]
+      }
+    },
+    "b19": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "yanscriptures:odyssey"
+            ]
+          }
+        ]
+      }
+    },
+    "b20": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "yanscriptures:materia_medica"
+            ]
+          }
+        ]
+      }
+    },
+    "b21": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "yanscriptures:tiangong_kaiwu"
+            ]
+          }
+        ]
+      }
+    },
+    "b22": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "yanscriptures:interpretation_of_dreams"
+            ]
+          }
+        ]
+      }
+    },
+    "b23": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "yanscriptures:i_ching"
+            ]
+          }
+        ]
+      }
+    },
+    "b24": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "yanscriptures:iliad"
+            ]
+          }
+        ]
+      }
+    },
+    "b25": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "yanscriptures:aeneid"
+            ]
+          }
+        ]
+      }
+    },
+    "b26": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "yanscriptures:gilgamesh"
+            ]
+          }
+        ]
+      }
+    },
+    "b27": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "yanscriptures:analects"
+            ]
+          }
+        ]
+      }
+    },
+    "b28": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "yanscriptures:zhuangzi"
+            ]
+          }
+        ]
+      }
+    },
+    "b29": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "yanscriptures:records_of_the_historian"
+            ]
+          }
+        ]
+      }
+    },
+    "b30": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "yanscriptures:thirty_six_strategies"
+            ]
+          }
+        ]
+      }
+    },
+    "b31": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "yanscriptures:on_war"
+            ]
+          }
+        ]
+      }
+    },
+    "b32": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "yanscriptures:de_revolutionibus"
+            ]
+          }
+        ]
+      }
+    },
+    "b33": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "yanscriptures:critique_of_pure_reason"
+            ]
+          }
+        ]
+      }
+    },
+    "b34": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "yanscriptures:nicomachean_ethics"
+            ]
+          }
+        ]
+      }
+    },
+    "b35": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "yanscriptures:summa_theologica"
+            ]
+          }
+        ]
+      }
+    },
+    "b36": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "yanscriptures:wealth_of_nations"
+            ]
+          }
+        ]
+      }
+    },
+    "b37": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "yanscriptures:capital"
+            ]
+          }
+        ]
+      }
+    },
+    "b38": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "yanscriptures:inner_canon_of_the_yellow_emperor"
+            ]
+          }
+        ]
+      }
+    },
+    "b39": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "yanscriptures:one_thousand_and_one_nights"
+            ]
+          }
+        ]
+      }
+    },
+    "b40": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "yanscriptures:hamlet"
+            ]
+          }
+        ]
+      }
+    },
+    "b41": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "yanscriptures:the_count_of_monte_cristo"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "b00"
+    ],
+    [
+      "b01"
+    ],
+    [
+      "b02"
+    ],
+    [
+      "b03"
+    ],
+    [
+      "b04"
+    ],
+    [
+      "b05"
+    ],
+    [
+      "b06"
+    ],
+    [
+      "b07"
+    ],
+    [
+      "b08"
+    ],
+    [
+      "b09"
+    ],
+    [
+      "b10"
+    ],
+    [
+      "b11"
+    ],
+    [
+      "b12"
+    ],
+    [
+      "b13"
+    ],
+    [
+      "b14"
+    ],
+    [
+      "b15"
+    ],
+    [
+      "b16"
+    ],
+    [
+      "b17"
+    ],
+    [
+      "b18"
+    ],
+    [
+      "b19"
+    ],
+    [
+      "b20"
+    ],
+    [
+      "b21"
+    ],
+    [
+      "b22"
+    ],
+    [
+      "b23"
+    ],
+    [
+      "b24"
+    ],
+    [
+      "b25"
+    ],
+    [
+      "b26"
+    ],
+    [
+      "b27"
+    ],
+    [
+      "b28"
+    ],
+    [
+      "b29"
+    ],
+    [
+      "b30"
+    ],
+    [
+      "b31"
+    ],
+    [
+      "b32"
+    ],
+    [
+      "b33"
+    ],
+    [
+      "b34"
+    ],
+    [
+      "b35"
+    ],
+    [
+      "b36"
+    ],
+    [
+      "b37"
+    ],
+    [
+      "b38"
+    ],
+    [
+      "b39"
+    ],
+    [
+      "b40"
+    ],
+    [
+      "b41"
+    ]
+  ]
+}

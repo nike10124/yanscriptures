@@ -1,0 +1,26 @@
+{
+  "parent": "yanscriptures:table",
+  "display": {
+    "icon": {
+      "item": "yanscriptures:writing_quill"
+    },
+    "title": {
+      "translate": "advancement.yanscriptures.written.title"
+    },
+    "description": {
+      "translate": "advancement.yanscriptures.written.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "done": {
+      "trigger": "yanscriptures:event",
+      "conditions": {
+        "event": "book_written"
+      }
+    }
+  }
+}

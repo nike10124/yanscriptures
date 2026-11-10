@@ -1,0 +1,26 @@
+{
+  "parent": "yanscriptures:trial_start",
+  "display": {
+    "icon": {
+      "item": "yanscriptures:epic_fate"
+    },
+    "title": {
+      "translate": "advancement.yanscriptures.trial_clear.title"
+    },
+    "description": {
+      "translate": "advancement.yanscriptures.trial_clear.desc"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "done": {
+      "trigger": "yanscriptures:event",
+      "conditions": {
+        "event": "trial_clear"
+      }
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "type": "yanscriptures:book_writing",
+  "paper": {
+    "tier": 4,
+    "count": 3
+  },
+  "ink": {
+    "tier": 3,
+    "count": 2
+  },
+  "thread": {
+    "tier": 2,
+    "count": 2
+  },
+  "extras": [
+    {
+      "item": "celestial_core:light_fragment",
+      "count": 2
+    },
+    {
+      "item": "celestial_core:midnight_fragment",
+      "count": 2
+    },
+    {
+      "item": "celestial_core:heart_fragment",
+      "count": 1
+    },
+    {
+      "item": "celestial_core:pure_nether_star",
+      "count": 1
+    },
+    {
+      "item": "celestial_artifacts:amethyst_reinforce_plate",
+      "count": 1
+    }
+  ],
+  "result": {
+    "item": "yanscriptures:republic"
+  }
+}

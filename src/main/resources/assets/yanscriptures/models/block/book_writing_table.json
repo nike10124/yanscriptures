@@ -1,0 +1,174 @@
+{
+  "parent": "block/block",
+  "display": {
+    "firstperson_righthand": {
+      "rotation": [ 0, 135, 0 ],
+      "translation": [ 0, 0, 0 ],
+      "scale": [ 0.4, 0.4, 0.4 ]
+    }
+  },
+  "textures": {
+    "particle": "yanscriptures:block/table_sides",
+    "bottom": "yanscriptures:block/table_bottom",
+    "base": "yanscriptures:block/table_base",
+    "front": "yanscriptures:block/table_front",
+    "sides": "yanscriptures:block/table_sides",
+    "top": "yanscriptures:block/table_top",
+    "gold": "yanscriptures:block/table_gold"
+  },
+  "elements": [
+    {
+      "from": [ 0, 0, 0 ],
+      "to": [ 16, 2, 16 ],
+      "faces": {
+        "north": { "uv": [ 0, 14, 16, 16 ], "texture": "#base", "cullface": "north" },
+        "east":  { "uv": [ 0,  6, 16,  8 ], "texture": "#base", "cullface": "east" },
+        "south": { "uv": [ 0,  6, 16,  8 ], "texture": "#base", "cullface": "south" },
+        "west":  { "uv": [ 0,  6, 16,  8 ], "texture": "#base", "cullface": "west" },
+        "up":    { "uv": [ 0,  0, 16, 16 ], "rotation": 180, "texture": "#base" },
+        "down":  { "uv": [ 0,  0, 16, 16 ], "texture": "#bottom", "cullface": "down" }
+      }
+    },
+    {
+      "from": [4, 2, 4],
+      "to": [12, 15, 12],
+      "faces": {
+        "north": { "uv": [ 0,  0,  8, 13 ], "texture": "#front" },
+        "east":  { "uv": [ 2, 16, 15,  8 ], "rotation": 90, "texture": "#sides" },
+        "south": { "uv": [ 8,  3, 16, 16 ], "texture": "#front" },
+        "west":  { "uv": [ 2,  8, 15, 16 ], "rotation": 90, "texture": "#sides" }
+      }
+    },
+    {
+      "from": [ 0.0125, 12, 3 ],
+      "to": [ 15.9875, 16, 16 ],
+      "rotation": { "angle": -22.5, "axis": "x", "origin": [ 8, 8, 8 ] },
+      "faces": {
+        "north": { "uv": [ 0, 0, 16,  4 ], "texture": "#sides" },
+        "east":  { "uv": [ 0, 4, 13,  8 ], "texture": "#sides" },
+        "south": { "uv": [ 0, 4, 16,  8 ], "texture": "#sides" },
+        "west":  { "uv": [ 0, 4, 13,  8 ], "texture": "#sides" },
+        "up":    { "uv": [ 0, 1, 16, 14 ], "rotation": 180, "texture": "#top" },
+        "down":  { "uv": [ 0, 0, 16, 13 ], "texture": "#bottom" }
+      }
+    },
+    {
+      "name": "inkpot",
+      "from": [10.5, 2, 1.5],
+      "to": [14, 4.5, 5],
+      "faces": {
+        "up":    { "uv": [ 0, 0, 4, 4 ], "texture": "#top" },
+        "down":  { "uv": [ 4, 0, 8, 4 ], "texture": "#base" },
+        "north": { "uv": [ 4, 4, 8, 6 ], "texture": "#base" },
+        "south": { "uv": [ 8, 4, 12, 6 ], "texture": "#base" },
+        "east":  { "uv": [ 8, 4, 12, 6 ], "texture": "#base" },
+        "west":  { "uv": [ 4, 4, 8, 6 ], "texture": "#base" }
+      }
+    },
+    {
+      "name": "quill-rest",
+      "from": [1.5, 2, 1.5],
+      "to": [4, 3, 4],
+      "faces": {
+        "up":    { "uv": [ 0, 0, 3, 3 ], "texture": "#front" },
+        "down":  { "uv": [ 3, 0, 6, 3 ], "texture": "#base" },
+        "north": { "uv": [ 3, 3, 6, 4 ], "texture": "#base" },
+        "south": { "uv": [ 6, 3, 9, 4 ], "texture": "#base" },
+        "east":  { "uv": [ 6, 3, 9, 4 ], "texture": "#base" },
+        "west":  { "uv": [ 3, 3, 6, 4 ], "texture": "#base" }
+      }
+    },
+    {
+      "name": "gold-corner-nw",
+      "from": [0, 2, 0],
+      "to": [3, 3.4, 3],
+      "faces": {
+        "up":    { "uv": [ 0, 0, 3, 3 ], "texture": "#gold" },
+        "north": { "uv": [ 0, 0, 3, 2 ], "texture": "#gold" },
+        "west":  { "uv": [ 0, 0, 3, 2 ], "texture": "#gold" },
+        "east":  { "uv": [ 3, 0, 6, 2 ], "texture": "#gold" },
+        "south": { "uv": [ 3, 0, 6, 2 ], "texture": "#gold" },
+        "down":  { "uv": [ 6, 0, 9, 3 ], "texture": "#gold" }
+      }
+    },
+    {
+      "name": "gold-corner-ne",
+      "from": [13, 2, 0],
+      "to": [16, 3.4, 3],
+      "faces": {
+        "up":    { "uv": [ 0, 0, 3, 3 ], "texture": "#gold" },
+        "north": { "uv": [ 0, 0, 3, 2 ], "texture": "#gold" },
+        "east":  { "uv": [ 0, 0, 3, 2 ], "texture": "#gold" },
+        "west":  { "uv": [ 3, 0, 6, 2 ], "texture": "#gold" },
+        "south": { "uv": [ 3, 0, 6, 2 ], "texture": "#gold" },
+        "down":  { "uv": [ 6, 0, 9, 3 ], "texture": "#gold" }
+      }
+    },
+    {
+      "name": "gold-corner-sw",
+      "from": [0, 2, 13],
+      "to": [3, 3.4, 16],
+      "faces": {
+        "up":    { "uv": [ 0, 0, 3, 3 ], "texture": "#gold" },
+        "south": { "uv": [ 0, 0, 3, 2 ], "texture": "#gold" },
+        "west":  { "uv": [ 0, 0, 3, 2 ], "texture": "#gold" },
+        "east":  { "uv": [ 3, 0, 6, 2 ], "texture": "#gold" },
+        "north": { "uv": [ 3, 0, 6, 2 ], "texture": "#gold" },
+        "down":  { "uv": [ 6, 0, 9, 3 ], "texture": "#gold" }
+      }
+    },
+    {
+      "name": "gold-corner-se",
+      "from": [13, 2, 13],
+      "to": [16, 3.4, 16],
+      "faces": {
+        "up":    { "uv": [ 0, 0, 3, 3 ], "texture": "#gold" },
+        "south": { "uv": [ 0, 0, 3, 2 ], "texture": "#gold" },
+        "east":  { "uv": [ 0, 0, 3, 2 ], "texture": "#gold" },
+        "west":  { "uv": [ 3, 0, 6, 2 ], "texture": "#gold" },
+        "north": { "uv": [ 3, 0, 6, 2 ], "texture": "#gold" },
+        "down":  { "uv": [ 6, 0, 9, 3 ], "texture": "#gold" }
+      }
+    },
+    {
+      "name": "gold-rim-north",
+      "from": [3, 2, 0],
+      "to": [13, 2.8, 1],
+      "faces": {
+        "up":    { "uv": [ 0, 0, 10, 1 ], "texture": "#gold" },
+        "north": { "uv": [ 0, 1, 10, 2 ], "texture": "#gold" },
+        "south": { "uv": [ 0, 2, 10, 3 ], "texture": "#gold" }
+      }
+    },
+    {
+      "name": "gold-rim-south",
+      "from": [3, 2, 15],
+      "to": [13, 2.8, 16],
+      "faces": {
+        "up":    { "uv": [ 0, 0, 10, 1 ], "texture": "#gold" },
+        "south": { "uv": [ 0, 1, 10, 2 ], "texture": "#gold" },
+        "north": { "uv": [ 0, 2, 10, 3 ], "texture": "#gold" }
+      }
+    },
+    {
+      "name": "gold-rim-west",
+      "from": [0, 2, 3],
+      "to": [1, 2.8, 13],
+      "faces": {
+        "up":   { "uv": [ 0, 0, 10, 1 ], "rotation": 90, "texture": "#gold" },
+        "west": { "uv": [ 0, 1, 10, 2 ], "rotation": 90, "texture": "#gold" },
+        "east": { "uv": [ 0, 2, 10, 3 ], "rotation": 90, "texture": "#gold" }
+      }
+    },
+    {
+      "name": "gold-rim-east",
+      "from": [15, 2, 3],
+      "to": [16, 2.8, 13],
+      "faces": {
+        "up":   { "uv": [ 0, 0, 10, 1 ], "rotation": 90, "texture": "#gold" },
+        "east": { "uv": [ 0, 1, 10, 2 ], "rotation": 90, "texture": "#gold" },
+        "west": { "uv": [ 0, 2, 10, 3 ], "rotation": 90, "texture": "#gold" }
+      }
+    }
+  ]
+}

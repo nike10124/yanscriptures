@@ -1,0 +1,32 @@
+{
+  "display": {
+    "icon": {
+      "item": "yanscriptures:principia"
+    },
+    "title": {
+      "translate": "advancement.yanscriptures.root.title"
+    },
+    "description": {
+      "translate": "advancement.yanscriptures.root.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "minecraft:textures/block/bookshelf.png"
+  },
+  "criteria": {
+    "got": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "yanscriptures:principia"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

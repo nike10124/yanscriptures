@@ -1,0 +1,19 @@
+{
+  "ingredients": [
+    {
+      "item": "yanscriptures:blood_ink"
+    },
+    {
+      "tag": "yanscriptures:unholy_blood"
+    },
+    {
+      "tag": "yanscriptures:unholy_blood"
+    },
+    {
+      "item": "minecraft:ghast_tear"
+    }
+  ],
+  "result": {
+    "item": "yanscriptures:unholy_ink"
+  }
+}

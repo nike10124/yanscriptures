@@ -1,0 +1,26 @@
+{
+  "parent": "yanscriptures:root",
+  "display": {
+    "icon": {
+      "item": "yanscriptures:fiber_paper"
+    },
+    "title": {
+      "translate": "advancement.yanscriptures.cauldron.title"
+    },
+    "description": {
+      "translate": "advancement.yanscriptures.cauldron.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "done": {
+      "trigger": "yanscriptures:event",
+      "conditions": {
+        "event": "cauldron_brew"
+      }
+    }
+  }
+}

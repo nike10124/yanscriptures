@@ -1,0 +1,18 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:beef",
+    "minecraft:porkchop",
+    "minecraft:chicken",
+    "minecraft:mutton",
+    "minecraft:rabbit",
+    {
+      "id": "#forge:raw_meat",
+      "required": false
+    },
+    {
+      "id": "#forge:raw_meats",
+      "required": false
+    }
+  ]
+}

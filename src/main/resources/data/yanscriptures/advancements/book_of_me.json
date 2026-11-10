@@ -1,0 +1,32 @@
+{
+  "parent": "yanscriptures:covenant",
+  "display": {
+    "icon": {
+      "item": "yanscriptures:book_of_me"
+    },
+    "title": {
+      "translate": "advancement.yanscriptures.book_of_me.title"
+    },
+    "description": {
+      "translate": "advancement.yanscriptures.book_of_me.desc"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "got": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "yanscriptures:book_of_me"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

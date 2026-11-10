@@ -1,0 +1,36 @@
+{
+  "type": "yanscriptures:book_writing",
+  "paper": {
+    "tier": 2,
+    "count": 2
+  },
+  "ink": {
+    "tier": 2,
+    "count": 1
+  },
+  "thread": {
+    "tier": 2,
+    "count": 1
+  },
+  "extras": [
+    {
+      "item": "celestial_core:sakura_fragment",
+      "count": 1
+    },
+    {
+      "item": "goety:soul_ruby",
+      "count": 1
+    },
+    {
+      "item": "minecraft:lapis_lazuli",
+      "count": 1
+    },
+    {
+      "item": "minecraft:turtle_scute",
+      "count": 1
+    }
+  ],
+  "result": {
+    "item": "yanscriptures:i_ching"
+  }
+}

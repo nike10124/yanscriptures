@@ -1,0 +1,32 @@
+{
+  "parent": "yanscriptures:epic",
+  "display": {
+    "icon": {
+      "item": "yanscriptures:de_revolutionibus"
+    },
+    "title": {
+      "translate": "item.yanscriptures.de_revolutionibus"
+    },
+    "description": {
+      "translate": "advancement.yanscriptures.epic_book.desc"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "got": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "yanscriptures:de_revolutionibus"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

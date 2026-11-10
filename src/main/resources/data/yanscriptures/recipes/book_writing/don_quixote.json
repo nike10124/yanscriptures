@@ -1,0 +1,36 @@
+{
+  "type": "yanscriptures:book_writing",
+  "paper": {
+    "tier": 3,
+    "count": 2
+  },
+  "ink": {
+    "tier": 2,
+    "count": 2
+  },
+  "thread": {
+    "tier": 2,
+    "count": 2
+  },
+  "extras": [
+    {
+      "item": "enigmaticlegacy:etherium_ingot",
+      "count": 3
+    },
+    {
+      "item": "celestial_core:treasure_fragment",
+      "count": 1
+    },
+    {
+      "item": "goety_revelation:soul_of_obsidian",
+      "count": 1
+    },
+    {
+      "item": "minecraft:feather",
+      "count": 1
+    }
+  ],
+  "result": {
+    "item": "yanscriptures:don_quixote"
+  }
+}

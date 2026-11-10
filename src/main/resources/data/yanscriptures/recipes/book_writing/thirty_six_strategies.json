@@ -1,0 +1,36 @@
+{
+  "type": "yanscriptures:book_writing",
+  "paper": {
+    "tier": 3,
+    "count": 2
+  },
+  "ink": {
+    "tier": 2,
+    "count": 2
+  },
+  "thread": {
+    "tier": 2,
+    "count": 2
+  },
+  "extras": [
+    {
+      "item": "goety:ominous_shard",
+      "count": 2
+    },
+    {
+      "item": "goety:shadow_essence",
+      "count": 1
+    },
+    {
+      "item": "minecraft:gunpowder",
+      "count": 1
+    },
+    {
+      "item": "minecraft:phantom_membrane",
+      "count": 1
+    }
+  ],
+  "result": {
+    "item": "yanscriptures:thirty_six_strategies"
+  }
+}
