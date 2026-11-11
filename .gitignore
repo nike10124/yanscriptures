@@ -36,3 +36,8 @@ backup/*.zip
 # 临时截图/对比图
 backup/_*.png
 tmp_vision/
+
+# 编译日志与过程快照（不进版本库，本地保留）
+build_log.txt
+build_out.txt
+backup/
