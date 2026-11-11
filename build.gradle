@@ -225,6 +225,11 @@ if (USE_LOCAL_MOD_JARS) {
 }
 
 tasks.named('processResources', ProcessResources).configure {
+    // 必须显式声明 UTF-8：Windows 中文系统的默认字符集是 GBK，
+    // 用 expand 处理含中文的 mods.toml / pack.mcmeta 会把多字节字符写坏
+    // （表现：游戏里模组名末尾出现「�?」这种无法显示的方块字）。
+    filteringCharset = 'UTF-8'
+
     var replaceProperties = [
             minecraft_version: minecraft_version, minecraft_version_range: minecraft_version_range,
             forge_version: forge_version, forge_version_range: forge_version_range,
