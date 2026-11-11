@@ -324,19 +324,19 @@ public class ScriptureOfCovenantItem extends Item implements ICurioItem {
         tooltip.add(Component.empty());
         int page = offset / size + 1;
         int pages = maxOffset / size + 1;
-        tooltip.add(Component.literal("§8第 " + page + " / " + pages + " 屏　·　滚轮翻阅")
+        tooltip.add(Component.translatable("tooltip.yanscriptures.covenant.page_hint", page, pages)
                 .withStyle(ChatFormatting.DARK_GRAY));
     }
 
     private static void appendSummary(List<Component> tooltip) {
         tooltip.add(Component.empty());
-        tooltip.add(Component.literal("§6§l✦  圣 约 · 原 典  ✦"));
-        tooltip.add(Component.literal("§7旧约已成，新约自血与火中订立；十诫归一，七印俱开。"));
-        tooltip.add(Component.literal("§8「我是阿尔法，我是欧米伽；是初，是终。」")
+        tooltip.add(Component.translatable("tooltip.yanscriptures.covenant.title"));
+        tooltip.add(Component.translatable("tooltip.yanscriptures.covenant.line1"));
+        tooltip.add(Component.translatable("tooltip.yanscriptures.covenant.line2")
                 .withStyle(ChatFormatting.ITALIC));
         tooltip.add(Component.empty());
-        tooltip.add(Component.literal("§e[Shift] §7权柄经文　§e[Shift+Alt] §7完整书页"));
-        tooltip.add(Component.literal("§8K 脱困 · Z 日影停住 · J 七碗倾倒 · F 飞行"));
+        tooltip.add(Component.translatable("tooltip.yanscriptures.covenant.keys"));
+        tooltip.add(Component.translatable("tooltip.yanscriptures.covenant.hotkeys"));
     }
 
     @Override
