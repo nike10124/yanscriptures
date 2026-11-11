@@ -43,9 +43,9 @@ public final class BookStateTooltip {
             }
             int distinct = WealthOfNationsHandler.distinctItems(minecraft.player);
             int wealth = WealthOfNationsHandler.wealth(minecraft.player);
-            tooltip.add(Component.literal("财富：" + wealth + " / " + WealthOfNationsHandler.MAX_WEALTH
-                    + "（物品栏内 " + distinct + " 种不同的物品，每 "
-                    + WealthOfNationsHandler.ITEMS_PER_WEALTH + " 种 +1）")
+            tooltip.add(Component.translatable("tooltip.yanscriptures.state.wealth",
+                    wealth, WealthOfNationsHandler.MAX_WEALTH, distinct,
+                    WealthOfNationsHandler.ITEMS_PER_WEALTH)
                     .withStyle(ChatFormatting.GOLD));
         } else if (book == ClassicBook.INNER_CANON_OF_THE_YELLOW_EMPEROR) {
             if (minecraft.level == null) {
@@ -53,26 +53,27 @@ public final class BookStateTooltip {
             }
             int element = InnerCanonHandler.element(minecraft.level);
             int seconds = (InnerCanonHandler.ticksUntilNext(minecraft.level) + 19) / 20;
-            tooltip.add(Component.literal("当前：" + InnerCanonHandler.ELEMENTS[element] + "（"
-                    + InnerCanonHandler.bonusText(element) + "，剩 " + seconds + " 秒轮换）")
+            tooltip.add(Component.translatable("tooltip.yanscriptures.state.element",
+                    InnerCanonHandler.ELEMENTS[element], InnerCanonHandler.bonusText(element), seconds)
                     .withStyle(ChatFormatting.GREEN));
         } else if (book == ClassicBook.CRITIQUE_OF_PURE_REASON) {
             if (minecraft.player == null) {
                 return;
             }
             int points = CritiqueOfPureReasonHandler.pointsOf(minecraft.player);
-            tooltip.add(Component.literal("附魔点球：" + points + "（伤害 +"
-                    + trim(points * 0.5D) + "%，生命上限 +" + trim(points * 1.0D) + "%）")
+            tooltip.add(Component.translatable("tooltip.yanscriptures.state.enchant_points",
+                    points, trim(points * 0.5D), trim(points * 1.0D))
                     .withStyle(ChatFormatting.AQUA));
             int[] progress = CritiqueOfPureReasonHandler.flightProgress(minecraft.player);
             int enchanted = progress[0];
             int plain = progress[1];
             if (enchanted > 21 && plain == 0) {
-                tooltip.add(Component.literal("飞行：已获得（带附魔 " + enchanted + " 格）")
+                tooltip.add(Component.translatable("tooltip.yanscriptures.state.flight.on", enchanted)
                         .withStyle(ChatFormatting.GREEN));
             } else {
-                tooltip.add(Component.literal("飞行：带附魔 " + enchanted + " / 需 > 21 格"
-                        + (plain > 0 ? "，另有 " + plain + " 格没附魔" : ""))
+                tooltip.add((plain > 0
+                        ? Component.translatable("tooltip.yanscriptures.state.flight.off_extra", enchanted, plain)
+                        : Component.translatable("tooltip.yanscriptures.state.flight.off", enchanted))
                         .withStyle(ChatFormatting.DARK_GRAY));
             }
         } else if (book == ClassicBook.ONE_THOUSAND_AND_ONE_NIGHTS) {
@@ -81,16 +82,16 @@ public final class BookStateTooltip {
             for (int value : growth) {
                 total += value;
             }
-            tooltip.add(Component.literal("累计成长：" + total + " / " + OneThousandAndOneNightsHandler.CAP
-                    + "（每次睡满一夜 +1，随机加到一项属性上）").withStyle(ChatFormatting.DARK_PURPLE));
+            tooltip.add(Component.translatable("tooltip.yanscriptures.state.nights",
+                    total, OneThousandAndOneNightsHandler.CAP).withStyle(ChatFormatting.DARK_PURPLE));
         } else if (book == ClassicBook.SUMMA_THEOLOGICA) {
             // 作者 2026-11-09：用「子 / 父 / 灵」三个字的颜色表示印记是否生效（亮金=生效，暗灰=没有）。
-            MutableComponent line = Component.literal("印记：").withStyle(ChatFormatting.GRAY);
-            line.append(Component.literal("［子］").withStyle(
+            MutableComponent line = Component.translatable("tooltip.yanscriptures.state.marks").withStyle(ChatFormatting.GRAY);
+            line.append(Component.translatable("tooltip.yanscriptures.state.mark.son").withStyle(
                     SummaStateClient.active(SummaStateClient.SON) ? ChatFormatting.GOLD : ChatFormatting.DARK_GRAY));
-            line.append(Component.literal("［父］").withStyle(
+            line.append(Component.translatable("tooltip.yanscriptures.state.mark.father").withStyle(
                     SummaStateClient.active(SummaStateClient.FATHER) ? ChatFormatting.GOLD : ChatFormatting.DARK_GRAY));
-            line.append(Component.literal("［灵］").withStyle(
+            line.append(Component.translatable("tooltip.yanscriptures.state.mark.spirit").withStyle(
                     SummaStateClient.active(SummaStateClient.SPIRIT) ? ChatFormatting.GOLD : ChatFormatting.DARK_GRAY));
             tooltip.add(line);
         }
