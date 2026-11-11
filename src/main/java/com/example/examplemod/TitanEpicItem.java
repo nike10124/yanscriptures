@@ -33,7 +33,7 @@ public class TitanEpicItem extends Item {
         // 检查冷却
         if (now < cdEnd) {
             long remaining = (cdEnd - now) / 1000;
-            player.displayClientMessage(Component.literal("§c冷却中，剩余 " + remaining + " 秒"), true);
+            player.displayClientMessage(Component.translatable("message.yanscriptures.cooldown.seconds", remaining), true);
             return InteractionResultHolder.fail(stack);
         }
 
@@ -43,7 +43,7 @@ public class TitanEpicItem extends Item {
                 // 命运：因果逆转
                 player.getPersistentData().putBoolean("Fate_Active", true);
                 player.getPersistentData().putLong("Fate_EndTime", now + 30000); // 30秒后结束
-                player.displayClientMessage(Component.literal("§d【命运的史诗】因果逆转已激活。"), true);
+                player.displayClientMessage(Component.translatable("message.yanscriptures.titan.fate"), true);
                 break;
             case "creation":
                 // 创生：生息之环
@@ -57,7 +57,7 @@ public class TitanEpicItem extends Item {
                 // 立即给予生命回复 II（持续20秒）
                 player.addEffect(new net.minecraft.world.effect.MobEffectInstance(
                         net.minecraft.world.effect.MobEffects.REGENERATION, 400, 1, true, false));
-                player.displayClientMessage(net.minecraft.network.chat.Component.literal("§a【创生的史诗】生息之环"), true);
+                player.displayClientMessage(net.minecraft.network.chat.Component.translatable("message.yanscriptures.titan.creation"), true);
                 break;
             case "pillar":
                 // 支柱：地脉锚定
@@ -69,20 +69,20 @@ public class TitanEpicItem extends Item {
                         net.minecraft.world.effect.MobEffects.MOVEMENT_SLOWDOWN, 200, 255, true, false));
 
 
-                player.displayClientMessage(net.minecraft.network.chat.Component.literal("§b【支柱的史诗】地脉锚定"), true);
+                player.displayClientMessage(net.minecraft.network.chat.Component.translatable("message.yanscriptures.titan.pillar"), true);
                 break;
             case "calamity":
                 // 灾厄：祸乱之种
                 player.getPersistentData().putBoolean("Calamity_Active", true);
                 player.getPersistentData().putLong("Calamity_EndTime", now + 15000); // 15秒后结束
-                player.displayClientMessage(net.minecraft.network.chat.Component.literal("§4【灾厄的史诗】祸乱之种"), true);
+                player.displayClientMessage(net.minecraft.network.chat.Component.translatable("message.yanscriptures.titan.calamity"), true);
                 break;
             case "ego":
                 // 真我：自我觉醒
                 player.getPersistentData().putBoolean("Ego_Active", true);
                 player.getPersistentData().putLong("Ego_EndTime", now + 20000); // 20秒后结束
                 player.getPersistentData().putLong("Ego_StartTime", now);
-                player.displayClientMessage(net.minecraft.network.chat.Component.literal("§5【真我的史诗】自我觉醒"), true);
+                player.displayClientMessage(net.minecraft.network.chat.Component.translatable("message.yanscriptures.titan.ego"), true);
                 break;
 
         }

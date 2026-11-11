@@ -15,7 +15,7 @@ public class BlankPageKeyHandler {
 
         if (tag.getLong("CooldownEnd") > now) {
             long remaining = (tag.getLong("CooldownEnd") - now) / 1000;
-            player.displayClientMessage(net.minecraft.network.chat.Component.literal("冷却中，剩余 " + remaining + " 秒"), true);
+            player.displayClientMessage(net.minecraft.network.chat.Component.translatable("message.yanscriptures.blank_page.cooling", remaining), true);
             return;
         }
 
@@ -47,15 +47,15 @@ public class BlankPageKeyHandler {
 
             tag.putLong("CooldownEnd", now + 15 * 60 * 1000); // 15分钟冷却
             tag.remove("SavedHealth");
-            player.displayClientMessage(net.minecraft.network.chat.Component.literal("状态已恢复！"), true);
+            player.displayClientMessage(net.minecraft.network.chat.Component.translatable("message.yanscriptures.blank_page.restored"), true);
         } else {
             // ==================== 记录 ====================
             int availableCount = BlankPageItem.getAvailableEnchantments(stack).size();
             if (availableCount < 10) {
-                player.displayClientMessage(net.minecraft.network.chat.Component.literal("可用附魔不足 10 种，无法记录！"), true);
+                player.displayClientMessage(net.minecraft.network.chat.Component.translatable("message.yanscriptures.blank_page.not_enough"), true);
                 return;
             }
-            player.displayClientMessage(net.minecraft.network.chat.Component.literal("消耗 10 种附魔，当前属性加成将降低！"), true);
+            player.displayClientMessage(net.minecraft.network.chat.Component.translatable("message.yanscriptures.blank_page.consume"), true);
             BlankPageItem.consumeEnchantments(stack, 10);
             tag.putFloat("SavedHealth", player.getHealth());
             tag.putInt("SavedFood", player.getFoodData().getFoodLevel());
@@ -64,7 +64,7 @@ public class BlankPageKeyHandler {
                 list.add(effect.save(new CompoundTag()));
             }
             tag.put("SavedEffects", list);
-            player.displayClientMessage(net.minecraft.network.chat.Component.literal("状态已记录！"), true);
+            player.displayClientMessage(net.minecraft.network.chat.Component.translatable("message.yanscriptures.blank_page.recorded"), true);
         }
     }
 }

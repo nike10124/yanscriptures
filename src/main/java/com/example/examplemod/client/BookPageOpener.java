@@ -60,8 +60,8 @@ public final class BookPageOpener {
     private static BookPageScreen build(ItemStack stack) {
         if (stack.is(ExampleMod.SCRIPTURE_OF_COMMANDMENTS.get())) {
             return new BookPageScreen(
-                    Component.literal("《十 诫》"),
-                    Component.literal("守约者受祝福，违逆者受诅咒"),
+                    Component.translatable("gui.yanscriptures.book_page.commandments_title"),
+                    Component.translatable("gui.yanscriptures.book_page.commandments_sub"),
                     ScriptureOfCommandmentsItem.fullLines(stack),
                     // 与 ScriptureOfCommandmentsItem.GRADIENT_FROM / GRADIENT_TO 完全一致
                     ScriptureOfCommandmentsItem.GRADIENT_FROM,
@@ -69,12 +69,12 @@ public final class BookPageOpener {
         }
         if (stack.is(ExampleMod.COVENANT_CODEX.get())) {
             List<Component> lines = new ArrayList<>();
-            lines.add(Component.literal("§6§l▍ 十二权柄"));
+            lines.add(Component.translatable("gui.yanscriptures.book_page.powers"));
             lines.addAll(ScriptureOfCovenantItem.buildDescription());
-            lines.add(Component.literal("§6§l▍ 典章明细"));
+            lines.add(Component.translatable("gui.yanscriptures.book_page.details"));
             lines.addAll(ScriptureOfCovenantItem.buildDetail());
             return new BookPageScreen(
-                    Component.literal("《圣 约 · 原 典》"),
+                    Component.translatable("gui.yanscriptures.book_page.covenant_title"),
                     Component.literal("❖ ＴＨＥ ＣＯＶＥＮＡＮＴ ❖"),
                     lines,
                     // 与 ScriptureOfCovenantItem.GRADIENT_FROM / GRADIENT_TO 完全一致
@@ -82,8 +82,8 @@ public final class BookPageOpener {
         }
         if (stack.is(ExampleMod.BOOK_OF_ME.get())) {
             return new BookPageScreen(
-                    Component.literal("《如 我 所 书》"),
-                    Component.literal("一段史诗所结出的果实，其中闪耀着十四种光辉"),
+                    Component.translatable("gui.yanscriptures.book_page.book_of_me_title"),
+                    Component.translatable("gui.yanscriptures.book_page.book_of_me_sub"),
                     BookOfMeItem.FULL_DESCRIPTION,
                     // 与 BookOfMeItem.NAME_FROM / NAME_TO 完全一致（天蓝 → 浅粉）
                     0xFF66AAFF, 0xFFFF99CC);
