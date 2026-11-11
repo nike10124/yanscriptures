@@ -27,6 +27,9 @@ forge*changelog.txt
 # 本机生成的本地 maven 缓存（由 build 脚本从 libs/ 展开）
 libs-m2/
 
+# 第三方模组 jar（再分发受各自许可限制；本地编译需要它，从整合包/CurseForge 取回即可）
+libs/
+
 # 打包快照（体积大，按需保留在本地）
 backup/*.zip
 
