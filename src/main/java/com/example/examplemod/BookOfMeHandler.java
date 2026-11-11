@@ -411,32 +411,30 @@ public class BookOfMeHandler {
     private static void spawnMobiusRing(Player player) {
         if (!(player.level() instanceof net.minecraft.server.level.ServerLevel serverLevel)) return;
 
-        // 1. 锚点坐标：玩家后脑勺上方，完全由玩家自身推算
+        // 1. 锚点：背后（不是头顶、不是后脑勺）——取胸口高度再往身后推 0.38 格
         float yaw = player.getYRot() * ((float) Math.PI / 180F);
         double forwardX = -Math.sin(yaw);
         double forwardZ = Math.cos(yaw);
 
-        double anchorX = player.getX() - forwardX * 0.5;
-        double anchorY = player.getY() + player.getEyeHeight() + 0.1;
-        double anchorZ = player.getZ() - forwardZ * 0.5;
+        double anchorX = player.getX() - forwardX * 0.38;
+        double anchorY = player.getY() + player.getBbHeight() * 0.62;
+        double anchorZ = player.getZ() - forwardZ * 0.38;
 
+        // 圆环所在的平面：右方向 × 上方向，法线朝玩家正前方（所以环面是竖着的，不是朝下）
         double rightX = -Math.cos(yaw);
         double rightZ = -Math.sin(yaw);
 
-        // 2. 莫比乌斯带
-        double radius = 0.42 + 0.03 * Math.sin(player.tickCount * 0.08);
-        double width = 0.16;
-        double spin = player.tickCount * 0.035;
+        // 2. 单纯一个圆，只在平面内旋转
+        double radius = 0.45 + 0.02 * Math.sin(player.tickCount * 0.08);
+        double spin = player.tickCount * 0.05;
 
-        int points = 34;
+        int points = 40;
         for (int i = 0; i < points; i++) {
             double t = spin + i * (Math.PI * 2.0 / points);
-            double half = t * 0.5;
-            double ring = radius + width * Math.cos(half);
 
-            double px = anchorX + rightX * Math.cos(t) * ring + forwardX * Math.sin(t) * ring;
-            double py = anchorY + width * Math.sin(half);
-            double pz = anchorZ + rightZ * Math.cos(t) * ring + forwardZ * Math.sin(t) * ring;
+            double px = anchorX + rightX * Math.cos(t) * radius;
+            double py = anchorY + Math.sin(t) * radius;
+            double pz = anchorZ + rightZ * Math.cos(t) * radius;
 
             int color = (i % 2 == 0) ? 0x4FC3FF : 0xFF69B4; // 蓝 / 粉
             serverLevel.sendParticles(
@@ -453,7 +451,7 @@ public class BookOfMeHandler {
         if (player.tickCount % 20 == 0) {
             serverLevel.sendParticles(
                     net.minecraft.core.particles.ParticleTypes.ENCHANT,
-                    anchorX, anchorY, anchorZ, 6, 0.35, 0.25, 0.35, 0.05);
+                    anchorX, anchorY, anchorZ, 6, 0.4, 0.4, 0.4, 0.05);
         }
     }
 }
