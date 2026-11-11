@@ -96,37 +96,37 @@ public class BookOfMeItem extends Item implements ICurioItem {
     public static final int PAGE_SIZE = 12;
 
     public static final List<Component> FULL_DESCRIPTION = List.of(
-            Component.literal("§6【永恒的诗篇】").withStyle(ChatFormatting.GOLD, ChatFormatting.BOLD),
-            Component.literal("§7已记录附魔恒定为 093，每个附魔 +1 最大生命值，+1 攻击力，+0.5 幸运值").withStyle(ChatFormatting.GRAY),
-            Component.literal("§7按 V 记录当前状态，再次按 V 进行回溯，冷却 180 秒").withStyle(ChatFormatting.GRAY),
+            Component.translatable("tooltip.yanscriptures.book_of_me.full.1").withStyle(ChatFormatting.GOLD, ChatFormatting.BOLD),
+            Component.translatable("tooltip.yanscriptures.book_of_me.full.2").withStyle(ChatFormatting.GRAY),
+            Component.translatable("tooltip.yanscriptures.book_of_me.full.3").withStyle(ChatFormatting.GRAY),
 
-            Component.literal("§d【给予命运之诗】").withStyle(ChatFormatting.LIGHT_PURPLE, ChatFormatting.BOLD),
-            Component.literal("§7[岁月] 濒死时回复 70% 生命值，对半径 7 格内敌人造成 2 倍当前回复量的虚空伤害").withStyle(ChatFormatting.GRAY),
-            Component.literal("§7[门径] 禁用半径 10 格内的传送事件；按 K 沿视线传送到 8~16 格外（濒死时自动传至 16 格内安全位置）").withStyle(ChatFormatting.GRAY),
-            Component.literal("§7[律法] 生物试图伤害你时，损失其 5% 最大生命值并禁止回血").withStyle(ChatFormatting.GRAY),
+            Component.translatable("tooltip.yanscriptures.book_of_me.full.4").withStyle(ChatFormatting.LIGHT_PURPLE, ChatFormatting.BOLD),
+            Component.translatable("tooltip.yanscriptures.book_of_me.full.5").withStyle(ChatFormatting.GRAY),
+            Component.translatable("tooltip.yanscriptures.book_of_me.full.6").withStyle(ChatFormatting.GRAY),
+            Component.translatable("tooltip.yanscriptures.book_of_me.full.7").withStyle(ChatFormatting.GRAY),
 
-            Component.literal("§b【给予支柱之诗】").withStyle(ChatFormatting.AQUA, ChatFormatting.BOLD),
-            Component.literal("§7[大地] 2 秒内至多受到一次伤害且不超过最大生命值的 20%，免疫大地伤害").withStyle(ChatFormatting.GRAY),
-            Component.literal("§7[天空] 飞行时获得 60% 伤害减免，其他情况 30%，免疫天空伤害").withStyle(ChatFormatting.GRAY),
-            Component.literal("§7[海洋] 水中获得生命恢复 IV，其他情况生命恢复 II，免疫海洋伤害").withStyle(ChatFormatting.GRAY),
+            Component.translatable("tooltip.yanscriptures.book_of_me.full.8").withStyle(ChatFormatting.AQUA, ChatFormatting.BOLD),
+            Component.translatable("tooltip.yanscriptures.book_of_me.full.9").withStyle(ChatFormatting.GRAY),
+            Component.translatable("tooltip.yanscriptures.book_of_me.full.10").withStyle(ChatFormatting.GRAY),
+            Component.translatable("tooltip.yanscriptures.book_of_me.full.11").withStyle(ChatFormatting.GRAY),
 
-            Component.literal("§a【给予创生之诗】").withStyle(ChatFormatting.GREEN, ChatFormatting.BOLD),
-            Component.literal("§7[负世] 免疫负面效果，无视秒杀").withStyle(ChatFormatting.GRAY),
-            Component.literal("§7[理性] 长按 Shift+L 使手中物品获得可获得的最高级附魔，冷却 10 秒").withStyle(ChatFormatting.GRAY),
-            Component.literal("§7[浪漫] 移速提升 30%（独立乘区），受击后造成 200% 反伤并抹除攻击者心智 2 秒").withStyle(ChatFormatting.GRAY),
+            Component.translatable("tooltip.yanscriptures.book_of_me.full.12").withStyle(ChatFormatting.GREEN, ChatFormatting.BOLD),
+            Component.translatable("tooltip.yanscriptures.book_of_me.full.13").withStyle(ChatFormatting.GRAY),
+            Component.translatable("tooltip.yanscriptures.book_of_me.full.14").withStyle(ChatFormatting.GRAY),
+            Component.translatable("tooltip.yanscriptures.book_of_me.full.15").withStyle(ChatFormatting.GRAY),
 
-            Component.literal("§4【给予灾厄之诗】").withStyle(ChatFormatting.DARK_RED, ChatFormatting.BOLD),
-            Component.literal("§7[纷争] 攻击削减敌人 8% 最大生命值，并施加凋零、缓慢").withStyle(ChatFormatting.GRAY),
-            Component.literal("§7[死亡] 每击杀一个生物获得 1% 独立全伤，上限 88%").withStyle(ChatFormatting.GRAY),
-            Component.literal("§7[诡计] 你杀死的生物掉落更多掉落物；有 20% 概率造成 2 倍伤害").withStyle(ChatFormatting.GRAY),
+            Component.translatable("tooltip.yanscriptures.book_of_me.full.16").withStyle(ChatFormatting.DARK_RED, ChatFormatting.BOLD),
+            Component.translatable("tooltip.yanscriptures.book_of_me.full.17").withStyle(ChatFormatting.GRAY),
+            Component.translatable("tooltip.yanscriptures.book_of_me.full.18").withStyle(ChatFormatting.GRAY),
+            Component.translatable("tooltip.yanscriptures.book_of_me.full.19").withStyle(ChatFormatting.GRAY),
 
-            Component.literal("§5【给予真我之诗】").withStyle(ChatFormatting.DARK_PURPLE, ChatFormatting.BOLD),
-            Component.literal("§7创造飞行，飞行速度+100%，所有属性 X2，无视禁疗，88% 概率免疫死亡").withStyle(ChatFormatting.GRAY),
-            Component.literal("§7当你触发本饰品的任意保命效果时，获得 60 秒无敌").withStyle(ChatFormatting.GRAY),
-            Component.literal("§7按 Z 键暂停时间 20 秒，冷却 300 秒").withStyle(ChatFormatting.GRAY),
+            Component.translatable("tooltip.yanscriptures.book_of_me.full.20").withStyle(ChatFormatting.DARK_PURPLE, ChatFormatting.BOLD),
+            Component.translatable("tooltip.yanscriptures.book_of_me.full.21").withStyle(ChatFormatting.GRAY),
+            Component.translatable("tooltip.yanscriptures.book_of_me.full.22").withStyle(ChatFormatting.GRAY),
+            Component.translatable("tooltip.yanscriptures.book_of_me.full.23").withStyle(ChatFormatting.GRAY),
 
-            Component.literal("§e【隐藏效果】").withStyle(ChatFormatting.YELLOW, ChatFormatting.BOLD),
-            Component.literal("§7获得饱食 II、抗性提升 II、夜视 II、迅捷 II、急迫 II、发光 II、力量 II、幸运 V、潮涌能量 II、村庄英雄 V、抗火、跳跃提升 II。").withStyle(ChatFormatting.GRAY)
+            Component.translatable("tooltip.yanscriptures.book_of_me.full.24").withStyle(ChatFormatting.YELLOW, ChatFormatting.BOLD),
+            Component.translatable("tooltip.yanscriptures.book_of_me.full.25").withStyle(ChatFormatting.GRAY)
     );
 
     // 悬浮提示：平时简洁，按 Shift 展开并支持滚轮翻页
