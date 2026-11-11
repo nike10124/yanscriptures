@@ -31,3 +31,11 @@ mandatory=true
 versionRange="[5.14.1,)"
 ordering="AFTER"
 side="BOTH"
+
+# 软依赖：装了才有 JEI 分类与说明页，没装不影响任何玩法
+[[dependencies.${mod_id}]]
+modId="jei"
+mandatory=false
+versionRange="[15,)"
+ordering="AFTER"
+side="CLIENT"

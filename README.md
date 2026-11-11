@@ -31,8 +31,8 @@
 gradlew build
 ```
 
-> 说明：本仓库**不包含** `libs/` 目录。里面是本地编译所需的第三方模组 jar（Curios、JEI、Jade 等），再分发受各自许可限制。
-> 若需要在离线环境编译，请把对应版本的 jar 放回 `libs/`，或在 `build.gradle` 里改用 Maven 仓库依赖。
+> 说明：编译依赖（Curios、JEI、Jade、Goety 等）通过 `libs-m2/maven` 这个本地 Maven 仓库解析，该目录**不入库**（第三方 jar 再分发受各自许可限制）。
+> 本机已有该缓存，可直接构建；若在新机器构建，需要有网络访问 Modrinth Maven，或自备对应版本的 jar 放进本地仓库。
 
 产物在 `build/libs/yanscriptures-<version>.jar`。
 
