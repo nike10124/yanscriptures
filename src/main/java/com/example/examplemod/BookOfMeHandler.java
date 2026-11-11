@@ -417,7 +417,7 @@ public class BookOfMeHandler {
         double forwardZ = Math.cos(yaw);
 
         double anchorX = player.getX() - forwardX * 0.38;
-        double anchorY = player.getY() + player.getBbHeight() * 0.62;
+        double anchorY = player.getY() + player.getBbHeight() * 0.62 + 0.4D;
         double anchorZ = player.getZ() - forwardZ * 0.38;
 
         // 圆环所在的平面：右方向 × 上方向，法线朝玩家正前方（所以环面是竖着的，不是朝下）
