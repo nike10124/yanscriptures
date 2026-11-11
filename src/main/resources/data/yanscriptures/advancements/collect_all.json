@@ -58,7 +58,7 @@
         "items": [
           {
             "items": [
-              "yanscriptures:book_of_me"
+              "yanscriptures:scripture_of_commandments"
             ]
           }
         ]
@@ -70,7 +70,7 @@
         "items": [
           {
             "items": [
-              "yanscriptures:scripture_of_commandments"
+              "yanscriptures:dao_de_jing"
             ]
           }
         ]
@@ -82,7 +82,7 @@
         "items": [
           {
             "items": [
-              "yanscriptures:covenant_codex"
+              "yanscriptures:republic"
             ]
           }
         ]
@@ -94,7 +94,7 @@
         "items": [
           {
             "items": [
-              "yanscriptures:dao_de_jing"
+              "yanscriptures:zarathustra"
             ]
           }
         ]
@@ -106,7 +106,7 @@
         "items": [
           {
             "items": [
-              "yanscriptures:republic"
+              "yanscriptures:divine_comedy"
             ]
           }
         ]
@@ -118,7 +118,7 @@
         "items": [
           {
             "items": [
-              "yanscriptures:zarathustra"
+              "yanscriptures:don_quixote"
             ]
           }
         ]
@@ -130,7 +130,7 @@
         "items": [
           {
             "items": [
-              "yanscriptures:divine_comedy"
+              "yanscriptures:hundred_years"
             ]
           }
         ]
@@ -142,7 +142,7 @@
         "items": [
           {
             "items": [
-              "yanscriptures:don_quixote"
+              "yanscriptures:euclid"
             ]
           }
         ]
@@ -154,7 +154,7 @@
         "items": [
           {
             "items": [
-              "yanscriptures:hundred_years"
+              "yanscriptures:origin"
             ]
           }
         ]
@@ -166,7 +166,7 @@
         "items": [
           {
             "items": [
-              "yanscriptures:euclid"
+              "yanscriptures:nine_chapters"
             ]
           }
         ]
@@ -178,7 +178,7 @@
         "items": [
           {
             "items": [
-              "yanscriptures:origin"
+              "yanscriptures:art_of_war"
             ]
           }
         ]
@@ -190,7 +190,7 @@
         "items": [
           {
             "items": [
-              "yanscriptures:nine_chapters"
+              "yanscriptures:the_prince"
             ]
           }
         ]
@@ -202,7 +202,7 @@
         "items": [
           {
             "items": [
-              "yanscriptures:art_of_war"
+              "yanscriptures:crime_and_punishment"
             ]
           }
         ]
@@ -214,7 +214,7 @@
         "items": [
           {
             "items": [
-              "yanscriptures:the_prince"
+              "yanscriptures:faust"
             ]
           }
         ]
@@ -226,7 +226,7 @@
         "items": [
           {
             "items": [
-              "yanscriptures:crime_and_punishment"
+              "yanscriptures:odyssey"
             ]
           }
         ]
@@ -238,7 +238,7 @@
         "items": [
           {
             "items": [
-              "yanscriptures:faust"
+              "yanscriptures:materia_medica"
             ]
           }
         ]
@@ -250,7 +250,7 @@
         "items": [
           {
             "items": [
-              "yanscriptures:odyssey"
+              "yanscriptures:tiangong_kaiwu"
             ]
           }
         ]
@@ -262,7 +262,7 @@
         "items": [
           {
             "items": [
-              "yanscriptures:materia_medica"
+              "yanscriptures:interpretation_of_dreams"
             ]
           }
         ]
@@ -274,7 +274,7 @@
         "items": [
           {
             "items": [
-              "yanscriptures:tiangong_kaiwu"
+              "yanscriptures:i_ching"
             ]
           }
         ]
@@ -286,7 +286,7 @@
         "items": [
           {
             "items": [
-              "yanscriptures:interpretation_of_dreams"
+              "yanscriptures:iliad"
             ]
           }
         ]
@@ -298,7 +298,7 @@
         "items": [
           {
             "items": [
-              "yanscriptures:i_ching"
+              "yanscriptures:aeneid"
             ]
           }
         ]
@@ -310,7 +310,7 @@
         "items": [
           {
             "items": [
-              "yanscriptures:iliad"
+              "yanscriptures:gilgamesh"
             ]
           }
         ]
@@ -322,7 +322,7 @@
         "items": [
           {
             "items": [
-              "yanscriptures:aeneid"
+              "yanscriptures:analects"
             ]
           }
         ]
@@ -334,7 +334,7 @@
         "items": [
           {
             "items": [
-              "yanscriptures:gilgamesh"
+              "yanscriptures:zhuangzi"
             ]
           }
         ]
@@ -346,7 +346,7 @@
         "items": [
           {
             "items": [
-              "yanscriptures:analects"
+              "yanscriptures:records_of_the_historian"
             ]
           }
         ]
@@ -358,7 +358,7 @@
         "items": [
           {
             "items": [
-              "yanscriptures:zhuangzi"
+              "yanscriptures:thirty_six_strategies"
             ]
           }
         ]
@@ -370,7 +370,7 @@
         "items": [
           {
             "items": [
-              "yanscriptures:records_of_the_historian"
+              "yanscriptures:on_war"
             ]
           }
         ]
@@ -382,7 +382,7 @@
         "items": [
           {
             "items": [
-              "yanscriptures:thirty_six_strategies"
+              "yanscriptures:de_revolutionibus"
             ]
           }
         ]
@@ -394,7 +394,7 @@
         "items": [
           {
             "items": [
-              "yanscriptures:on_war"
+              "yanscriptures:critique_of_pure_reason"
             ]
           }
         ]
@@ -406,7 +406,7 @@
         "items": [
           {
             "items": [
-              "yanscriptures:de_revolutionibus"
+              "yanscriptures:nicomachean_ethics"
             ]
           }
         ]
@@ -418,7 +418,7 @@
         "items": [
           {
             "items": [
-              "yanscriptures:critique_of_pure_reason"
+              "yanscriptures:summa_theologica"
             ]
           }
         ]
@@ -430,7 +430,7 @@
         "items": [
           {
             "items": [
-              "yanscriptures:nicomachean_ethics"
+              "yanscriptures:wealth_of_nations"
             ]
           }
         ]
@@ -442,7 +442,7 @@
         "items": [
           {
             "items": [
-              "yanscriptures:summa_theologica"
+              "yanscriptures:capital"
             ]
           }
         ]
@@ -454,7 +454,7 @@
         "items": [
           {
             "items": [
-              "yanscriptures:wealth_of_nations"
+              "yanscriptures:inner_canon_of_the_yellow_emperor"
             ]
           }
         ]
@@ -466,7 +466,7 @@
         "items": [
           {
             "items": [
-              "yanscriptures:capital"
+              "yanscriptures:one_thousand_and_one_nights"
             ]
           }
         ]
@@ -478,37 +478,13 @@
         "items": [
           {
             "items": [
-              "yanscriptures:inner_canon_of_the_yellow_emperor"
-            ]
-          }
-        ]
-      }
-    },
-    "b39": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "yanscriptures:one_thousand_and_one_nights"
-            ]
-          }
-        ]
-      }
-    },
-    "b40": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
               "yanscriptures:hamlet"
             ]
           }
         ]
       }
     },
-    "b41": {
+    "b39": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -641,12 +617,6 @@
     ],
     [
       "b39"
-    ],
-    [
-      "b40"
-    ],
-    [
-      "b41"
     ]
   ]
 }
