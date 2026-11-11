@@ -6,6 +6,7 @@ import java.util.List;
 import com.mojang.logging.LogUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeType;
@@ -97,61 +98,95 @@ public final class RecipeAudit {
      * 著书台选书自查：不开界面，直接用「假的三格 + 材料池」跑一遍
      * {@link BookWritingRecipes#findAll}，把候选名单写进日志。
      *
-     * <p>作者反馈「测不了切换制作书籍」（m08693），而候选列表与上下箭头
-     * 本质就是这一个函数的结果，所以先在这里把它钉住：只要日志里
-     * 《道德经》那组能出现，界面上的箭头就一定切得动。</p>
+     * <p>2026-11-11：配方按作者的材料表重排过（《道德经》已是 Ⅱ 档 + 4 种额外材料），
+     * 原来写死的「草纸/墨水/麻绳 + 金胡萝卜金苹果」已对不上，改成一律从配方本身取需求，
+     * 这样以后改配方表也不用再动自查。</p>
      */
     private static void bookWritingSelfCheck(net.minecraft.server.level.ServerLevel level) {
-        List<ItemStack> pool = List.of(
-                new ItemStack(net.minecraft.world.item.Items.GOLDEN_CARROT),
-                new ItemStack(net.minecraft.world.item.Items.GOLDEN_APPLE));
+        List<BookWritingRecipe> all = BookWritingRecipes.all(level);
+        BookWritingRecipe dao = null;
+        BookWritingRecipe fattest = null;
+        for (BookWritingRecipe recipe : all) {
+            net.minecraft.resources.ResourceLocation key =
+                    net.minecraftforge.registries.ForgeRegistries.ITEMS.getKey(recipe.result().getItem());
+            String path = key == null ? "" : key.getPath();
+            if ("dao_de_jing".equals(path)) {
+                dao = recipe;
+            }
+            if (fattest == null || recipe.extras().size() > fattest.extras().size()) {
+                fattest = recipe;
+            }
+        }
 
-        // 高档材料 + 一池多用：候选必须多于一条——这正是上下箭头存在的理由
-        List<ItemStack> rich = new java.util.ArrayList<>();
-        rich.add(new ItemStack(Materials.CORRUPT_PARCHMENT.get(), 4));
-        rich.add(new ItemStack(Materials.UNHOLY_INK.get(), 2));
-        rich.add(new ItemStack(Materials.DRAGON_SINEW.get(), 4));
-
-        List<String> low = names(BookWritingRecipes.findAll(level,
-                new ItemStack(Materials.FIBER_PAPER.get(), 2),
-                new ItemStack(Materials.INK.get(), 1),
-                new ItemStack(Materials.HEMP_ROPE.get(), 2), pool));
-        List<String> high = names(BookWritingRecipes.findAll(level,
-                new ItemStack(Materials.PARCHMENT.get(), 2),
-                new ItemStack(Materials.BLOOD_INK.get(), 1),
-                new ItemStack(Materials.HEMP_ROPE.get(), 2), pool));
-        List<String> many = names(BookWritingRecipes.findAll(level,
-                new ItemStack(Materials.CORRUPT_PARCHMENT.get(), 4),
-                new ItemStack(Materials.UNHOLY_INK.get(), 2),
-                new ItemStack(Materials.DRAGON_SINEW.get(), 4), rich));
-
-        LOG.info("著书台选书自查：草纸/墨水/麻绳 + 金胡萝卜金苹果 → {}；羊皮纸/血墨/麻绳 → {}", low, high);
-        LOG.info("著书台选书自查：高档材料（至邪之笺×4 不洁之墨×2 龙筋×4 都在池子里）→ {}（{} 条候选）",
-                many, many.size());
-
-        // 作者 2026-10-31：小三角要在「三格放好」时就出现，材料池空着也照样能切。
-        // 这里用空池跑一遍 matching，确认候选与材料池无关。
         List<String> bare = names(BookWritingRecipes.matching(level,
-                new ItemStack(Materials.FIBER_PAPER.get(), 2),
-                new ItemStack(Materials.INK.get(), 1),
-                new ItemStack(Materials.HEMP_ROPE.get(), 2)));
+                new ItemStack(Materials.FIBER_PAPER.get(), 64),
+                new ItemStack(Materials.INK.get(), 64),
+                new ItemStack(Materials.HEMP_ROPE.get(), 64)));
         List<String> bareHigh = names(BookWritingRecipes.matching(level,
-                new ItemStack(Materials.ANNIHILATED_PARCHMENT.get(), 2),
-                new ItemStack(Materials.UNHOLY_INK.get(), 1),
-                new ItemStack(Materials.DRAGON_SINEW.get(), 2)));
-        LOG.info("著书台候选自查：三格放好、材料池为空 → {}（{} 条）", bare, bare.size());
-        LOG.info("著书台候选自查：三格放好、最高档材料、材料池为空 → {}（{} 条）", bareHigh, bareHigh.size());
-
+                new ItemStack(Materials.ANNIHILATED_PARCHMENT.get(), 64),
+                new ItemStack(Materials.UNHOLY_INK.get(), 64),
+                new ItemStack(Materials.DRAGON_SINEW.get(), 64)));
+        LOG.info("著书台候选自查：三格放好（最低档）、材料池为空 → {}（{} 条）", bare, bare.size());
+        LOG.info("著书台候选自查：三格放好（最高档）、材料池为空 → {}（{} 条）", bareHigh, bareHigh.size());
         if (bare.isEmpty()) {
             LOG.warn("著书台候选自查：三格放好却没有候选，成品框旁的箭头不会出现");
         }
 
-        if (!low.contains("dao_de_jing")) {
-            LOG.warn("著书台选书自查：最低档材料写不出《道德经》，检查配方档位与数量");
+        if (dao == null) {
+            LOG.warn("著书台选书自查：找不到《道德经》的配方，检查 data/yanscriptures/recipes/book_writing");
+            return;
         }
-        if (many.size() < 2) {
-            LOG.warn("著书台选书自查：一池多用时只有 {} 条候选，上下箭头将不会出现", many.size());
+
+        // 完全按《道德经》配方自己的需求摆一遍，应该能写出它
+        List<ItemStack> daoPool = new java.util.ArrayList<>(dao.extras());
+        List<String> exact = names(BookWritingRecipes.findAll(level,
+                materialFor(0, dao.paperTier(), dao.paperCount()),
+                materialFor(1, dao.inkTier(), dao.inkCount()),
+                materialFor(2, dao.threadTier(), dao.threadCount()), daoPool));
+        LOG.info("著书台选书自查：照《道德经》配方摆料 → {}（{} 条）", exact, exact.size());
+        if (!exact.contains("dao_de_jing")) {
+            LOG.warn("著书台选书自查：照配方摆料却写不出《道德经》，检查素材档位映射");
         }
+
+        // 额外材料最多的那条：给足它的额外材料，候选里必须有它自己
+        if (fattest != null) {
+            List<String> many = names(BookWritingRecipes.findAll(level,
+                    materialFor(0, fattest.paperTier(), fattest.paperCount()),
+                    materialFor(1, fattest.inkTier(), fattest.inkCount()),
+                    materialFor(2, fattest.threadTier(), fattest.threadCount()),
+                    new java.util.ArrayList<>(fattest.extras())));
+            LOG.info("著书台选书自查：额外材料最多的一条（{} 种）→ {}（{} 条）", fattest.extras().size(),
+                    many, many.size());
+            if (many.isEmpty()) {
+                LOG.warn("著书台选书自查：给足额外材料仍无候选，检查 BookWritingRecipes.canCraft");
+            }
+        }
+    }
+
+    /** 按档位取对应的纸（kind 0）/ 墨（kind 1）/ 线（kind 2）。 */
+    private static ItemStack materialFor(int kind, int tier, int count) {
+        Item item;
+        if (kind == 0) {
+            item = switch (Math.max(1, Math.min(4, tier))) {
+                case 2 -> Materials.PARCHMENT.get();
+                case 3 -> Materials.CORRUPT_PARCHMENT.get();
+                case 4 -> Materials.ANNIHILATED_PARCHMENT.get();
+                default -> Materials.FIBER_PAPER.get();
+            };
+        } else if (kind == 1) {
+            item = switch (Math.max(1, Math.min(3, tier))) {
+                case 2 -> Materials.BLOOD_INK.get();
+                case 3 -> Materials.UNHOLY_INK.get();
+                default -> Materials.INK.get();
+            };
+        } else {
+            item = switch (Math.max(1, Math.min(3, tier))) {
+                case 2 -> Materials.GOLD_ROPE.get();
+                case 3 -> Materials.DRAGON_SINEW.get();
+                default -> Materials.HEMP_ROPE.get();
+            };
+        }
+        return new ItemStack(item, Math.max(1, count));
     }
 
     private static List<String> names(List<BookWritingRecipe> recipes) {
