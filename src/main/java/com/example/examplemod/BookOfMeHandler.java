@@ -424,36 +424,32 @@ public class BookOfMeHandler {
         double rightX = -Math.cos(yaw);
         double rightZ = -Math.sin(yaw);
 
-        // 2. 莫比乌斯带：竖立在背后（right × up 张成环面），扭转量走前后方向
-        //    参数：t 绕环一周，s 是「带子宽度方向」的采样（-1..1）
-        double radius = 0.42 + 0.02 * Math.sin(player.tickCount * 0.08);
-        double width = 0.14;
+        // 2. 无穷符号（Gerono 双纽线）：x = cos t、y = sin t·cos t，直接张在 right × up 平面上，
+        //    再沿前后方向加一点点起伏，让它不是完全平的一片。
+        double halfWidth = 0.55;
+        double halfHeight = 0.30;
         double spin = player.tickCount * 0.05;
 
-        int steps = 20;
-        int samples = 3;
-        for (int i = 0; i < steps; i++) {
-            double t = spin + i * (Math.PI * 2.0 / steps);
-            double ring = radius;
+        int points = 64;
+        for (int i = 0; i < points; i++) {
+            double t = spin + i * (Math.PI * 2.0 / points);
+            double ring = Math.cos(t);
+            double height = Math.sin(t) * Math.cos(t);
+            double depth = 0.06 * Math.sin(t * 2.0);
+
+            double px = anchorX + rightX * ring * halfWidth + forwardX * depth;
+            double py = anchorY + height * halfHeight;
+            double pz = anchorZ + rightZ * ring * halfWidth + forwardZ * depth;
+
             int color = (i % 2 == 0) ? 0x4FC3FF : 0xFF69B4; // 蓝 / 粉
-            for (int k = 0; k < samples; k++) {
-                double s = (k - 1) * 1.0D;                       // -1 / 0 / 1
-                double rr = ring + s * width * Math.cos(t * 0.5); // 扭转：半圈翻一次面
-                double off = s * width * Math.sin(t * 0.5);       // 前后方向上的扭转量
-
-                double px = anchorX + rightX * Math.cos(t) * rr + forwardX * off;
-                double py = anchorY + Math.sin(t) * rr;
-                double pz = anchorZ + rightZ * Math.cos(t) * rr + forwardZ * off;
-
-                serverLevel.sendParticles(
-                        new net.minecraft.core.particles.DustParticleOptions(
-                                new org.joml.Vector3f(
-                                        ((color >> 16) & 0xFF) / 255.0F,
-                                        ((color >> 8) & 0xFF) / 255.0F,
-                                        (color & 0xFF) / 255.0F),
-                                0.9F),
-                        px, py, pz, 1, 0.0D, 0.0D, 0.0D, 0.0D);
-            }
+            serverLevel.sendParticles(
+                    new net.minecraft.core.particles.DustParticleOptions(
+                            new org.joml.Vector3f(
+                                    ((color >> 16) & 0xFF) / 255.0F,
+                                    ((color >> 8) & 0xFF) / 255.0F,
+                                    (color & 0xFF) / 255.0F),
+                            0.9F),
+                    px, py, pz, 1, 0.0D, 0.0D, 0.0D, 0.0D);
         }
 
         // 3. 每 20 刻补一圈附魔粒子，增加「发光」的厚度
