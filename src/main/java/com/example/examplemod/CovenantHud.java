@@ -85,14 +85,27 @@ public final class CovenantHud {
         // DPS 已移到全局显示（DpsHud），这里只留特殊生命
     }
 
+    private static ItemStack cachedCovenant = ItemStack.EMPTY;
+    private static long cachedAt = Long.MIN_VALUE;
+
+    /**
+     * 缓存 10 tick 一次：这个方法是每帧被调用的（RenderGuiEvent.Post），
+     * 每次都去问 Curios 会把「找饰品」的扫描开销乘上帧率（2026-11-12）。
+     */
     private static ItemStack findCovenant(Minecraft mc) {
+        long now = mc.level == null ? 0L : mc.level.getGameTime();
+        if (cachedAt != Long.MIN_VALUE && now - cachedAt < 10L) {
+            return cachedCovenant;
+        }
+        cachedAt = now;
         try {
-            return CuriosApi.getCuriosInventory(mc.player).resolve()
+            cachedCovenant = CuriosApi.getCuriosInventory(mc.player).resolve()
                     .flatMap(inv -> inv.findFirstCurio(ExampleMod.COVENANT_CODEX.get()))
                     .map(result -> result.stack())
                     .orElse(ItemStack.EMPTY);
         } catch (Throwable ignored) {
-            return ItemStack.EMPTY;
+            cachedCovenant = ItemStack.EMPTY;
         }
+        return cachedCovenant;
     }
 }

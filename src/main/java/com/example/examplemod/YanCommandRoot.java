@@ -29,6 +29,7 @@ public final class YanCommandRoot {
         root = YanBookCommand.build(root);
         root = MilestoneCommand.build(root);
         root = EmptyBookshelfItem.buildCommand(root);
+        root = PerfProbe.build(root);
 
         dispatcher.register(root);
     }

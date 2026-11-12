@@ -2,11 +2,13 @@ package com.example.examplemod;
 
 import com.mojang.logging.LogUtils;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -150,6 +152,13 @@ public final class TrialManager {
         boolean closing;
         int closingTicks;
 
+        /**
+         * 玩家是不是被「亚波伦」打死的（作者 2026-11-12 要求：这种情况下除了补回残卷，
+         * 还要额外给一张赎罪券）。判定依据与 {@link ApollyonEpicRewardHandler} 相同，
+         * 读实体存档里的 {@code isApollyon} 标记，不写死注册名。
+         */
+        boolean killedByApollyon;
+
         Session(UUID playerId, ResourceLocation dimension, BlockPos center) {
             this.playerId = playerId;
             this.dimension = dimension;
@@ -159,6 +168,16 @@ public final class TrialManager {
 
     /** 等待延迟 Boss 出场的上限：60 秒。超时就当作没出现，避免整场卡死。 */
     private static final int AWAIT_BOSS_TIMEOUT = 60 * 20;
+
+    /**
+     * 被亚波伦打死的额外补偿（作者 2026-11-12）。
+     *
+     * <p>用物品标签而不是写死 {@code goety_revelation:atonement_voucher}：
+     * 别的模组的物品 id 不该出现在我们的代码里；标签条目本身写成 {@code required:false}，
+     * 对方没装时标签为空，这里自然什么都不发。
+     */
+    private static final TagKey<net.minecraft.world.item.Item> APOLLYON_TRIAL_REWARD =
+            TagKey.create(Registries.ITEM, new ResourceLocation(ExampleMod.MODID, "apollyon_trial_reward"));
     /** 使徒可选头衔数量（Goety 的 title.goety.0 ~ title.goety.11，共 12 个）。 */
     private static final int TITLE_COUNT = 12;
     /** 查找延迟 Boss 的半径。 */
@@ -613,12 +632,68 @@ public final class TrialManager {
                 }
                 player.displayClientMessage(
                         Component.literal("§c那审判没有越过你。残卷仍在，可以重来。"), false);
+                // 被亚波伦亲手打死：额外给一张赎罪券（作者 2026-11-12）。
+                if (session.killedByApollyon) {
+                    giveApollyonConsolation(player);
+                }
                 if (player instanceof net.minecraft.server.level.ServerPlayer serverPlayer) {
                     YanEventTrigger.INSTANCE.trigger(serverPlayer, "trial_fail");
                 }
             }
         }
         LOGGER.info("[启示试炼] 会话结束（失败）");
+    }
+
+    /**
+     * 发放「被亚波伦杀死」的额外补偿。
+     *
+     * <p>物品来自标签 {@link #APOLLYON_TRIAL_REWARD}；标签为空（没装对应模组）时静默跳过。
+     */
+    private static void giveApollyonConsolation(Player player) {
+        boolean given = false;
+        for (var holder : net.minecraft.core.registries.BuiltInRegistries.ITEM.getTagOrEmpty(APOLLYON_TRIAL_REWARD)) {
+            ItemStack reward = new ItemStack(holder.value());
+            if (reward.isEmpty()) {
+                continue;
+            }
+            Component name = reward.getHoverName();
+            if (!player.getInventory().add(reward)) {
+                player.drop(reward, false);
+            }
+            player.displayClientMessage(
+                    Component.literal("§d审判的余烬里留下了一张 §f").append(name), false);
+            given = true;
+            break;
+        }
+        if (!given) {
+            LOGGER.debug("[启示试炼] 亚波伦击杀补偿为空：标签 yanscriptures:apollyon_trial_reward 没有条目");
+        }
+    }
+
+    /**
+     * 记录「玩家是不是被亚波伦打死的」。
+     *
+     * <p>{@link #fail} 是在下一 tick 发现玩家已死才触发的，那时死亡事件早已过去，
+     * 所以只能在这里先把死因记到会话上。
+     */
+    @SubscribeEvent
+    public static void onTrialPlayerDeath(net.minecraftforge.event.entity.living.LivingDeathEvent event) {
+        if (!(event.getEntity() instanceof ServerPlayer player)) {
+            return;
+        }
+        Session session = SESSIONS.get(player.getUUID());
+        if (session == null) {
+            return;
+        }
+        Entity killer = event.getSource().getEntity();
+        if (killer == null) {
+            return;
+        }
+        CompoundTag tag = new CompoundTag();
+        killer.saveWithoutId(tag);
+        if (tag.getBoolean("isApollyon")) {
+            session.killedByApollyon = true;
+        }
     }
 
     private static void cleanUp(ServerLevel level, Session session) {

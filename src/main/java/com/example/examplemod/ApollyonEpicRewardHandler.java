@@ -43,6 +43,12 @@ public final class ApollyonEpicRewardHandler {
     /** 等实体彻底消失的上限，防止实体卡住不发奖（20 秒）。 */
     private static final long MAX_WAIT_TICKS = 400L;
 
+    /** 记录「曾经获得过」哪几块史诗，写在玩家存档里（作者 2026-11-12：不要求背包里带着）。 */
+    private static final String TAG_GOT_EPICS = "YanGotEpics";
+
+    /** 每 20 tick 扫一次背包/饰品栏，把「拿到过」的史诗记下来。 */
+    private static final int SCAN_INTERVAL = 20;
+
     /** 击杀者为空时（例如毒/火焰结算），按这个半径找附近的玩家。 */
     private static final double CREDIT_RADIUS = 48.0D;
 
@@ -70,6 +76,12 @@ public final class ApollyonEpicRewardHandler {
         CompoundTag tag = new CompoundTag();
         dead.saveWithoutId(tag);
         if (!tag.getBoolean("isApollyon")) {
+            return;
+        }
+
+        // 作者 2026-11-12 补充：「亚波伦」指的是**下界**亚波伦。
+        // 同一个实体在主世界也会死一次，那一次不算，必须死在下界才算数。
+        if (!level.dimension().equals(Level.NETHER)) {
             return;
         }
 
@@ -123,7 +135,7 @@ public final class ApollyonEpicRewardHandler {
     }
 
     private static void settle(ServerPlayer player) {
-        if (player.getInventory().contains(new ItemStack(ExampleMod.EPIC_EGO.get()))) {
+        if (has(player, ExampleMod.EPIC_EGO.get())) {
             return;
         }
 
@@ -148,12 +160,47 @@ public final class ApollyonEpicRewardHandler {
                 net.minecraft.sounds.SoundSource.PLAYERS, 1.0F, 0.7F);
     }
 
-    /** 另外四块史诗：命运、创生、支柱、灾厄；背包或饰品栏里有任意一份即可。 */
+    /**
+     * 另外四块史诗：命运、创生、支柱、灾厄。
+     *
+     * <p>判定的是「**曾经获得过**」，不是此刻拿在手上——作者 2026-11-12 明确：
+     * 「是获取过其他四个史诗，不要求背包里有」。所以打扫描把见过的那几块记进
+     * 玩家存档，这里只读存档。
+     */
     private static boolean hasOtherFour(Player player) {
-        return has(player, ExampleMod.EPIC_FATE.get())
-                && has(player, ExampleMod.EPIC_CREATION.get())
-                && has(player, ExampleMod.EPIC_PILLAR.get())
-                && has(player, ExampleMod.EPIC_CALAMITY.get());
+        CompoundTag got = player.getPersistentData().getCompound(TAG_GOT_EPICS);
+        return got.getBoolean("fate") && got.getBoolean("creation")
+                && got.getBoolean("pillar") && got.getBoolean("calamity");
+    }
+
+    /** 每 20 tick 扫一次，把「拿到过」的史诗记进玩家存档。 */
+    @SubscribeEvent
+    public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
+        if (event.phase != TickEvent.Phase.END || !(event.player instanceof ServerPlayer player)) {
+            return;
+        }
+        if (player.tickCount % SCAN_INTERVAL != 0) {
+            return;
+        }
+
+        CompoundTag got = player.getPersistentData().getCompound(TAG_GOT_EPICS);
+        boolean changed = false;
+        changed |= mark(got, "fate", player, ExampleMod.EPIC_FATE.get());
+        changed |= mark(got, "creation", player, ExampleMod.EPIC_CREATION.get());
+        changed |= mark(got, "pillar", player, ExampleMod.EPIC_PILLAR.get());
+        changed |= mark(got, "calamity", player, ExampleMod.EPIC_CALAMITY.get());
+        if (changed) {
+            player.getPersistentData().put(TAG_GOT_EPICS, got);
+        }
+    }
+
+    private static boolean mark(CompoundTag got, String key, Player player,
+                                net.minecraft.world.item.Item item) {
+        if (got.getBoolean(key) || !has(player, item)) {
+            return false;
+        }
+        got.putBoolean(key, true);
+        return true;
     }
 
     private static boolean has(Player player, net.minecraft.world.item.Item item) {
