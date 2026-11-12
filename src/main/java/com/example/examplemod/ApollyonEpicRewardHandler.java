@@ -46,8 +46,21 @@ public final class ApollyonEpicRewardHandler {
     /** 记录「曾经获得过」哪几块史诗，写在玩家存档里（作者 2026-11-12：不要求背包里带着）。 */
     private static final String TAG_GOT_EPICS = "YanGotEpics";
 
+    /** 「真我的史诗」已经发过一次的标记（防止把石板存箱子后再打一次又发一份）。 */
+    private static final String TAG_EGO_GOT = "YanGotEgo";
+
     /** 每 20 tick 扫一次背包/饰品栏，把「拿到过」的史诗记下来。 */
     private static final int SCAN_INTERVAL = 20;
+
+    /**
+     * 四块史诗各自的进度 id（不带命名空间）。
+     *
+     * <p>进度是原版存档的一部分，退出重进、死亡重生都不会丢；
+     * 之前只用 {@code getPersistentData()} 记，作者反馈重进后记录就没了。
+     */
+    private static final String[] EPIC_ADVANCEMENTS = {
+            "epic_fate", "epic_creation", "epic_pillar", "epic_calamity"
+    };
 
     /** 击杀者为空时（例如毒/火焰结算），按这个半径找附近的玩家。 */
     private static final double CREDIT_RADIUS = 48.0D;
@@ -135,7 +148,11 @@ public final class ApollyonEpicRewardHandler {
     }
 
     private static void settle(ServerPlayer player) {
+        if (player.getPersistentData().getBoolean(TAG_EGO_GOT)) {
+            return;
+        }
         if (has(player, ExampleMod.EPIC_EGO.get())) {
+            player.getPersistentData().putBoolean(TAG_EGO_GOT, true);
             return;
         }
 
@@ -149,6 +166,7 @@ public final class ApollyonEpicRewardHandler {
         if (!player.getInventory().add(ego)) {
             player.drop(ego, false);
         }
+        player.getPersistentData().putBoolean(TAG_EGO_GOT, true);
         player.displayClientMessage(Component.translatable(
                 "message.yanscriptures.epic.ego_granted").withStyle(ChatFormatting.LIGHT_PURPLE), false);
         levelSound(player);
@@ -168,9 +186,33 @@ public final class ApollyonEpicRewardHandler {
      * 玩家存档，这里只读存档。
      */
     private static boolean hasOtherFour(Player player) {
+        // 首选进度（作者 2026-11-12：退出重进后存档标记会丢，进度不会）：
+        // 四块史诗各有一条 inventory_changed 进度，拿到过就永久做完。
+        if (player instanceof ServerPlayer serverPlayer && allFourAdvancements(serverPlayer)) {
+            return true;
+        }
         CompoundTag got = player.getPersistentData().getCompound(TAG_GOT_EPICS);
         return got.getBoolean("fate") && got.getBoolean("creation")
                 && got.getBoolean("pillar") && got.getBoolean("calamity");
+    }
+
+    /** 四条史诗进度是否都已完成。 */
+    private static boolean allFourAdvancements(ServerPlayer player) {
+        var server = player.server;
+        if (server == null) {
+            return false;
+        }
+        for (String name : EPIC_ADVANCEMENTS) {
+            var advancement = server.getAdvancements()
+                    .getAdvancement(new net.minecraft.resources.ResourceLocation(ExampleMod.MODID, name));
+            if (advancement == null) {
+                return false;
+            }
+            if (!player.getAdvancements().getOrStartProgress(advancement).isDone()) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /** 每 20 tick 扫一次，把「拿到过」的史诗记进玩家存档。 */
