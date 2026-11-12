@@ -368,7 +368,10 @@ public final class TrialManager {
                 boolean bossAlive = false;
                 if (session.bossId != null) {
                     Entity boss = level.getEntity(session.bossId);
-                    bossAlive = boss != null && boss.isAlive();
+                    // [2026-11-12 作者要求] 血量归零不算「打完」：亚波伦的尾杀演出期间
+                    // 实体仍在世界里（死亡动画、结界结算），此时结算会让带特殊 NBT 的
+                    // 启示残卷提早到手。所以这里等实体真正被移除再判定。
+                    bossAlive = boss != null && !boss.isRemoved();
                 }
 
                 if (session.mobs.isEmpty() && !session.awaitingBoss && !bossAlive) {

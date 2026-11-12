@@ -122,6 +122,18 @@ public class ScriptureScrollItem extends Item {
             tag.remove("BloodGuilt_6");
         }
 
+        // 十条诅咒全部反转（补全）之后，把「启示残卷」给一次。
+        // 这张是普通版（不带 TrialCleared），与启示试炼通关给的那张区分开。
+        if (!tag.getBoolean("RevelationGranted") && allCommandmentsCompleted(tag)) {
+            tag.putBoolean("RevelationGranted", true);
+            ItemStack revelation = new ItemStack(ExampleMod.SCROLL_REVELATION.get());
+            if (!player.getInventory().add(revelation)) {
+                player.drop(revelation, false);
+            }
+            player.displayClientMessage(
+                    Component.translatable("message.yanscriptures.scroll.all_completed"), false);
+        }
+
         // 创造模式不消耗，方便调试
         if (!player.getAbilities().instabuild) {
             stack.shrink(1);
@@ -133,6 +145,16 @@ public class ScriptureScrollItem extends Item {
                 Component.translatable("message.yanscriptures.scroll.completed", n), true);
 
         return InteractionResultHolder.success(stack);
+    }
+
+    /** 十条诫是否全部补全（{@code Completed_1..10} 全为真）。 */
+    private static boolean allCommandmentsCompleted(CompoundTag tag) {
+        for (int i = 1; i <= 10; i++) {
+            if (!tag.getBoolean("Completed_" + i)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /** 从饰品栏找《圣典·戒律》。 */
