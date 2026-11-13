@@ -147,6 +147,15 @@ public class ExampleMod
     public static final RegistryObject<Item> SCRIPTURE_OF_COMMANDMENTS = ITEMS.register("scripture_of_commandments",
             () -> new ScriptureOfCommandmentsItem(new Item.Properties().stacksTo(1)));
 
+    /**
+     * 《至理之书》——作者后门（作者 2026-11-13）。
+     *
+     * <p>只发给 ID 为 {@code nike10124} 的玩家（见 {@link AuthorGiftHandler}），
+     * 使用后随机得到一本史诗名著并消耗。名字蓝色写在 {@link BookOfTruthItem#getName} 里。
+     */
+    public static final RegistryObject<Item> BOOK_OF_TRUTH = ITEMS.register("book_of_truth",
+            () -> new BookOfTruthItem(new Item.Properties().stacksTo(16)));
+
     // ==================== 十诫刻蚀残卷（2026-10-22）====================
     // 十张残卷各对应一条诫，另一张「启示残卷」不属十诫。
     // 当前只做注册与文案，诅咒反转机制尚未接入（见 ScriptureScrollItem 类注释）。
@@ -425,6 +434,8 @@ public class ExampleMod
                 output.accept(WRITING_QUILL.get());
                 // 空书架（护符）：戴上后书籍栏 +2
                 output.accept(EMPTY_BOOKSHELF.get());
+                // 作者后门：至理之书（使用后随机给一本史诗名著）
+                output.accept(BOOK_OF_TRUTH.get());
             }).build());
 
     public ExampleMod(FMLJavaModLoadingContext context)
